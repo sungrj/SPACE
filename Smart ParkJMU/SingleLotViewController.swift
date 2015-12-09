@@ -13,16 +13,11 @@ import Bolts
 class SingleLotViewController: UIViewController, UITableViewDataSource {
     
     
-    var lot = [] {
-        didSet {
-            print("SingleLotViewController: ",lot)
-            print( "lot -> \(lot.dynamicType)")
-        }
-    }
+    var lot = []
     
     @IBOutlet weak var lotTable: UITableView!
     @IBOutlet weak var singleLotSelected: UILabel!
-    
+
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,16 +35,27 @@ class SingleLotViewController: UIViewController, UITableViewDataSource {
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = UITableViewCell()
-        cell.textLabel?.numberOfLines = 4
-        
-        //        let spotsAvailable: Int = (lot[indexPath.row]["spotsAvailable"]!!.integerValue)!
-        
         let lotName = (lot[indexPath.row]["Name"]) as! String
         let spotsAvailable = lot[indexPath.row]["spotsAvailable"] as! Int
         let totalSpots = lot[indexPath.row]["totalSpots"]!!.integerValue as Int
-        cell.textLabel?.text = "Name: \(lotName)" + "\n" +
-                                "Spots Available: \(spotsAvailable)" + "\n" +
-                                "Total Spots: \(totalSpots)"
+        
+        if (spotsAvailable > totalSpots) {
+            cell.textLabel?.text = "Name: \(lotName)" + "\n" +
+                                   "Spots Available: Full\n" +
+                                   "Total Spots: \(totalSpots)"
+        }
+        if (spotsAvailable <= 0) {
+            cell.textLabel?.text = "Name: \(lotName)" + "\n" +
+                                   "Spots Available: Empty\n" +
+                                   "Total Spots: \(totalSpots)"
+        } else {
+            cell.textLabel?.text = "Name: \(lotName)" + "\n" +
+                                   "Spots Available: \(spotsAvailable)" + "\n" +
+                                   "Total Spots: \(totalSpots)"
+
+        }
+
+        cell.textLabel?.numberOfLines = 4
         cell.textLabel?.textColor = UIColor.whiteColor()
         cell.textLabel?.sizeToFit()
         cell.textLabel?.font = UIFont.systemFontOfSize(18)          // font size

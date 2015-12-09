@@ -22,11 +22,8 @@ class ViewController: UIViewController, UITableViewDataSource {
         query.findObjectsInBackgroundWithBlock {
             (data: [PFObject]?, error: NSError?) -> Void in
                 if error == nil && data != nil {
-                    print("data", data)
-                    print( "data -> \(data.dynamicType)")
                     if let data = data {
                         for lot in data {
-                            print("This lotID is: ", lot["Name"])
                             self.lots.append(lot)
                         }
                     }

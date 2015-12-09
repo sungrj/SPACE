@@ -190,7 +190,7 @@ at JMU through the Cloud</string>
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                 <animations/>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Parking Lot: D1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="656-l9-v6R">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Parking Lots:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="656-l9-v6R">
                                 <rect key="frame" x="-42" y="-21" width="42" height="21"/>
                                 <animations/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="29"/>
@@ -240,7 +240,9 @@ at JMU through the Cloud</string>
                             <constraint firstAttribute="trailingMargin" secondItem="656-l9-v6R" secondAttribute="trailing" constant="155" id="5bt-cq-PIf"/>
                             <constraint firstItem="bBR-Wp-xsb" firstAttribute="centerX" secondItem="doW-B7-Qj7" secondAttribute="centerX" id="7OJ-1c-1k2"/>
                             <constraint firstAttribute="leadingMargin" secondItem="656-l9-v6R" secondAttribute="leading" id="7ck-Kv-KBj"/>
-                            <constraint firstItem="doW-B7-Qj7" firstAttribute="top" secondItem="656-l9-v6R" secondAttribute="bottom" constant="8" id="90t-NO-TxP"/>
+                            <constraint firstItem="doW-B7-Qj7" firstAttribute="top" secondItem="656-l9-v6R" secondAttribute="bottom" constant="8" id="90t-NO-TxP">
+                                <variation key="widthClass=compact" constant="7"/>
+                            </constraint>
                             <constraint firstItem="b9Z-SA-LKC" firstAttribute="leading" secondItem="b2j-ry-oMd" secondAttribute="leadingMargin" constant="-20" id="CwY-wF-uDm"/>
                             <constraint firstItem="656-l9-v6R" firstAttribute="top" secondItem="jz6-OI-LWI" secondAttribute="bottom" constant="46" id="HR2-EI-H83"/>
                             <constraint firstItem="bBR-Wp-xsb" firstAttribute="leading" secondItem="b2j-ry-oMd" secondAttribute="leadingMargin" constant="125" id="NOP-aw-Nrp"/>
