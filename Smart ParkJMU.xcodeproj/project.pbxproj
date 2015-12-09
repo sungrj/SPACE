@@ -14,6 +14,23 @@
 		A442FB101BF14862006DB57B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A442FB0E1BF14862006DB57B /* LaunchScreen.storyboard */; };
 		A442FB1B1BF14862006DB57B /* Smart_ParkJMUTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A442FB1A1BF14862006DB57B /* Smart_ParkJMUTests.swift */; };
 		A442FB261BF14862006DB57B /* Smart_ParkJMUUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A442FB251BF14862006DB57B /* Smart_ParkJMUUITests.swift */; };
+		A442FB341BF1486E006DB57B /* JM.png in Resources */ = {isa = PBXBuildFile; fileRef = A442FB331BF1486E006DB57B /* JM.png */; };
+		A493BB801BF53A4500493FF0 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A493BB7E1BF53A4500493FF0 /* Bolts.framework */; };
+		A493BB811BF53A4500493FF0 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A493BB7F1BF53A4500493FF0 /* Parse.framework */; };
+		A493BB8C1BF53ADF00493FF0 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A493BB821BF53ADF00493FF0 /* AudioToolbox.framework */; };
+		A493BB8D1BF53ADF00493FF0 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A493BB831BF53ADF00493FF0 /* CFNetwork.framework */; };
+		A493BB8E1BF53ADF00493FF0 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A493BB841BF53ADF00493FF0 /* CoreGraphics.framework */; };
+		A493BB8F1BF53ADF00493FF0 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A493BB851BF53ADF00493FF0 /* CoreLocation.framework */; };
+		A493BB901BF53ADF00493FF0 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = A493BB861BF53ADF00493FF0 /* libsqlite3.tbd */; };
+		A493BB911BF53ADF00493FF0 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = A493BB871BF53ADF00493FF0 /* libz.tbd */; };
+		A493BB921BF53ADF00493FF0 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A493BB881BF53ADF00493FF0 /* QuartzCore.framework */; };
+		A493BB931BF53ADF00493FF0 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A493BB891BF53ADF00493FF0 /* Security.framework */; };
+		A493BB941BF53ADF00493FF0 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A493BB8A1BF53ADF00493FF0 /* StoreKit.framework */; };
+		A493BB951BF53ADF00493FF0 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A493BB8B1BF53ADF00493FF0 /* SystemConfiguration.framework */; };
+		A493BB981BF53AE900493FF0 /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A493BB961BF53AE900493FF0 /* Accounts.framework */; };
+		A493BB991BF53AE900493FF0 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A493BB971BF53AE900493FF0 /* Social.framework */; };
+		A4BD740D1BF2E1E300F57C2B /* Asphalt copy.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A4BD740C1BF2E1E300F57C2B /* Asphalt copy.jpg */; };
+		A4BD740F1BF2F3E000F57C2B /* SingleLotViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4BD740E1BF2F3E000F57C2B /* SingleLotViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +64,23 @@
 		A442FB211BF14862006DB57B /* Smart ParkJMUUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Smart ParkJMUUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A442FB251BF14862006DB57B /* Smart_ParkJMUUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Smart_ParkJMUUITests.swift; sourceTree = "<group>"; };
 		A442FB271BF14862006DB57B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A442FB331BF1486E006DB57B /* JM.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = JM.png; sourceTree = "<group>"; };
+		A493BB7E1BF53A4500493FF0 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
+		A493BB7F1BF53A4500493FF0 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
+		A493BB821BF53ADF00493FF0 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		A493BB831BF53ADF00493FF0 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		A493BB841BF53ADF00493FF0 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		A493BB851BF53ADF00493FF0 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		A493BB861BF53ADF00493FF0 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
+		A493BB871BF53ADF00493FF0 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
+		A493BB881BF53ADF00493FF0 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		A493BB891BF53ADF00493FF0 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		A493BB8A1BF53ADF00493FF0 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		A493BB8B1BF53ADF00493FF0 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		A493BB961BF53AE900493FF0 /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
+		A493BB971BF53AE900493FF0 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
+		A4BD740C1BF2E1E300F57C2B /* Asphalt copy.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Asphalt copy.jpg"; sourceTree = "<group>"; };
+		A4BD740E1BF2F3E000F57C2B /* SingleLotViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SingleLotViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,6 +88,20 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A493BB981BF53AE900493FF0 /* Accounts.framework in Frameworks */,
+				A493BB991BF53AE900493FF0 /* Social.framework in Frameworks */,
+				A493BB8C1BF53ADF00493FF0 /* AudioToolbox.framework in Frameworks */,
+				A493BB8D1BF53ADF00493FF0 /* CFNetwork.framework in Frameworks */,
+				A493BB8E1BF53ADF00493FF0 /* CoreGraphics.framework in Frameworks */,
+				A493BB8F1BF53ADF00493FF0 /* CoreLocation.framework in Frameworks */,
+				A493BB901BF53ADF00493FF0 /* libsqlite3.tbd in Frameworks */,
+				A493BB911BF53ADF00493FF0 /* libz.tbd in Frameworks */,
+				A493BB921BF53ADF00493FF0 /* QuartzCore.framework in Frameworks */,
+				A493BB931BF53ADF00493FF0 /* Security.framework in Frameworks */,
+				A493BB941BF53ADF00493FF0 /* StoreKit.framework in Frameworks */,
+				A493BB951BF53ADF00493FF0 /* SystemConfiguration.framework in Frameworks */,
+				A493BB811BF53A4500493FF0 /* Parse.framework in Frameworks */,
+				A493BB801BF53A4500493FF0 /* Bolts.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -78,6 +126,7 @@
 			isa = PBXGroup;
 			children = (
 				A442FB041BF14862006DB57B /* Smart ParkJMU */,
+				A493BB9A1BF53AF500493FF0 /* Frameworks */,
 				A442FB191BF14862006DB57B /* Smart ParkJMUTests */,
 				A442FB241BF14862006DB57B /* Smart ParkJMUUITests */,
 				A442FB031BF14862006DB57B /* Products */,
@@ -99,9 +148,12 @@
 			children = (
 				A442FB051BF14862006DB57B /* AppDelegate.swift */,
 				A442FB071BF14862006DB57B /* ViewController.swift */,
+				A4BD740E1BF2F3E000F57C2B /* SingleLotViewController.swift */,
 				A442FB091BF14862006DB57B /* Main.storyboard */,
 				A442FB0C1BF14862006DB57B /* Assets.xcassets */,
 				A442FB0E1BF14862006DB57B /* LaunchScreen.storyboard */,
+				A442FB331BF1486E006DB57B /* JM.png */,
+				A4BD740C1BF2E1E300F57C2B /* Asphalt copy.jpg */,
 				A442FB111BF14862006DB57B /* Info.plist */,
 			);
 			path = "Smart ParkJMU";
@@ -123,6 +175,27 @@
 				A442FB271BF14862006DB57B /* Info.plist */,
 			);
 			path = "Smart ParkJMUUITests";
+			sourceTree = "<group>";
+		};
+		A493BB9A1BF53AF500493FF0 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				A493BB961BF53AE900493FF0 /* Accounts.framework */,
+				A493BB971BF53AE900493FF0 /* Social.framework */,
+				A493BB821BF53ADF00493FF0 /* AudioToolbox.framework */,
+				A493BB831BF53ADF00493FF0 /* CFNetwork.framework */,
+				A493BB841BF53ADF00493FF0 /* CoreGraphics.framework */,
+				A493BB851BF53ADF00493FF0 /* CoreLocation.framework */,
+				A493BB861BF53ADF00493FF0 /* libsqlite3.tbd */,
+				A493BB871BF53ADF00493FF0 /* libz.tbd */,
+				A493BB881BF53ADF00493FF0 /* QuartzCore.framework */,
+				A493BB891BF53ADF00493FF0 /* Security.framework */,
+				A493BB8A1BF53ADF00493FF0 /* StoreKit.framework */,
+				A493BB8B1BF53ADF00493FF0 /* SystemConfiguration.framework */,
+				A493BB7E1BF53A4500493FF0 /* Bolts.framework */,
+				A493BB7F1BF53A4500493FF0 /* Parse.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -232,7 +305,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A442FB341BF1486E006DB57B /* JM.png in Resources */,
 				A442FB101BF14862006DB57B /* LaunchScreen.storyboard in Resources */,
+				A4BD740D1BF2E1E300F57C2B /* Asphalt copy.jpg in Resources */,
 				A442FB0D1BF14862006DB57B /* Assets.xcassets in Resources */,
 				A442FB0B1BF14862006DB57B /* Main.storyboard in Resources */,
 			);
@@ -261,6 +336,7 @@
 			files = (
 				A442FB081BF14862006DB57B /* ViewController.swift in Sources */,
 				A442FB061BF14862006DB57B /* AppDelegate.swift in Sources */,
+				A4BD740F1BF2F3E000F57C2B /* SingleLotViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -402,6 +478,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = "Smart ParkJMU/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.rileysing.Smart-ParkJMU";
@@ -413,6 +493,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = "Smart ParkJMU/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.rileysing.Smart-ParkJMU";
@@ -487,6 +571,7 @@
 				A442FB2C1BF14862006DB57B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		A442FB2D1BF14862006DB57B /* Build configuration list for PBXNativeTarget "Smart ParkJMUTests" */ = {
 			isa = XCConfigurationList;
@@ -495,6 +580,7 @@
 				A442FB2F1BF14862006DB57B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		A442FB301BF14862006DB57B /* Build configuration list for PBXNativeTarget "Smart ParkJMUUITests" */ = {
 			isa = XCConfigurationList;
@@ -503,6 +589,7 @@
 				A442FB321BF14862006DB57B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
