@@ -13,7 +13,11 @@ import Bolts
 class SingleLotViewController: UIViewController, UITableViewDataSource {
     
     
-    var lot = []
+    var lot = [] {
+        didSet {
+            print("Lots: ",lot)
+        }
+    }
     
     @IBOutlet weak var lotTable: UITableView!
     @IBOutlet weak var singleLotSelected: UILabel!
