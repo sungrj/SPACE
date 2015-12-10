@@ -44,7 +44,7 @@ class SingleLotViewController: UIViewController, UITableViewDataSource {
                                    "Spots Available: Full\n" +
                                    "Total Spots: \(totalSpots)"
         }
-        if (spotsAvailable <= 0) {
+        else if (spotsAvailable <= 0) {
             cell.textLabel?.text = "Name: \(lotName)" + "\n" +
                                    "Spots Available: Empty\n" +
                                    "Total Spots: \(totalSpots)"
