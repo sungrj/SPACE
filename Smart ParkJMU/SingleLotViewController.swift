@@ -43,7 +43,7 @@ class SingleLotViewController: UIViewController, UITableViewDataSource {
         let spotsAvailable = lot[indexPath.row]["spotsAvailable"] as! Int
         let totalSpots = lot[indexPath.row]["totalSpots"]!!.integerValue as Int
         
-        if (spotsAvailable > totalSpots) {
+        if (spotsAvailable >= totalSpots) {
             cell.textLabel?.text = "Name: \(lotName)" + "\n" +
                                    "Spots Available: Full\n" +
                                    "Total Spots: \(totalSpots)"
