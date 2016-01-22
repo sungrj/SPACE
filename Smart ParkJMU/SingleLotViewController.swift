@@ -7,25 +7,53 @@
 //
 
 import UIKit
-import Parse
-import Bolts
 
 class SingleLotViewController: UIViewController, UITableViewDataSource {
-    
-    
-    var lot = [] {
-        didSet {
-            print("Lots: ",lot)
-        }
-    }
-    
+   
+    var lots = []
+
     @IBOutlet weak var lotTable: UITableView!
     @IBOutlet weak var singleLotSelected: UILabel!
 
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("SingleLotViewController.viewDidLoad")
+       
+        lots = getLotData()
+
+        print("Lots", lots)
+    }
+    
+    func getLotData() -> NSArray {
+        
+        var outer = []
+        
+        let nsUrl = NSURL(string: "http://192.168.99.101/test1.php")
+        
+        let semaphore = dispatch_semaphore_create(0)
+        
+        let task = NSURLSession.sharedSession().dataTaskWithURL(nsUrl!){
+            (data, response, error) in
+            
+            do {
+            
+                let jsonResult = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.MutableContainers)
+                outer = jsonResult as! NSArray
+            
+            } catch {
+            
+                print ("JSON serialization failed")
+            }
+            
+            dispatch_semaphore_signal(semaphore)
+            
+        }
+        
+        task.resume()
+        
+        dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER)
+        
+        return outer
     }
 
     override func didReceiveMemoryWarning() {
@@ -33,15 +61,22 @@ class SingleLotViewController: UIViewController, UITableViewDataSource {
         // Dispose of any resources that can be recreated.
     }
     
+    @IBAction func didPressRefresh(sender: AnyObject) {
+        
+        getLotData()
+        
+    }
+    
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return lot.count
+        return lots.count
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = UITableViewCell()
-        let lotName = (lot[indexPath.row]["Name"]) as! String
-        let spotsAvailable = lot[indexPath.row]["spotsAvailable"] as! Int
-        let totalSpots = lot[indexPath.row]["totalSpots"]!!.integerValue as Int
+        
+        let lotName = (lots[indexPath.row]["Lot_Name"]) as! String
+        let spotsAvailable = lots[indexPath.row]["Available_Number_Of_Spots"]!!.integerValue as Int
+        let totalSpots = lots[indexPath.row]["Capacity_Of_Spots"]!!.integerValue as Int
         
         if (spotsAvailable >= totalSpots) {
             cell.textLabel?.text = "Name: \(lotName)" + "\n" +
@@ -59,7 +94,7 @@ class SingleLotViewController: UIViewController, UITableViewDataSource {
 
         }
 
-        cell.textLabel?.numberOfLines = 4
+        cell.textLabel?.numberOfLines = 3
         cell.textLabel?.textColor = UIColor.whiteColor()
         cell.textLabel?.sizeToFit()
         cell.textLabel?.font = UIFont.systemFontOfSize(18)          // font size
