@@ -9,7 +9,9 @@
 import UIKit
 
 class SingleLotViewController: UIViewController, UITableViewDataSource {
-   
+
+    var refreshControl:UIRefreshControl!
+    
     var lots = []
 
     @IBOutlet weak var lotTable: UITableView!
@@ -19,6 +21,11 @@ class SingleLotViewController: UIViewController, UITableViewDataSource {
     override func viewDidLoad() {
         super.viewDidLoad()
        
+        self.refreshControl = UIRefreshControl()
+        self.refreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh")
+        self.refreshControl.addTarget(self, action: "didPressRefresh:", forControlEvents: UIControlEvents.ValueChanged)
+        self.lotTable.addSubview(refreshControl)
+        
         lots = getLotData()
 
         print("Lots", lots)
