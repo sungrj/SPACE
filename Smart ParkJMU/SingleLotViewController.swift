@@ -26,14 +26,14 @@ class SingleLotViewController: UIViewController, UITableViewDataSource {
         self.refreshControl.addTarget(self, action: "didPressRefresh:", forControlEvents: UIControlEvents.ValueChanged)
         self.lotTable.addSubview(refreshControl)
         
-        lots = getLotData()
+        lots = SingleLotViewController.getLotData()
 
         print("Lots", lots)
     }
     
-    func getLotData() -> NSArray {
+    class func getLotData() -> NSArray {
         
-        var outer = []
+        var lotData = []
         
         let nsUrl = NSURL(string: "http://192.168.99.101/test1.php")
         
@@ -45,7 +45,7 @@ class SingleLotViewController: UIViewController, UITableViewDataSource {
             do {
             
                 let jsonResult = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.MutableContainers)
-                outer = jsonResult as! NSArray
+                lotData = jsonResult as! NSArray
             
             } catch {
             
@@ -60,7 +60,7 @@ class SingleLotViewController: UIViewController, UITableViewDataSource {
         
         dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER)
         
-        return outer
+        return lotData
     }
 
     override func didReceiveMemoryWarning() {
@@ -70,7 +70,7 @@ class SingleLotViewController: UIViewController, UITableViewDataSource {
     
     @IBAction func didPressRefresh(sender: AnyObject) {
         
-        getLotData()
+        SingleLotViewController.getLotData()
         
     }
     

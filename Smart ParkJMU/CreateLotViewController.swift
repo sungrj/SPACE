@@ -103,6 +103,8 @@ class CreateLotViewController: UIViewController, UITextFieldDelegate {
         
         if lotNameTextField.text == "" {
             
+            lotNameInputErrorLabel.text = "(Must enter name)"
+            
             lotNameInputErrorLabel.hidden = false
             
         } else {
@@ -112,6 +114,8 @@ class CreateLotViewController: UIViewController, UITextFieldDelegate {
         }
         
         if lotLocationTextField.text == "" {
+            
+            lotLocationInputErrorLabel.text = "(Must enter location)"
             
             lotLocationInputErrorLabel.hidden = false
             
@@ -123,15 +127,29 @@ class CreateLotViewController: UIViewController, UITextFieldDelegate {
         
         if lotCapacityTextField.text == "" {
             
+            lotCapacityInputErrorLabel.text = "(Must enter capacity)"
+            
             lotCapacityInputErrorLabel.hidden = false
             
         } else {
             
-            lotCapacityInputErrorLabel.hidden = true
+            if let _ = Int(lotCapacityTextField.text!) {
+                
+                lotCapacityInputErrorLabel.hidden = true
+                
+            } else {
+                
+                lotCapacityInputErrorLabel.text = "(Input not a number)"
+                
+                lotCapacityInputErrorLabel.hidden = false
+                
+            }
             
         }
         
         if lotBackUpTextField.text == "" {
+            
+            lotBackUpLotInputErrorLabel.text = "(Must enter lot)"
             
             lotBackUpLotInputErrorLabel.hidden = false
             
@@ -143,15 +161,27 @@ class CreateLotViewController: UIViewController, UITextFieldDelegate {
         
         if lotHoursOfAvailabilityTextField.text == "" {
             
+            lotHoursOfAvailabilityInputErrorLabel.text = "(Must enter hours)"
+            
             lotHoursOfAvailabilityInputErrorLabel.hidden = false
 
         } else {
             
-            lotHoursOfAvailabilityInputErrorLabel.hidden = true
+            if let _ = Int(lotHoursOfAvailabilityTextField.text!) {
+                
+                lotHoursOfAvailabilityInputErrorLabel.hidden = true
+                
+            } else {
+                
+                lotHoursOfAvailabilityInputErrorLabel.text = "(Input not a number)"
+                lotHoursOfAvailabilityInputErrorLabel.hidden = false
+                
+            }
+            
             
         }
         
-        if lotNameTextField.text != "" && lotLocationTextField.text != "" && lotCapacityTextField.text != "" && lotBackUpTextField.text != "" && lotHoursOfAvailabilityTextField.text != "" {
+        if lotNameInputErrorLabel.hidden == true && lotLocationInputErrorLabel.hidden == true && lotCapacityInputErrorLabel.hidden == true && lotBackUpLotInputErrorLabel.hidden == true && lotHoursOfAvailabilityInputErrorLabel.hidden == true {
             
             return true
             

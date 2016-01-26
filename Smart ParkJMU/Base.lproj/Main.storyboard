@@ -22,33 +22,6 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="JM.png" translatesAutoresizingMaskIntoConstraints="NO" id="Ddu-Ih-67X">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                             </imageView>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" sectionIndexMinimumDisplayRowCount="1" rowHeight="88" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="0kZ-ff-q2P">
-                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
-                                <color key="backgroundColor" white="1" alpha="0.0" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="306" id="My9-UI-kaY">
-                                        <variation key="widthClass=compact" constant="377.5"/>
-                                    </constraint>
-                                </constraints>
-                                <color key="separatorColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <color key="sectionIndexColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <color key="sectionIndexBackgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                <color key="sectionIndexTrackingBackgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                <variation key="default">
-                                    <mask key="constraints">
-                                        <exclude reference="My9-UI-kaY"/>
-                                    </mask>
-                                </variation>
-                                <variation key="widthClass=compact">
-                                    <mask key="constraints">
-                                        <include reference="My9-UI-kaY"/>
-                                    </mask>
-                                </variation>
-                                <connections>
-                                    <outlet property="dataSource" destination="BYZ-38-t0r" id="lvW-cv-LFv"/>
-                                    <outlet property="delegate" destination="BYZ-38-t0r" id="kxk-n8-lfC"/>
-                                </connections>
-                            </tableView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QB3-kd-2rT">
                                 <rect key="frame" x="-23" y="-15" width="46" height="30"/>
                                 <state key="normal" title="Go To Single Lot View">
@@ -92,12 +65,39 @@ at JMU through the Cloud</string>
                                     <action selector="didPressLoginOrAdminPage:" destination="BYZ-38-t0r" eventType="touchUpInside" id="6GU-DE-Hm2"/>
                                 </connections>
                             </button>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" sectionIndexMinimumDisplayRowCount="1" rowHeight="88" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="0kZ-ff-q2P">
+                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                <color key="backgroundColor" white="1" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="306" id="My9-UI-kaY">
+                                        <variation key="widthClass=compact" constant="377.5"/>
+                                    </constraint>
+                                </constraints>
+                                <color key="separatorColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="sectionIndexColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="sectionIndexBackgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <color key="sectionIndexTrackingBackgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="My9-UI-kaY"/>
+                                    </mask>
+                                </variation>
+                                <variation key="widthClass=compact">
+                                    <mask key="constraints">
+                                        <include reference="My9-UI-kaY"/>
+                                    </mask>
+                                </variation>
+                                <connections>
+                                    <outlet property="dataSource" destination="BYZ-38-t0r" id="lvW-cv-LFv"/>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="kxk-n8-lfC"/>
+                                </connections>
+                            </tableView>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="JXR-IP-jUG" firstAttribute="leading" secondItem="0kZ-ff-q2P" secondAttribute="leading" id="3KW-5f-hon"/>
                             <constraint firstItem="QB3-kd-2rT" firstAttribute="top" secondItem="0kZ-ff-q2P" secondAttribute="bottom" constant="8" id="5oJ-m1-Wso">
-                                <variation key="widthClass=compact" constant="7"/>
+                                <variation key="widthClass=compact" constant="8.5"/>
                             </constraint>
                             <constraint firstItem="I57-mX-5JO" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="44" id="7ni-xC-mr0"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="QB3-kd-2rT" secondAttribute="bottom" constant="53" id="9hc-qs-qef"/>
@@ -121,55 +121,55 @@ at JMU through the Cloud</string>
                         <variation key="default">
                             <mask key="subviews">
                                 <exclude reference="Ddu-Ih-67X"/>
-                                <exclude reference="0kZ-ff-q2P"/>
                                 <exclude reference="QB3-kd-2rT"/>
                                 <exclude reference="I57-mX-5JO"/>
                                 <exclude reference="JXR-IP-jUG"/>
+                                <exclude reference="0kZ-ff-q2P"/>
                             </mask>
                             <mask key="constraints">
-                                <exclude reference="ITx-pY-gjm"/>
-                                <exclude reference="JSP-60-cnt"/>
-                                <exclude reference="VDY-8M-kXr"/>
-                                <exclude reference="Z0x-5d-vkx"/>
+                                <exclude reference="9hc-qs-qef"/>
+                                <exclude reference="rHW-Na-Tis"/>
                                 <exclude reference="3KW-5f-hon"/>
                                 <exclude reference="qQA-gJ-zZx"/>
+                                <exclude reference="5oJ-m1-Wso"/>
+                                <exclude reference="FNI-DI-XIr"/>
                                 <exclude reference="7ni-xC-mr0"/>
                                 <exclude reference="B9h-oG-vsc"/>
                                 <exclude reference="CXP-WL-af7"/>
                                 <exclude reference="Opc-15-EV1"/>
                                 <exclude reference="bTL-so-MNW"/>
                                 <exclude reference="pD0-cL-nkW"/>
-                                <exclude reference="5oJ-m1-Wso"/>
-                                <exclude reference="FNI-DI-XIr"/>
-                                <exclude reference="9hc-qs-qef"/>
-                                <exclude reference="rHW-Na-Tis"/>
+                                <exclude reference="ITx-pY-gjm"/>
+                                <exclude reference="JSP-60-cnt"/>
+                                <exclude reference="VDY-8M-kXr"/>
+                                <exclude reference="Z0x-5d-vkx"/>
                             </mask>
                         </variation>
                         <variation key="widthClass=compact">
                             <mask key="subviews">
                                 <include reference="Ddu-Ih-67X"/>
-                                <include reference="0kZ-ff-q2P"/>
                                 <include reference="QB3-kd-2rT"/>
                                 <include reference="I57-mX-5JO"/>
                                 <include reference="JXR-IP-jUG"/>
+                                <include reference="0kZ-ff-q2P"/>
                             </mask>
                             <mask key="constraints">
-                                <include reference="ITx-pY-gjm"/>
-                                <include reference="JSP-60-cnt"/>
-                                <include reference="VDY-8M-kXr"/>
-                                <include reference="Z0x-5d-vkx"/>
+                                <include reference="9hc-qs-qef"/>
+                                <include reference="rHW-Na-Tis"/>
                                 <include reference="3KW-5f-hon"/>
                                 <include reference="qQA-gJ-zZx"/>
+                                <include reference="5oJ-m1-Wso"/>
+                                <include reference="FNI-DI-XIr"/>
                                 <include reference="7ni-xC-mr0"/>
                                 <include reference="B9h-oG-vsc"/>
                                 <include reference="CXP-WL-af7"/>
                                 <include reference="Opc-15-EV1"/>
                                 <include reference="bTL-so-MNW"/>
                                 <include reference="pD0-cL-nkW"/>
-                                <include reference="5oJ-m1-Wso"/>
-                                <include reference="FNI-DI-XIr"/>
-                                <include reference="9hc-qs-qef"/>
-                                <include reference="rHW-Na-Tis"/>
+                                <include reference="ITx-pY-gjm"/>
+                                <include reference="JSP-60-cnt"/>
+                                <include reference="VDY-8M-kXr"/>
+                                <include reference="Z0x-5d-vkx"/>
                             </mask>
                         </variation>
                     </view>
@@ -192,6 +192,7 @@ at JMU through the Cloud</string>
                         <viewControllerLayoutGuide type="bottom" id="25t-iK-fGv"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="sZF-Vk-42y">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Asphalt copy.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="DTf-LC-3rL">
@@ -362,6 +363,25 @@ at JMU through the Cloud</string>
                                     </mask>
                                 </variation>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Incorrect username or password" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zdS-Wb-sXT">
+                                <rect key="frame" x="-42" y="-21" width="42" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="WdK-YS-IOs"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="WdK-YS-IOs"/>
+                                    </mask>
+                                </variation>
+                                <variation key="widthClass=compact">
+                                    <mask key="constraints">
+                                        <include reference="WdK-YS-IOs"/>
+                                    </mask>
+                                </variation>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -380,10 +400,12 @@ at JMU through the Cloud</string>
                             <constraint firstAttribute="leadingMargin" secondItem="HoM-2j-IiJ" secondAttribute="leading" id="KcQ-4h-YDN"/>
                             <constraint firstAttribute="leadingMargin" secondItem="DyV-cI-hPF" secondAttribute="leading" id="LPc-Xr-BHf"/>
                             <constraint firstItem="DTf-LC-3rL" firstAttribute="top" secondItem="iPo-Sk-0uw" secondAttribute="bottom" constant="-20" id="MCx-kR-ulJ"/>
+                            <constraint firstItem="zdS-Wb-sXT" firstAttribute="trailing" secondItem="hpx-2v-7j3" secondAttribute="trailing" id="N9m-BJ-xpv"/>
                             <constraint firstItem="tXh-8e-1jJ" firstAttribute="leading" secondItem="DyV-cI-hPF" secondAttribute="leading" id="PML-A1-9mu"/>
                             <constraint firstItem="DyV-cI-hPF" firstAttribute="leading" secondItem="HoM-2j-IiJ" secondAttribute="leading" id="Qnc-9E-4pZ"/>
                             <constraint firstItem="YjH-uG-nmS" firstAttribute="leading" secondItem="5Ln-i2-OyE" secondAttribute="leading" id="RP4-PV-exZ"/>
                             <constraint firstItem="25t-iK-fGv" firstAttribute="top" secondItem="DTf-LC-3rL" secondAttribute="bottom" id="SIt-rc-DoI"/>
+                            <constraint firstItem="zdS-Wb-sXT" firstAttribute="top" secondItem="hpx-2v-7j3" secondAttribute="bottom" constant="8" id="UOX-Yp-c2i"/>
                             <constraint firstItem="YjH-uG-nmS" firstAttribute="top" secondItem="5Ln-i2-OyE" secondAttribute="bottom" constant="8" symbolic="YES" id="Wvo-O5-KAc"/>
                             <constraint firstAttribute="trailingMargin" secondItem="hpx-2v-7j3" secondAttribute="trailing" id="cBo-UY-5bM"/>
                             <constraint firstItem="tXh-8e-1jJ" firstAttribute="top" secondItem="YjH-uG-nmS" secondAttribute="bottom" constant="23" id="cQo-FV-zHM">
@@ -397,6 +419,7 @@ at JMU through the Cloud</string>
                             </constraint>
                             <constraint firstItem="25t-iK-fGv" firstAttribute="top" secondItem="HoM-2j-IiJ" secondAttribute="bottom" constant="62" id="hzf-8a-ldU"/>
                             <constraint firstAttribute="trailingMargin" secondItem="DyV-cI-hPF" secondAttribute="trailing" id="mzt-rJ-VlR"/>
+                            <constraint firstItem="zdS-Wb-sXT" firstAttribute="leading" secondItem="hpx-2v-7j3" secondAttribute="leading" id="oK5-41-fNI"/>
                             <constraint firstItem="5Ln-i2-OyE" firstAttribute="leading" secondItem="sZF-Vk-42y" secondAttribute="leadingMargin" id="sC8-vS-4tg"/>
                             <constraint firstItem="Lwb-GU-sSI" firstAttribute="top" secondItem="ts0-kP-89J" secondAttribute="bottom" constant="19" id="tqJ-dM-UWb">
                                 <variation key="widthClass=compact" constant="23"/>
@@ -416,6 +439,7 @@ at JMU through the Cloud</string>
                                 <exclude reference="hpx-2v-7j3"/>
                                 <exclude reference="ts0-kP-89J"/>
                                 <exclude reference="Lwb-GU-sSI"/>
+                                <exclude reference="zdS-Wb-sXT"/>
                             </mask>
                             <mask key="constraints">
                                 <exclude reference="7ti-16-Ife"/>
@@ -446,6 +470,9 @@ at JMU through the Cloud</string>
                                 <exclude reference="ADe-DB-bcj"/>
                                 <exclude reference="cBo-UY-5bM"/>
                                 <exclude reference="yaK-AC-G1u"/>
+                                <exclude reference="N9m-BJ-xpv"/>
+                                <exclude reference="UOX-Yp-c2i"/>
+                                <exclude reference="oK5-41-fNI"/>
                                 <exclude reference="Fz8-QG-9pX"/>
                                 <exclude reference="KcQ-4h-YDN"/>
                                 <exclude reference="SIt-rc-DoI"/>
@@ -464,6 +491,7 @@ at JMU through the Cloud</string>
                                 <include reference="hpx-2v-7j3"/>
                                 <include reference="ts0-kP-89J"/>
                                 <include reference="Lwb-GU-sSI"/>
+                                <include reference="zdS-Wb-sXT"/>
                             </mask>
                             <mask key="constraints">
                                 <include reference="7ti-16-Ife"/>
@@ -494,6 +522,9 @@ at JMU through the Cloud</string>
                                 <include reference="ADe-DB-bcj"/>
                                 <include reference="cBo-UY-5bM"/>
                                 <include reference="yaK-AC-G1u"/>
+                                <include reference="N9m-BJ-xpv"/>
+                                <include reference="UOX-Yp-c2i"/>
+                                <include reference="oK5-41-fNI"/>
                                 <include reference="Fz8-QG-9pX"/>
                                 <include reference="KcQ-4h-YDN"/>
                                 <include reference="SIt-rc-DoI"/>
@@ -502,6 +533,7 @@ at JMU through the Cloud</string>
                         </variation>
                     </view>
                     <connections>
+                        <outlet property="incorrectCredentionalLabel" destination="zdS-Wb-sXT" id="aWb-2A-e5q"/>
                         <outlet property="incorrectPasswordLabel" destination="hpx-2v-7j3" id="sIV-7y-uTg"/>
                         <outlet property="incorrectUsernameOrPasswordLabel" destination="C0K-rL-G8B" id="T8m-dr-LtB"/>
                         <outlet property="loginButton" destination="HoM-2j-IiJ" id="kn4-R7-K3q"/>
@@ -524,6 +556,7 @@ at JMU through the Cloud</string>
                         <viewControllerLayoutGuide type="bottom" id="G7W-th-bPY"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="N7n-Dt-Yje">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Asphalt copy.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="emq-wB-zW7">
@@ -696,25 +729,25 @@ at JMU through the Cloud</string>
                                 <exclude reference="DLc-e6-EnT"/>
                             </mask>
                             <mask key="constraints">
-                                <exclude reference="685-wb-aLD"/>
-                                <exclude reference="Jof-hO-7LD"/>
-                                <exclude reference="mGZ-A0-9d4"/>
+                                <exclude reference="vgg-7b-7Nc"/>
+                                <exclude reference="wtb-rp-OjK"/>
+                                <exclude reference="u8Q-7E-Ffv"/>
+                                <exclude reference="xvk-VH-0cr"/>
+                                <exclude reference="Xq2-km-NlW"/>
+                                <exclude reference="o8c-OF-rrQ"/>
                                 <exclude reference="33J-e8-5Gs"/>
                                 <exclude reference="ocb-kW-3Ty"/>
                                 <exclude reference="Cn5-EO-C9d"/>
                                 <exclude reference="EwU-74-Us1"/>
                                 <exclude reference="5e6-W4-xWx"/>
                                 <exclude reference="BhT-Xu-dP9"/>
+                                <exclude reference="685-wb-aLD"/>
+                                <exclude reference="Jof-hO-7LD"/>
+                                <exclude reference="mGZ-A0-9d4"/>
                                 <exclude reference="5QZ-Qe-1XE"/>
                                 <exclude reference="WUt-tu-Kko"/>
                                 <exclude reference="jYE-pj-hyg"/>
                                 <exclude reference="yKR-Rk-MXl"/>
-                                <exclude reference="Xq2-km-NlW"/>
-                                <exclude reference="o8c-OF-rrQ"/>
-                                <exclude reference="u8Q-7E-Ffv"/>
-                                <exclude reference="xvk-VH-0cr"/>
-                                <exclude reference="vgg-7b-7Nc"/>
-                                <exclude reference="wtb-rp-OjK"/>
                             </mask>
                         </variation>
                         <variation key="widthClass=compact">
@@ -728,25 +761,25 @@ at JMU through the Cloud</string>
                                 <include reference="DLc-e6-EnT"/>
                             </mask>
                             <mask key="constraints">
-                                <include reference="685-wb-aLD"/>
-                                <include reference="Jof-hO-7LD"/>
-                                <include reference="mGZ-A0-9d4"/>
+                                <include reference="vgg-7b-7Nc"/>
+                                <include reference="wtb-rp-OjK"/>
+                                <include reference="u8Q-7E-Ffv"/>
+                                <include reference="xvk-VH-0cr"/>
+                                <include reference="Xq2-km-NlW"/>
+                                <include reference="o8c-OF-rrQ"/>
                                 <include reference="33J-e8-5Gs"/>
                                 <include reference="ocb-kW-3Ty"/>
                                 <include reference="Cn5-EO-C9d"/>
                                 <include reference="EwU-74-Us1"/>
                                 <include reference="5e6-W4-xWx"/>
                                 <include reference="BhT-Xu-dP9"/>
+                                <include reference="685-wb-aLD"/>
+                                <include reference="Jof-hO-7LD"/>
+                                <include reference="mGZ-A0-9d4"/>
                                 <include reference="5QZ-Qe-1XE"/>
                                 <include reference="WUt-tu-Kko"/>
                                 <include reference="jYE-pj-hyg"/>
                                 <include reference="yKR-Rk-MXl"/>
-                                <include reference="Xq2-km-NlW"/>
-                                <include reference="o8c-OF-rrQ"/>
-                                <include reference="u8Q-7E-Ffv"/>
-                                <include reference="xvk-VH-0cr"/>
-                                <include reference="vgg-7b-7Nc"/>
-                                <include reference="wtb-rp-OjK"/>
                             </mask>
                         </variation>
                     </view>
@@ -765,6 +798,7 @@ at JMU through the Cloud</string>
                         <viewControllerLayoutGuide type="bottom" id="8bx-0L-qNo"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="8Hr-ap-GP5">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Asphalt copy.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="inP-KJ-LAT">
@@ -1144,55 +1178,55 @@ at JMU through the Cloud</string>
                                 <exclude reference="VL4-2R-8e1"/>
                             </mask>
                             <mask key="constraints">
-                                <exclude reference="3Yt-gN-Hn5"/>
-                                <exclude reference="KhT-Cs-kNK"/>
-                                <exclude reference="Nqs-HO-ck0"/>
-                                <exclude reference="PCW-AD-Vsa"/>
-                                <exclude reference="gok-e6-9UD"/>
-                                <exclude reference="QHy-hv-6e6"/>
-                                <exclude reference="lKW-qD-Dmd"/>
-                                <exclude reference="GrV-gW-DQ7"/>
-                                <exclude reference="yQQ-sm-XWm"/>
-                                <exclude reference="B2q-oe-Iq5"/>
-                                <exclude reference="KIK-Jz-Nc1"/>
-                                <exclude reference="efo-On-bcH"/>
-                                <exclude reference="aFd-ra-fmb"/>
-                                <exclude reference="oNl-k7-7vT"/>
                                 <exclude reference="Z81-EE-93I"/>
-                                <exclude reference="AW5-hQ-stL"/>
-                                <exclude reference="lyS-6m-6Hy"/>
+                                <exclude reference="Y57-eW-ULX"/>
+                                <exclude reference="cdw-k8-3hD"/>
                                 <exclude reference="3fU-ox-zZN"/>
                                 <exclude reference="6Nw-Hs-DFJ"/>
                                 <exclude reference="grc-57-MmR"/>
-                                <exclude reference="MWB-ND-TP5"/>
-                                <exclude reference="dW0-ep-xAN"/>
-                                <exclude reference="Dn6-cD-9zL"/>
-                                <exclude reference="Yfz-tX-QfL"/>
-                                <exclude reference="4zz-aZ-oay"/>
-                                <exclude reference="ls1-Fd-zRL"/>
                                 <exclude reference="9wB-OM-Xij"/>
                                 <exclude reference="BDQ-ms-CDZ"/>
                                 <exclude reference="SDP-Mj-VrU"/>
                                 <exclude reference="XKs-Gr-UYI"/>
                                 <exclude reference="fKz-HH-kgK"/>
                                 <exclude reference="l4z-wG-7kE"/>
-                                <exclude reference="CG1-s9-Dls"/>
-                                <exclude reference="v6N-3W-cio"/>
-                                <exclude reference="JZg-7U-5SU"/>
-                                <exclude reference="hUw-8s-KBV"/>
-                                <exclude reference="jbs-dC-fDD"/>
-                                <exclude reference="t05-oS-KWQ"/>
-                                <exclude reference="Y57-eW-ULX"/>
-                                <exclude reference="cdw-k8-3hD"/>
-                                <exclude reference="gQT-60-hXT"/>
-                                <exclude reference="j3V-1x-S4X"/>
                                 <exclude reference="Hbp-92-3Sx"/>
                                 <exclude reference="vn0-On-YKd"/>
-                                <exclude reference="3ZG-uT-HxQ"/>
-                                <exclude reference="ETU-4p-2Gi"/>
                                 <exclude reference="GZX-yE-ylL"/>
                                 <exclude reference="XDu-Om-k47"/>
                                 <exclude reference="sEG-uS-JCC"/>
+                                <exclude reference="JZg-7U-5SU"/>
+                                <exclude reference="hUw-8s-KBV"/>
+                                <exclude reference="QHy-hv-6e6"/>
+                                <exclude reference="lKW-qD-Dmd"/>
+                                <exclude reference="AW5-hQ-stL"/>
+                                <exclude reference="lyS-6m-6Hy"/>
+                                <exclude reference="GrV-gW-DQ7"/>
+                                <exclude reference="yQQ-sm-XWm"/>
+                                <exclude reference="jbs-dC-fDD"/>
+                                <exclude reference="t05-oS-KWQ"/>
+                                <exclude reference="CG1-s9-Dls"/>
+                                <exclude reference="v6N-3W-cio"/>
+                                <exclude reference="3ZG-uT-HxQ"/>
+                                <exclude reference="ETU-4p-2Gi"/>
+                                <exclude reference="Dn6-cD-9zL"/>
+                                <exclude reference="Yfz-tX-QfL"/>
+                                <exclude reference="MWB-ND-TP5"/>
+                                <exclude reference="dW0-ep-xAN"/>
+                                <exclude reference="aFd-ra-fmb"/>
+                                <exclude reference="oNl-k7-7vT"/>
+                                <exclude reference="4zz-aZ-oay"/>
+                                <exclude reference="ls1-Fd-zRL"/>
+                                <exclude reference="gQT-60-hXT"/>
+                                <exclude reference="j3V-1x-S4X"/>
+                                <exclude reference="B2q-oe-Iq5"/>
+                                <exclude reference="KIK-Jz-Nc1"/>
+                                <exclude reference="efo-On-bcH"/>
+                                <exclude reference="3Yt-gN-Hn5"/>
+                                <exclude reference="KhT-Cs-kNK"/>
+                                <exclude reference="Nqs-HO-ck0"/>
+                                <exclude reference="PCW-AD-Vsa"/>
+                                <exclude reference="gok-e6-9UD"/>
                             </mask>
                         </variation>
                         <variation key="widthClass=compact">
@@ -1219,55 +1253,55 @@ at JMU through the Cloud</string>
                                 <include reference="VL4-2R-8e1"/>
                             </mask>
                             <mask key="constraints">
-                                <include reference="3Yt-gN-Hn5"/>
-                                <include reference="KhT-Cs-kNK"/>
-                                <include reference="Nqs-HO-ck0"/>
-                                <include reference="PCW-AD-Vsa"/>
-                                <include reference="gok-e6-9UD"/>
-                                <include reference="QHy-hv-6e6"/>
-                                <include reference="lKW-qD-Dmd"/>
-                                <include reference="GrV-gW-DQ7"/>
-                                <include reference="yQQ-sm-XWm"/>
-                                <include reference="B2q-oe-Iq5"/>
-                                <include reference="KIK-Jz-Nc1"/>
-                                <include reference="efo-On-bcH"/>
-                                <include reference="aFd-ra-fmb"/>
-                                <include reference="oNl-k7-7vT"/>
                                 <include reference="Z81-EE-93I"/>
-                                <include reference="AW5-hQ-stL"/>
-                                <include reference="lyS-6m-6Hy"/>
+                                <include reference="Y57-eW-ULX"/>
+                                <include reference="cdw-k8-3hD"/>
                                 <include reference="3fU-ox-zZN"/>
                                 <include reference="6Nw-Hs-DFJ"/>
                                 <include reference="grc-57-MmR"/>
-                                <include reference="MWB-ND-TP5"/>
-                                <include reference="dW0-ep-xAN"/>
-                                <include reference="Dn6-cD-9zL"/>
-                                <include reference="Yfz-tX-QfL"/>
-                                <include reference="4zz-aZ-oay"/>
-                                <include reference="ls1-Fd-zRL"/>
                                 <include reference="9wB-OM-Xij"/>
                                 <include reference="BDQ-ms-CDZ"/>
                                 <include reference="SDP-Mj-VrU"/>
                                 <include reference="XKs-Gr-UYI"/>
                                 <include reference="fKz-HH-kgK"/>
                                 <include reference="l4z-wG-7kE"/>
-                                <include reference="CG1-s9-Dls"/>
-                                <include reference="v6N-3W-cio"/>
-                                <include reference="JZg-7U-5SU"/>
-                                <include reference="hUw-8s-KBV"/>
-                                <include reference="jbs-dC-fDD"/>
-                                <include reference="t05-oS-KWQ"/>
-                                <include reference="Y57-eW-ULX"/>
-                                <include reference="cdw-k8-3hD"/>
-                                <include reference="gQT-60-hXT"/>
-                                <include reference="j3V-1x-S4X"/>
                                 <include reference="Hbp-92-3Sx"/>
                                 <include reference="vn0-On-YKd"/>
-                                <include reference="3ZG-uT-HxQ"/>
-                                <include reference="ETU-4p-2Gi"/>
                                 <include reference="GZX-yE-ylL"/>
                                 <include reference="XDu-Om-k47"/>
                                 <include reference="sEG-uS-JCC"/>
+                                <include reference="JZg-7U-5SU"/>
+                                <include reference="hUw-8s-KBV"/>
+                                <include reference="QHy-hv-6e6"/>
+                                <include reference="lKW-qD-Dmd"/>
+                                <include reference="AW5-hQ-stL"/>
+                                <include reference="lyS-6m-6Hy"/>
+                                <include reference="GrV-gW-DQ7"/>
+                                <include reference="yQQ-sm-XWm"/>
+                                <include reference="jbs-dC-fDD"/>
+                                <include reference="t05-oS-KWQ"/>
+                                <include reference="CG1-s9-Dls"/>
+                                <include reference="v6N-3W-cio"/>
+                                <include reference="3ZG-uT-HxQ"/>
+                                <include reference="ETU-4p-2Gi"/>
+                                <include reference="Dn6-cD-9zL"/>
+                                <include reference="Yfz-tX-QfL"/>
+                                <include reference="MWB-ND-TP5"/>
+                                <include reference="dW0-ep-xAN"/>
+                                <include reference="aFd-ra-fmb"/>
+                                <include reference="oNl-k7-7vT"/>
+                                <include reference="4zz-aZ-oay"/>
+                                <include reference="ls1-Fd-zRL"/>
+                                <include reference="gQT-60-hXT"/>
+                                <include reference="j3V-1x-S4X"/>
+                                <include reference="B2q-oe-Iq5"/>
+                                <include reference="KIK-Jz-Nc1"/>
+                                <include reference="efo-On-bcH"/>
+                                <include reference="3Yt-gN-Hn5"/>
+                                <include reference="KhT-Cs-kNK"/>
+                                <include reference="Nqs-HO-ck0"/>
+                                <include reference="PCW-AD-Vsa"/>
+                                <include reference="gok-e6-9UD"/>
                             </mask>
                         </variation>
                     </view>

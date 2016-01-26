@@ -16,15 +16,12 @@ class AdminLoginViewController: UIViewController, UITextFieldDelegate {
     
     @IBOutlet weak var incorrectUsernameOrPasswordLabel: UILabel!
     @IBOutlet weak var incorrectPasswordLabel: UILabel!
+    @IBOutlet weak var incorrectCredentionalLabel: UILabel!
     
     @IBOutlet weak var loginButton: UIButton!
     
     
     // Temporary username and passwords
-    
-    let correctUsername = "sungrj"
-    let correctPassword = "hello"
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,9 +31,8 @@ class AdminLoginViewController: UIViewController, UITextFieldDelegate {
         
         incorrectPasswordLabel.hidden = true
         incorrectUsernameOrPasswordLabel.hidden = true
+        incorrectCredentionalLabel.hidden = true
         
-        loginButton.layer.cornerRadius = 5
-
         // Do any additional setup after loading the view.
     }
 
@@ -49,11 +45,18 @@ class AdminLoginViewController: UIViewController, UITextFieldDelegate {
     
     @IBAction func didPressLoginButton(sender: AnyObject) {
         
-        if checkAccountCredentials() == true {
+        let usernameInput = usernameOrEmailInputTextField.text
+        let passwordInput = passwordInputTextField.text
+        
+        if login(usernameInput!, password: passwordInput!) == true {
             
             performSegueWithIdentifier("segueToAdminLotsView", sender: nil)
-        
+            
             globalVar.loggedIn = true
+            
+        } else if incorrectPasswordLabel.hidden && incorrectUsernameOrPasswordLabel.hidden == true {
+                
+            incorrectCredentionalLabel.hidden = false
             
         }
         
@@ -67,58 +70,116 @@ class AdminLoginViewController: UIViewController, UITextFieldDelegate {
     
     }
     
-    
     func checkAccountCredentials() -> Bool {
+        
+        if checkUsernameOrEmailCredentials() && checkPasswordCredentials() == true {
+            
+            return true
+
+        } else {
+            
+            return false
+            
+        }
+        
+    }
+    
+    func checkUsernameOrEmailCredentials() -> Bool {
         
         if usernameOrEmailInputTextField.text!.isEmpty {
             
             incorrectUsernameOrPasswordLabel.text = "Please enter your username or email."
             incorrectUsernameOrPasswordLabel.hidden = false
             
-        } else if usernameOrEmailInputTextField.text! != correctUsername {
+            return false
             
-            incorrectUsernameOrPasswordLabel.text = "Username or email doesn't exist."
-            incorrectUsernameOrPasswordLabel.hidden = false
-            
-        }
-        
-        if usernameOrEmailInputTextField.text == correctUsername {
+        } else {
             
             incorrectUsernameOrPasswordLabel.hidden = true
             
+            return true
+            
         }
         
+    }
+    
+    func checkPasswordCredentials() -> Bool {
+    
         if passwordInputTextField.text!.isEmpty {
             
             incorrectPasswordLabel.text = "Please enter your password."
             incorrectPasswordLabel.hidden = false
             
-        } else if passwordInputTextField.text != correctPassword {
-            
-            incorrectPasswordLabel.text = "Password is incorrect."
-            incorrectPasswordLabel.hidden = false
-            
-        }
+            return false
         
-        if passwordInputTextField.text == correctPassword {
+        } else {
             
             incorrectPasswordLabel.hidden = true
             
-        }
+            return true
         
-        if (usernameOrEmailInputTextField.text == correctUsername) &&
-            (passwordInputTextField.text == correctPassword) {
-                
-                incorrectPasswordLabel.hidden = true
-                incorrectUsernameOrPasswordLabel.hidden = true
-                
-                return true
-                
         }
-        
-        return false
         
     }
     
+    func login(userNameorPassword: String, password: String) -> Bool {
+    
+        if checkAccountCredentials() == true {
+        
+            var responseString = ""
+            
+            let request = NSMutableURLRequest(URL: NSURL(string: "http://192.168.99.101/userLogin.php")!)
+            
+            request.HTTPMethod = "POST"
+            
+            let postString = "username=\(userNameorPassword)&password=\(password)"
+            
+            request.HTTPBody = postString.dataUsingEncoding(NSUTF8StringEncoding)
+            
+            let semaphore = dispatch_semaphore_create(0)
+            
+            let task = NSURLSession.sharedSession().dataTaskWithRequest(request) { data, response, error in
+                guard error == nil && data != nil else {
+                    // check for fundamental networking error
+                    
+                    print("error=\(error)")
+                    
+                    return
+                
+                }
+                
+                if let httpStatus = response as? NSHTTPURLResponse where httpStatus.statusCode != 200 {
+                    // check for http errors
+                    
+                    print("statusCode should be 200, but is \(httpStatus.statusCode)")
+                
+                    print("response = \(response)")
+              
+                }
+                
+                responseString = NSString(data: data!, encoding: NSUTF8StringEncoding)! as String
+                
+    //            print("Success?: ", responseString.containsString("Success"))
+                
+    //            print("responseString =", responseString)
+                
+                
+                dispatch_semaphore_signal(semaphore)
+                
+            }
+            
+            task.resume()
+            
+            dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER)
+            
+            return responseString.containsString("Success")
+            
+        } else {
+            
+            return false
+            
+        }
+        
+    }
     
 }
