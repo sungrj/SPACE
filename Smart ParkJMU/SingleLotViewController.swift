@@ -8,59 +8,26 @@
 
 import UIKit
 
-class SingleLotViewController: UIViewController, UITableViewDataSource {
+class SingleLotViewController: UIViewController {
 
     var refreshControl:UIRefreshControl!
     
-    var lots = []
-
-    @IBOutlet weak var lotTable: UITableView!
-    @IBOutlet weak var singleLotSelected: UILabel!
+    var lot = NSDictionary()
+    
+    @IBOutlet weak var lotNameLabel: UILabel!
+    @IBOutlet weak var lotLocationLabel: UILabel!
+    @IBOutlet weak var lotBackupLotLabel: UILabel!
+    @IBOutlet weak var lotHoursOfAvailabilityLabel: UILabel!
+    @IBOutlet weak var lotSpotsAvailableLabel: UILabel!
+    @IBOutlet weak var lotTotalSpotsLabel: UILabel!
 
 
     override func viewDidLoad() {
         super.viewDidLoad()
-       
-        self.refreshControl = UIRefreshControl()
-        self.refreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh")
-        self.refreshControl.addTarget(self, action: "didPressRefresh:", forControlEvents: UIControlEvents.ValueChanged)
-        self.lotTable.addSubview(refreshControl)
         
-        lots = SingleLotViewController.getLotData()
-
-        print("Lots", lots)
-    }
-    
-    class func getLotData() -> NSArray {
+        print("Lot from view", lot)
         
-        var lotData = []
-        
-        let nsUrl = NSURL(string: "http://192.168.99.101/test1.php")
-        
-        let semaphore = dispatch_semaphore_create(0)
-        
-        let task = NSURLSession.sharedSession().dataTaskWithURL(nsUrl!){
-            (data, response, error) in
-            
-            do {
-            
-                let jsonResult = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.MutableContainers)
-                lotData = jsonResult as! NSArray
-            
-            } catch {
-            
-                print ("JSON serialization failed")
-            }
-            
-            dispatch_semaphore_signal(semaphore)
-            
-        }
-        
-        task.resume()
-        
-        dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER)
-        
-        return lotData
+        updateLotLabels()
     }
 
     override func didReceiveMemoryWarning() {
@@ -70,46 +37,65 @@ class SingleLotViewController: UIViewController, UITableViewDataSource {
     
     @IBAction func didPressRefresh(sender: AnyObject) {
         
-        SingleLotViewController.getLotData()
-        
-    }
-    
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return lots.count
-    }
-    
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = UITableViewCell()
-        
-        let lotName = (lots[indexPath.row]["Lot_Name"]) as! String
-        let spotsAvailable = lots[indexPath.row]["Available_Number_Of_Spots"]!!.integerValue as Int
-        let totalSpots = lots[indexPath.row]["Capacity_Of_Spots"]!!.integerValue as Int
-        
-        if (spotsAvailable >= totalSpots) {
-            cell.textLabel?.text = "Name: \(lotName)" + "\n" +
-                                   "Spots Available: Full\n" +
-                                   "Total Spots: \(totalSpots)"
+        let lots = ViewController.getAllLotsData()
+            
+        for item in lots {
+            
+            if let thisLot = item["Lot_Name"] {
+                
+                if (thisLot as! NSString) == lotNameLabel.text {
+                    
+                    lot = item as! NSDictionary
+                    
+                }
+                
+            }
+            
         }
-        else if (spotsAvailable <= 0) {
-            cell.textLabel?.text = "Name: \(lotName)" + "\n" +
-                                   "Spots Available: Empty\n" +
-                                   "Total Spots: \(totalSpots)"
-        } else {
-            cell.textLabel?.text = "Name: \(lotName)" + "\n" +
-                                   "Spots Available: \(spotsAvailable)" + "\n" +
-                                   "Total Spots: \(totalSpots)"
-
-        }
-
-        cell.textLabel?.numberOfLines = 3
-        cell.textLabel?.textColor = UIColor.whiteColor()
-        cell.textLabel?.sizeToFit()
-        cell.textLabel?.font = UIFont.systemFontOfSize(18)          // font size
-        cell.backgroundColor = UIColor.clearColor()                 // cell background clear
         
-        return cell
+        updateLotLabels()
+        
     }
     
+    func updateLotLabels() {
+        
+        if let lotName = lot["Lot_Name"] {
+            
+            lotNameLabel.text = lotName as? String
+            
+        }
+        
+        if let lotLocation = lot["Location"] {
+            
+            lotLocationLabel.text = lotLocation as? String
+            
+        }
+        
+        if let lotBackup = lot["Backup_Lot"] {
+            
+            lotBackupLotLabel.text = lotBackup as? String
+            
+        }
+        
+        if let lotHours = lot["Hours_Of_Availability"] {
+            
+            lotHoursOfAvailabilityLabel.text = lotHours as? String
+            
+        }
+        
+        if let lotSpots = lot["Available_Number_Of_Spots"] {
+            
+            lotSpotsAvailableLabel.text = lotSpots as? String
+            
+        }
+        
+        if let lotTotal = lot["Capacity_Of_Spots"] {
+            
+            lotTotalSpotsLabel.text = lotTotal as? String
+            
+        }
+        
+    }
 
     /*
     // MARK: - Navigation

@@ -19,31 +19,37 @@ class CreateLotViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var lotNameTextField: UITextField!
     @IBOutlet weak var lotLocationTextField: UITextField!
     @IBOutlet weak var lotCapacityTextField: UITextField!
+    @IBOutlet weak var lotSpotsAvailableTextField: UITextField!
     @IBOutlet weak var lotBackUpTextField: UITextField!
     @IBOutlet weak var lotHoursOfAvailabilityTextField: UITextField!
     
     @IBOutlet weak var lotNameInputErrorLabel: UILabel!
     @IBOutlet weak var lotLocationInputErrorLabel: UILabel!
     @IBOutlet weak var lotCapacityInputErrorLabel: UILabel!
+    @IBOutlet weak var lotSpotsAvailableInputErrorLabel: UILabel!
     @IBOutlet weak var lotBackUpLotInputErrorLabel: UILabel!
     @IBOutlet weak var lotHoursOfAvailabilityInputErrorLabel: UILabel!
     
     
-    let managementType = "Create"
-    var lotName = "C10"
-    var lotLocation = "ISAT/HHS"
-    var lotCapacity = 150
-    var lotBackUp = "Festival"
-    var lotHoursOfAvailability = 12
+    var lot = NSDictionary()
+    var lotId: Int = 0
     
+    var managementType = String()
     
     override func viewDidLoad() {
         
         super.viewDidLoad()
         
+        if let id = lot["ID"] {
+            
+            lotId = (id as! NSString).integerValue
+            
+        }
+        
         self.lotNameTextField.delegate = self
         self.lotLocationTextField.delegate = self
         self.lotCapacityTextField.delegate = self
+        self.lotSpotsAvailableTextField.delegate = self
         self.lotBackUpTextField.delegate = self
         self.lotHoursOfAvailabilityTextField.delegate = self
         
@@ -78,14 +84,12 @@ class CreateLotViewController: UIViewController, UITextFieldDelegate {
         
         if managementType == "Manage" {
             
+            let lotName = lot["Lot_Name"] as! String
+            
             createOrManageLotTitleLabel.text = "Manage Lot: \(lotName)"
             createOrSaveButtonLabel.setTitle("Save", forState: .Normal)
             
-            lotNameTextField.text = "\(lotName)"
-            lotLocationTextField.text = "\(lotLocation)"
-            lotCapacityTextField.text = "\(lotCapacity)"
-            lotBackUpTextField.text = "\(lotBackUp)"
-            lotHoursOfAvailabilityTextField.text = "\(lotHoursOfAvailability)"
+            updateLotLabels()
 
         } else {
             
@@ -147,6 +151,28 @@ class CreateLotViewController: UIViewController, UITextFieldDelegate {
             
         }
         
+        if lotSpotsAvailableTextField.text == "" {
+            
+            lotSpotsAvailableInputErrorLabel.text = "(Must enter capacity)"
+            
+            lotSpotsAvailableInputErrorLabel.hidden = false
+            
+        } else {
+            
+            if let _ = Int(lotSpotsAvailableTextField.text!) {
+                
+                lotSpotsAvailableInputErrorLabel.hidden = true
+                
+            } else {
+                
+                lotSpotsAvailableInputErrorLabel.text = "(Input not a number)"
+                
+                lotSpotsAvailableInputErrorLabel.hidden = false
+                
+            }
+            
+        }
+        
         if lotBackUpTextField.text == "" {
             
             lotBackUpLotInputErrorLabel.text = "(Must enter lot)"
@@ -181,7 +207,7 @@ class CreateLotViewController: UIViewController, UITextFieldDelegate {
             
         }
         
-        if lotNameInputErrorLabel.hidden == true && lotLocationInputErrorLabel.hidden == true && lotCapacityInputErrorLabel.hidden == true && lotBackUpLotInputErrorLabel.hidden == true && lotHoursOfAvailabilityInputErrorLabel.hidden == true {
+        if lotNameInputErrorLabel.hidden == true && lotLocationInputErrorLabel.hidden == true && lotCapacityInputErrorLabel.hidden == true && lotSpotsAvailableInputErrorLabel.hidden == true && lotBackUpLotInputErrorLabel.hidden == true && lotHoursOfAvailabilityInputErrorLabel.hidden == true {
             
             return true
             
@@ -199,11 +225,9 @@ class CreateLotViewController: UIViewController, UITextFieldDelegate {
                 
                 hideErrorLabels()
                 
-                let lot = createLotVariable()
-                
-                print("Lot: \(lot)")
-                
                 // POST method to update lot
+                
+                createOrSaveLot("http://192.168.99.101/updateLot.php")
                 
                 self.performSegueWithIdentifier("unwindToAdminLotsViewController", sender: nil)
                 
@@ -213,18 +237,15 @@ class CreateLotViewController: UIViewController, UITextFieldDelegate {
                 
             }
             
-            
         } else {
             
             if checkRequiredInputsAreSatisfied() == true {
                 
                 hideErrorLabels()
                 
-                let lot = createLotVariable()
-                
-                print("Lot: \(lot)")
-                
                 // POST method to create lot
+                
+                createOrSaveLot("http://192.168.99.101/createLot.php")
 
                 self.performSegueWithIdentifier("unwindToAdminLotsViewController", sender: nil)
                 
@@ -243,34 +264,120 @@ class CreateLotViewController: UIViewController, UITextFieldDelegate {
         lotNameInputErrorLabel.hidden = true
         lotLocationInputErrorLabel.hidden = true
         lotCapacityInputErrorLabel.hidden = true
+        lotSpotsAvailableInputErrorLabel.hidden = true
         lotBackUpLotInputErrorLabel.hidden = true
         lotHoursOfAvailabilityInputErrorLabel.hidden = true
     
     }
     
-    func createLotVariable() -> [String: AnyObject] {
+
+    func updateLotLabels() {
         
-        let lot: [String: AnyObject] = [
-            "Lot_Name": lotNameTextField.text!,
-            "Lot_Location": lotLocationTextField.text!,
-            "Lot_Capacity": Int(lotCapacityTextField.text!)!,
-            "Back_Up_Lot": lotBackUpTextField.text!,
-            "Hours_Of_Availability": Int(lotHoursOfAvailabilityTextField.text!)!
-        ]
+        if let lotName = lot["Lot_Name"] {
+            
+            lotNameTextField.text = lotName as? String
+            
+        }
         
-        return lot
+        if let lotLocation = lot["Location"] {
+            
+            lotLocationTextField.text = lotLocation as? String
+            
+        }
+        
+        if let lotCapacity = lot["Capacity_Of_Spots"] {
+            
+            lotCapacityTextField.text = lotCapacity as? String
+            
+        }
+        
+        if let lotSpots = lot["Available_Number_Of_Spots"] {
+            
+            lotSpotsAvailableTextField.text = lotSpots as? String
+            
+        }
+        
+        if let lotBackup = lot["Backup_Lot"] {
+            
+            lotBackUpTextField.text = lotBackup as? String
+            
+        }
+        
+        if let lotHours = lot["Hours_Of_Availabilty"] {
+            
+            lotHoursOfAvailabilityTextField.text = lotHours as? String
+            
+        }
+
+        if let lotTotal = lot["Capacity_Of_Spots"] {
+            
+            lotCapacityTextField.text = lotTotal as? String
+            
+        }
         
     }
     
+    func createOrSaveLot(url: String) {
+            
+//        var responseString = ""
+        
+        let request = NSMutableURLRequest(URL: NSURL(string: url)!)
+        
+        let lotName = String(UTF8String: lotNameTextField.text!)!
+        let lotLocation = String(UTF8String: lotLocationTextField.text!)!
+        let lotCapacity = Int(lotCapacityTextField.text!)!
+        let lotSpots = Int(lotSpotsAvailableTextField.text!)!
+        let lotBackup = String(UTF8String: lotBackUpTextField.text!)!
+        let lotHours = String(UTF8String: lotHoursOfAvailabilityTextField.text!)!
 
-    /*
-    // MARK: - Navigation
+        
+        var postString: String! = ""
+        
+        
+        request.HTTPMethod = "POST"
+        
+        if managementType == "Manage" {
+            
+            postString = "lotName=\(lotName)&lotLocation=\(lotLocation)&lotCapacity=\(lotCapacity)&lotSpots=\(lotSpots)&lotBackup=\(lotBackup)&lotHours=\(lotHours)&lotId=\(lotId)"
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        } else {
+            
+            postString = "lotName=\(lotName)&lotLocation=\(lotLocation)&lotCapacity=\(lotCapacity)&lotSpots=\(lotSpots)&lotBackup=\(lotBackup)&lotHours=\(lotHours)"
+            
+        }
+            
+        request.HTTPBody = postString.dataUsingEncoding(NSUTF8StringEncoding)
+        
+        
+        let task = NSURLSession.sharedSession().dataTaskWithRequest(request) { data, response, error in
+            guard error == nil && data != nil else {
+                // check for fundamental networking error
+                
+                print("error=\(error)")
+                
+                return
+                
+            }
+            
+            if let httpStatus = response as? NSHTTPURLResponse where httpStatus.statusCode != 200 {
+                // check for http errors
+                
+                print("statusCode should be 200, but is \(httpStatus.statusCode)")
+                
+                print("response = \(response)")
+                
+            }
+            
+//            responseString = NSString(data: data!, encoding: NSUTF8StringEncoding)! as String
+//            
+//                        print("Success?: ", responseString.containsString("Success"))
+//            
+//                        print("responseString =", responseString)
+//            
+        }
+        
+        task.resume()
+
     }
-    */
-
+    
 }

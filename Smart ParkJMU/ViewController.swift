@@ -10,6 +10,9 @@ import UIKit
 
 class ViewController: UIViewController, UITableViewDataSource {
     
+    var lots = []
+    
+    @IBOutlet weak var lotsTableView: UITableView!
     @IBOutlet weak var didPressButtonLoginOrGoToAdminPage: UIButton!
     
     override func viewDidLoad() {
@@ -18,6 +21,8 @@ class ViewController: UIViewController, UITableViewDataSource {
         
         checkLoginStatus()
         
+        lots = ViewController.getAllLotsData()
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -25,22 +30,59 @@ class ViewController: UIViewController, UITableViewDataSource {
         // Dispose of any resources that can be recreated.
     }
     
+    class func getAllLotsData() -> NSArray {
+        
+        var lotData = []
+        
+        let nsUrl = NSURL(string: "http://192.168.99.101/test1.php")
+        
+        let semaphore = dispatch_semaphore_create(0)
+        
+        let task = NSURLSession.sharedSession().dataTaskWithURL(nsUrl!){
+            (data, response, error) in
+            
+            do {
+                
+                let jsonResult = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.MutableContainers)
+                lotData = jsonResult as! NSArray
+                
+            } catch {
+                
+                print ("JSON serialization failed")
+            }
+            
+            dispatch_semaphore_signal(semaphore)
+            
+        }
+        
+        task.resume()
+        
+        dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER)
+        
+        return lotData
+    }
+    
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 3
+       
+        return lots.count
+    
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = UITableViewCell()
         
-        cell.textLabel?.text = "" //"lots[indexPath.row].Name
+        let lotName = (lots[indexPath.row]["Lot_Name"]) as! String
+        
+        cell.textLabel?.text = lotName
         cell.textLabel?.sizeToFit()
         cell.textLabel?.font = UIFont.systemFontOfSize(38)          // font size
         cell.textLabel?.textAlignment = NSTextAlignment.Center      // align text in the center
         cell.backgroundColor = UIColor.clearColor()                 // cell background clear
         
-        
         return cell
     }
+    
+    
     
     
     // IBAction + segue
@@ -68,13 +110,24 @@ class ViewController: UIViewController, UITableViewDataSource {
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         
-        if let singleLotViewController = segue.destinationViewController as? SingleLotViewController {
-            print("viewController.Preparing singleLotViewController")
-            singleLotViewController.view.backgroundColor = UIColor.blueColor()
-        
-//         pass data to the view controller
-//            singleLotViewController.lot = self.lots
+        if segue.identifier == "segueToSingleLotViewController" {
+
+            if let destination = segue.destinationViewController as? SingleLotViewController {
+
+                if let index = lotsTableView.indexPathForSelectedRow?.row {
+
+                    destination.lot = lots[index] as! NSDictionary
+                
+                }
+            }
         }
+    }
+    
+    
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        
+        performSegueWithIdentifier("segueToSingleLotViewController", sender: nil)
+    
     }
     
     func checkLoginStatus() {
