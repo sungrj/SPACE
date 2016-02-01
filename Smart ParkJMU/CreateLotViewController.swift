@@ -46,12 +46,6 @@ class CreateLotViewController: UIViewController, UITextFieldDelegate {
             
         }
         
-        self.lotNameTextField.delegate = self
-        self.lotLocationTextField.delegate = self
-        self.lotCapacityTextField.delegate = self
-        self.lotSpotsAvailableTextField.delegate = self
-        self.lotBackUpTextField.delegate = self
-        self.lotHoursOfAvailabilityTextField.delegate = self
         
         checkCreateOrManageLot()
         hideErrorLabels()
@@ -63,20 +57,77 @@ class CreateLotViewController: UIViewController, UITextFieldDelegate {
         // Dispose of any resources that can be recreated.
     }
     
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        self.view.endEditing(true)
+    }
+    
     
     @IBAction func didPressDeleteButton(sender: AnyObject) {
         
-        // POST to delete Lot
         
-        self.performSegueWithIdentifier("unwindToAdminLotsViewController", sender: nil)
+        
+        let refreshAlert = UIAlertController(title: "Delete", message: "Are you sure you want to delete lot '\(lotNameTextField.text as String!)'?", preferredStyle: UIAlertControllerStyle.Alert)
+        
+        refreshAlert.addAction(UIAlertAction(title: "Yes", style: .Default, handler: { (action: UIAlertAction!) in
+            
+            // POST method to delete Lot
+            self.deleteLot()
+            
+            self.performSegueWithIdentifier("unwindToAdminLotsViewController", sender: nil)
+            
+        }))
+        
+        refreshAlert.addAction(UIAlertAction(title: "Cancel", style: .Default, handler: { (action: UIAlertAction!) in
+            
+            // Do nothing on cancel
+            
+        }))
+        
+        presentViewController(refreshAlert, animated: true, completion: nil)
+        
+        
         
     }
     
-    func textFieldShouldReturn(userText: UITextField) -> Bool {
+    @IBAction func didPressSaveOrCreateButton(sender: AnyObject) {
         
-        userText.resignFirstResponder()
-        
-        return true;
+        if managementType == "Manage" {
+            
+            if checkRequiredInputsAreSatisfied() == true {
+                
+                hideErrorLabels()
+                
+                // POST method to update lot
+                
+                createOrSaveLot("http://192.168.99.101/updateLot.php")
+                
+                self.performSegueWithIdentifier("unwindToAdminLotsViewController", sender: nil)
+                
+            } else {
+                
+                // If required input fields aren't satisfied
+                
+            }
+            
+        } else {
+            
+            if checkRequiredInputsAreSatisfied() == true {
+                
+                hideErrorLabels()
+                
+                // POST method to create lot
+                
+                createOrSaveLot("http://192.168.99.101/createLot.php")
+
+                self.performSegueWithIdentifier("unwindToAdminLotsViewController", sender: nil)
+                
+            } else {
+                
+                // If required input fields aren't satisfied
+                
+            }
+            
+        }
         
     }
     
@@ -90,7 +141,7 @@ class CreateLotViewController: UIViewController, UITextFieldDelegate {
             createOrSaveButtonLabel.setTitle("Save", forState: .Normal)
             
             updateLotLabels()
-
+            
         } else {
             
             createOrManageLotTitleLabel.text = "Create a Lot"
@@ -190,7 +241,7 @@ class CreateLotViewController: UIViewController, UITextFieldDelegate {
             lotHoursOfAvailabilityInputErrorLabel.text = "(Must enter hours)"
             
             lotHoursOfAvailabilityInputErrorLabel.hidden = false
-
+            
         } else {
             
             if let _ = Int(lotHoursOfAvailabilityTextField.text!) {
@@ -214,106 +265,6 @@ class CreateLotViewController: UIViewController, UITextFieldDelegate {
         }
         
         return false
-        
-    }
-    
-    @IBAction func didPressSaveOrCreateButton(sender: AnyObject) {
-        
-        if managementType == "Manage" {
-            
-            if checkRequiredInputsAreSatisfied() == true {
-                
-                hideErrorLabels()
-                
-                // POST method to update lot
-                
-                createOrSaveLot("http://192.168.99.101/updateLot.php")
-                
-                self.performSegueWithIdentifier("unwindToAdminLotsViewController", sender: nil)
-                
-            } else {
-                
-                // If required input fields aren't satisfied
-                
-            }
-            
-        } else {
-            
-            if checkRequiredInputsAreSatisfied() == true {
-                
-                hideErrorLabels()
-                
-                // POST method to create lot
-                
-                createOrSaveLot("http://192.168.99.101/createLot.php")
-
-                self.performSegueWithIdentifier("unwindToAdminLotsViewController", sender: nil)
-                
-            } else {
-                
-                // If required input fields aren't satisfied
-                
-            }
-            
-        }
-        
-    }
-    
-    func hideErrorLabels() {
-        
-        lotNameInputErrorLabel.hidden = true
-        lotLocationInputErrorLabel.hidden = true
-        lotCapacityInputErrorLabel.hidden = true
-        lotSpotsAvailableInputErrorLabel.hidden = true
-        lotBackUpLotInputErrorLabel.hidden = true
-        lotHoursOfAvailabilityInputErrorLabel.hidden = true
-    
-    }
-    
-
-    func updateLotLabels() {
-        
-        if let lotName = lot["Lot_Name"] {
-            
-            lotNameTextField.text = lotName as? String
-            
-        }
-        
-        if let lotLocation = lot["Location"] {
-            
-            lotLocationTextField.text = lotLocation as? String
-            
-        }
-        
-        if let lotCapacity = lot["Capacity_Of_Spots"] {
-            
-            lotCapacityTextField.text = lotCapacity as? String
-            
-        }
-        
-        if let lotSpots = lot["Available_Number_Of_Spots"] {
-            
-            lotSpotsAvailableTextField.text = lotSpots as? String
-            
-        }
-        
-        if let lotBackup = lot["Backup_Lot"] {
-            
-            lotBackUpTextField.text = lotBackup as? String
-            
-        }
-        
-        if let lotHours = lot["Hours_Of_Availabilty"] {
-            
-            lotHoursOfAvailabilityTextField.text = lotHours as? String
-            
-        }
-
-        if let lotTotal = lot["Capacity_Of_Spots"] {
-            
-            lotCapacityTextField.text = lotTotal as? String
-            
-        }
         
     }
     
@@ -369,15 +320,116 @@ class CreateLotViewController: UIViewController, UITextFieldDelegate {
             }
             
 //            responseString = NSString(data: data!, encoding: NSUTF8StringEncoding)! as String
-//            
+            
 //                        print("Success?: ", responseString.containsString("Success"))
-//            
+            
 //                        print("responseString =", responseString)
-//            
+
         }
         
         task.resume()
 
+    }
+    
+    func deleteLot() {
+        
+//        var responseString = ""
+        
+        let request = NSMutableURLRequest(URL: NSURL(string: "http://192.168.99.101/deleteLot.php")!)
+        
+        let postString: String! = "lotId=\(lotId)"
+        
+        request.HTTPMethod = "POST"
+        
+        request.HTTPBody = postString.dataUsingEncoding(NSUTF8StringEncoding)
+        
+        
+        let task = NSURLSession.sharedSession().dataTaskWithRequest(request) { data, response, error in
+            guard error == nil && data != nil else {
+                // check for fundamental networking error
+                
+                print("error=\(error)")
+                
+                return
+                
+            }
+            
+            if let httpStatus = response as? NSHTTPURLResponse where httpStatus.statusCode != 200 {
+                // check for http errors
+                
+                print("statusCode should be 200, but is \(httpStatus.statusCode)")
+                
+                print("response = \(response)")
+                
+            }
+            
+//            responseString = NSString(data: data!, encoding: NSUTF8StringEncoding)! as String
+            
+//            print("Success?: ", responseString.containsString("Success"))
+            
+//            print("responseString =", responseString)
+            
+        }
+        
+        task.resume()
+        
+    }
+    
+    func hideErrorLabels() {
+        
+        lotNameInputErrorLabel.hidden = true
+        lotLocationInputErrorLabel.hidden = true
+        lotCapacityInputErrorLabel.hidden = true
+        lotSpotsAvailableInputErrorLabel.hidden = true
+        lotBackUpLotInputErrorLabel.hidden = true
+        lotHoursOfAvailabilityInputErrorLabel.hidden = true
+        
+    }
+    
+    func updateLotLabels() {
+        
+        if let lotName = lot["Lot_Name"] {
+            
+            lotNameTextField.text = lotName as? String
+            
+        }
+        
+        if let lotLocation = lot["Location"] {
+            
+            lotLocationTextField.text = lotLocation as? String
+            
+        }
+        
+        if let lotCapacity = lot["Capacity_Of_Spots"] {
+            
+            lotCapacityTextField.text = lotCapacity as? String
+            
+        }
+        
+        if let lotSpots = lot["Available_Number_Of_Spots"] {
+            
+            lotSpotsAvailableTextField.text = lotSpots as? String
+            
+        }
+        
+        if let lotBackup = lot["Backup_Lot"] {
+            
+            lotBackUpTextField.text = lotBackup as? String
+            
+        }
+        
+        if let lotHours = lot["Hours_Of_Availabilty"] {
+            
+            lotHoursOfAvailabilityTextField.text = lotHours as? String
+            
+        }
+        
+        if let lotTotal = lot["Capacity_Of_Spots"] {
+            
+            lotCapacityTextField.text = lotTotal as? String
+            
+        }
+        
     }
     
 }

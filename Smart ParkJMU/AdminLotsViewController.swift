@@ -72,8 +72,6 @@ class AdminLotsViewController: UIViewController, UITableViewDataSource, UITableV
         
     }
     
-    
-
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         
         if segue.identifier == "segueToManageLotFromTable" {
