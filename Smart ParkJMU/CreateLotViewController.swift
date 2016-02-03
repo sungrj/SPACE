@@ -61,6 +61,15 @@ class CreateLotViewController: UIViewController, UITextFieldDelegate {
         self.view.endEditing(true)
     }
     
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        
+        if let destination = segue.destinationViewController as? AdminLotsViewController {
+            
+            destination.lots = ViewController.getAllLotsData()
+            destination.adminLotsTableView.reloadData()
+            
+        }
+    }
     
     @IBAction func didPressDeleteButton(sender: AnyObject) {
         
@@ -431,5 +440,7 @@ class CreateLotViewController: UIViewController, UITextFieldDelegate {
         }
         
     }
+    
+
     
 }

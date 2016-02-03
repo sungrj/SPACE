@@ -901,7 +901,7 @@ at JMU through the Cloud</string>
                                     <constraint firstAttribute="height" constant="30" id="ATC-qy-alT"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                                <textInputTraits key="textInputTraits" keyboardType="numbersAndPunctuation"/>
                                 <variation key="default">
                                     <mask key="constraints">
                                         <exclude reference="ATC-qy-alT"/>
@@ -959,7 +959,7 @@ at JMU through the Cloud</string>
                                 </constraints>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                                <textInputTraits key="textInputTraits" keyboardType="numbersAndPunctuation"/>
                                 <variation key="default">
                                     <mask key="constraints">
                                         <exclude reference="fzL-cZ-ZBf"/>
@@ -1050,28 +1050,6 @@ at JMU through the Cloud</string>
                                     </mask>
                                 </variation>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="(Must enter hours)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="X4D-VE-nmh">
-                                <rect key="frame" x="-42" y="-21" width="42" height="21"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="21" id="gLC-Dg-eDv"/>
-                                    <constraint firstAttribute="width" constant="142" id="pXC-Hg-TtW"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                                <variation key="default">
-                                    <mask key="constraints">
-                                        <exclude reference="gLC-Dg-eDv"/>
-                                        <exclude reference="pXC-Hg-TtW"/>
-                                    </mask>
-                                </variation>
-                                <variation key="widthClass=compact">
-                                    <mask key="constraints">
-                                        <include reference="gLC-Dg-eDv"/>
-                                        <include reference="pXC-Hg-TtW"/>
-                                    </mask>
-                                </variation>
-                            </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="(Must enter capacity)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qww-cA-VFt">
                                 <rect key="frame" x="-42" y="-21" width="42" height="21"/>
                                 <constraints>
@@ -1126,7 +1104,7 @@ at JMU through the Cloud</string>
                                 </constraints>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                                <textInputTraits key="textInputTraits" keyboardType="numbersAndPunctuation"/>
                                 <variation key="default">
                                     <mask key="constraints">
                                         <exclude reference="DTC-Ju-hPL"/>
@@ -1177,6 +1155,28 @@ at JMU through the Cloud</string>
                                     </mask>
                                 </variation>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="(Must enter hours)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="X4D-VE-nmh">
+                                <rect key="frame" x="-42" y="-21" width="42" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="gLC-Dg-eDv"/>
+                                    <constraint firstAttribute="width" constant="142" id="pXC-Hg-TtW"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="gLC-Dg-eDv"/>
+                                        <exclude reference="pXC-Hg-TtW"/>
+                                    </mask>
+                                </variation>
+                                <variation key="widthClass=compact">
+                                    <mask key="constraints">
+                                        <include reference="gLC-Dg-eDv"/>
+                                        <include reference="pXC-Hg-TtW"/>
+                                    </mask>
+                                </variation>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -1214,10 +1214,14 @@ at JMU through the Cloud</string>
                             <constraint firstItem="eU8-67-zen" firstAttribute="leading" secondItem="f4M-hg-9xX" secondAttribute="leading" id="Tov-De-NMu"/>
                             <constraint firstItem="PqI-zu-tie" firstAttribute="firstBaseline" secondItem="i08-rU-74h" secondAttribute="firstBaseline" id="Uoy-vK-qig"/>
                             <constraint firstItem="eU8-67-zen" firstAttribute="leading" secondItem="TNn-QV-Ugv" secondAttribute="leading" id="Vaa-zD-mgD"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="X4D-VE-nmh" secondAttribute="trailing" constant="30" id="VcV-fK-F16"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="X4D-VE-nmh" secondAttribute="trailing" constant="30" id="VcV-fK-F16">
+                                <variation key="widthClass=compact" constant="-1"/>
+                            </constraint>
                             <constraint firstItem="f4M-hg-9xX" firstAttribute="leading" secondItem="i08-rU-74h" secondAttribute="leading" id="Vmk-2x-SVg"/>
                             <constraint firstItem="Vdc-uI-FG8" firstAttribute="leading" secondItem="PO0-k7-N0Q" secondAttribute="leading" id="XCE-Xq-9yG"/>
-                            <constraint firstItem="X4D-VE-nmh" firstAttribute="top" secondItem="PO0-k7-N0Q" secondAttribute="bottom" constant="10" id="XdP-aP-Gsq"/>
+                            <constraint firstItem="X4D-VE-nmh" firstAttribute="top" secondItem="PO0-k7-N0Q" secondAttribute="bottom" constant="10" id="XdP-aP-Gsq">
+                                <variation key="widthClass=compact" constant="9"/>
+                            </constraint>
                             <constraint firstItem="h0v-Za-TEg" firstAttribute="leading" secondItem="7A5-3G-tep" secondAttribute="trailing" constant="8" symbolic="YES" id="Yas-as-oyb"/>
                             <constraint firstItem="lbZ-3H-Ekd" firstAttribute="top" secondItem="GhA-eI-xWK" secondAttribute="bottom" constant="10" id="ZHp-gw-kBp"/>
                             <constraint firstItem="TNn-QV-Ugv" firstAttribute="leading" secondItem="8Hr-ap-GP5" secondAttribute="leadingMargin" id="ZvK-2d-N4h"/>
@@ -1235,7 +1239,9 @@ at JMU through the Cloud</string>
                             <constraint firstItem="f4M-hg-9xX" firstAttribute="top" secondItem="eU8-67-zen" secondAttribute="bottom" constant="8" symbolic="YES" id="jhJ-C1-n2C"/>
                             <constraint firstItem="DUT-NB-17H" firstAttribute="leading" secondItem="wLe-WS-ha2" secondAttribute="leading" id="mNm-Ib-WzJ"/>
                             <constraint firstItem="q5i-2r-OVP" firstAttribute="top" secondItem="uaP-G0-EBN" secondAttribute="bottom" constant="8" symbolic="YES" id="mXk-Zg-oM8"/>
-                            <constraint firstItem="q5i-2r-OVP" firstAttribute="top" secondItem="X4D-VE-nmh" secondAttribute="bottom" constant="7" id="nYv-Hr-gnZ"/>
+                            <constraint firstItem="q5i-2r-OVP" firstAttribute="top" secondItem="X4D-VE-nmh" secondAttribute="bottom" constant="7" id="nYv-Hr-gnZ">
+                                <variation key="widthClass=compact" constant="8"/>
+                            </constraint>
                             <constraint firstItem="TNn-QV-Ugv" firstAttribute="leading" secondItem="7A5-3G-tep" secondAttribute="leading" id="nfg-NF-Org"/>
                             <constraint firstItem="9yh-Nw-KmO" firstAttribute="trailing" secondItem="f4M-hg-9xX" secondAttribute="trailing" id="pMd-2G-YaC"/>
                             <constraint firstAttribute="trailingMargin" secondItem="VL4-2R-8e1" secondAttribute="trailing" constant="-1" id="qH0-Yh-3Ul">
@@ -1273,13 +1279,13 @@ at JMU through the Cloud</string>
                                 <exclude reference="IGq-jf-V8w"/>
                                 <exclude reference="lbZ-3H-Ekd"/>
                                 <exclude reference="h0v-Za-TEg"/>
-                                <exclude reference="X4D-VE-nmh"/>
                                 <exclude reference="qww-cA-VFt"/>
                                 <exclude reference="HEr-do-eXF"/>
                                 <exclude reference="VL4-2R-8e1"/>
                                 <exclude reference="9yh-Nw-KmO"/>
                                 <exclude reference="i08-rU-74h"/>
                                 <exclude reference="PqI-zu-tie"/>
+                                <exclude reference="X4D-VE-nmh"/>
                             </mask>
                             <mask key="constraints">
                                 <exclude reference="IC8-kl-rgh"/>
@@ -1368,13 +1374,13 @@ at JMU through the Cloud</string>
                                 <include reference="IGq-jf-V8w"/>
                                 <include reference="lbZ-3H-Ekd"/>
                                 <include reference="h0v-Za-TEg"/>
-                                <include reference="X4D-VE-nmh"/>
                                 <include reference="qww-cA-VFt"/>
                                 <include reference="HEr-do-eXF"/>
                                 <include reference="VL4-2R-8e1"/>
                                 <include reference="9yh-Nw-KmO"/>
                                 <include reference="i08-rU-74h"/>
                                 <include reference="PqI-zu-tie"/>
+                                <include reference="X4D-VE-nmh"/>
                             </mask>
                             <mask key="constraints">
                                 <include reference="IC8-kl-rgh"/>
