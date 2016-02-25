@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A43DF9E01C7B7B500034F47D /* UserRegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A43DF9DF1C7B7B4F0034F47D /* UserRegistrationViewController.swift */; };
 		A441A7231C5544E2003F7F2D /* AdminLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A441A7221C5544E2003F7F2D /* AdminLoginViewController.swift */; };
 		A441A7251C555DB4003F7F2D /* AdminLotsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A441A7241C555DB4003F7F2D /* AdminLotsViewController.swift */; };
 		A441A7271C556907003F7F2D /* CreateLotViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A441A7261C556907003F7F2D /* CreateLotViewController.swift */; };
@@ -55,6 +56,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		A43DF9DF1C7B7B4F0034F47D /* UserRegistrationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserRegistrationViewController.swift; sourceTree = "<group>"; };
 		A441A7221C5544E2003F7F2D /* AdminLoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdminLoginViewController.swift; sourceTree = "<group>"; };
 		A441A7241C555DB4003F7F2D /* AdminLotsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdminLotsViewController.swift; sourceTree = "<group>"; };
 		A441A7261C556907003F7F2D /* CreateLotViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateLotViewController.swift; sourceTree = "<group>"; };
@@ -157,6 +159,7 @@
 				A441A7281C559EC1003F7F2D /* global.swift */,
 				A442FB051BF14862006DB57B /* AppDelegate.swift */,
 				A442FB071BF14862006DB57B /* ViewController.swift */,
+				A43DF9DF1C7B7B4F0034F47D /* UserRegistrationViewController.swift */,
 				A4BD740E1BF2F3E000F57C2B /* SingleLotViewController.swift */,
 				A441A7221C5544E2003F7F2D /* AdminLoginViewController.swift */,
 				A441A7241C555DB4003F7F2D /* AdminLotsViewController.swift */,
@@ -346,6 +349,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A43DF9E01C7B7B500034F47D /* UserRegistrationViewController.swift in Sources */,
 				A441A7291C559EC2003F7F2D /* global.swift in Sources */,
 				A441A7271C556907003F7F2D /* CreateLotViewController.swift in Sources */,
 				A441A7251C555DB4003F7F2D /* AdminLotsViewController.swift in Sources */,

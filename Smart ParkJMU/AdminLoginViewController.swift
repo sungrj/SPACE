@@ -9,7 +9,7 @@
 import UIKit
 
 class AdminLoginViewController: UIViewController, UITextFieldDelegate {
-
+    
     
     @IBOutlet weak var usernameOrEmailInputTextField: UITextField!
     @IBOutlet weak var passwordInputTextField: UITextField!
@@ -35,7 +35,7 @@ class AdminLoginViewController: UIViewController, UITextFieldDelegate {
         
         // Do any additional setup after loading the view.
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -43,8 +43,8 @@ class AdminLoginViewController: UIViewController, UITextFieldDelegate {
     
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         self.view.endEditing(true)
-    }    
-
+    }
+    
     
     @IBAction func didPressLoginButton(sender: AnyObject) {
         
@@ -58,7 +58,7 @@ class AdminLoginViewController: UIViewController, UITextFieldDelegate {
             globalVar.loggedIn = true
             
         } else if incorrectPasswordLabel.hidden && incorrectUsernameOrPasswordLabel.hidden == true {
-                
+            
             incorrectCredentionalLabel.hidden = false
             
         }
@@ -70,7 +70,7 @@ class AdminLoginViewController: UIViewController, UITextFieldDelegate {
         userText.resignFirstResponder()
         
         return true;
-    
+        
     }
     
     func checkAccountCredentials() -> Bool {
@@ -78,7 +78,7 @@ class AdminLoginViewController: UIViewController, UITextFieldDelegate {
         if checkUsernameOrEmailCredentials() && checkPasswordCredentials() == true {
             
             return true
-
+            
         } else {
             
             return false
@@ -107,35 +107,35 @@ class AdminLoginViewController: UIViewController, UITextFieldDelegate {
     }
     
     func checkPasswordCredentials() -> Bool {
-    
+        
         if passwordInputTextField.text!.isEmpty {
             
             incorrectPasswordLabel.text = "Please enter your password."
             incorrectPasswordLabel.hidden = false
             
             return false
-        
+            
         } else {
             
             incorrectPasswordLabel.hidden = true
             
             return true
-        
+            
         }
         
     }
     
-    func login(userNameorPassword: String, password: String) -> Bool {
-    
-        if checkAccountCredentials() == true {
+    func login(email: String, password: String) -> Bool {
         
+        if checkAccountCredentials() == true {
+            
             var responseString = ""
             
-            let request = NSMutableURLRequest(URL: NSURL(string: "http://192.168.99.101/userLogin.php")!)
+            let request = NSMutableURLRequest(URL: NSURL(string: "http://spacejmu.bitnamiapp.com/SPACEApiCalls/loginUser.php")!)
             
             request.HTTPMethod = "POST"
             
-            let postString = "username=\(userNameorPassword)&password=\(password)"
+            let postString = "email=\(email)&password=\(password)"
             
             request.HTTPBody = postString.dataUsingEncoding(NSUTF8StringEncoding)
             
@@ -148,23 +148,23 @@ class AdminLoginViewController: UIViewController, UITextFieldDelegate {
                     print("error=\(error)")
                     
                     return
-                
+                    
                 }
                 
                 if let httpStatus = response as? NSHTTPURLResponse where httpStatus.statusCode != 200 {
                     // check for http errors
                     
                     print("statusCode should be 200, but is \(httpStatus.statusCode)")
-                
+                    
                     print("response = \(response)")
-              
+                    
                 }
                 
                 responseString = NSString(data: data!, encoding: NSUTF8StringEncoding)! as String
                 
-    //            print("Success?: ", responseString.containsString("Success"))
+//                print("Success?: ", responseString.containsString("Success"))
                 
-    //            print("responseString =", responseString)
+                print("responseString =", responseString)
                 
                 
                 dispatch_semaphore_signal(semaphore)
@@ -183,6 +183,9 @@ class AdminLoginViewController: UIViewController, UITextFieldDelegate {
             
         }
         
+    }
+    
+    @IBAction func unwindToAdminLoginViewController(segue: UIStoryboardSegue) {
     }
     
 }

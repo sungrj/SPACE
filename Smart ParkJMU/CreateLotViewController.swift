@@ -64,10 +64,9 @@ class CreateLotViewController: UIViewController, UITextFieldDelegate {
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         
         if let destination = segue.destinationViewController as? AdminLotsViewController {
-            
             destination.lots = ViewController.getAllLotsData()
             destination.adminLotsTableView.reloadData()
-            
+//            print("data reloaded")
         }
     }
     
@@ -108,9 +107,7 @@ class CreateLotViewController: UIViewController, UITextFieldDelegate {
                 
                 // POST method to update lot
                 
-                createOrSaveLot("http://192.168.99.101/updateLot.php")
-                
-                self.performSegueWithIdentifier("unwindToAdminLotsViewController", sender: nil)
+                createOrSaveLot("http://space-jmu.bitnamiapp.com/updateLot.php")
                 
             } else {
                 
@@ -118,7 +115,7 @@ class CreateLotViewController: UIViewController, UITextFieldDelegate {
                 
             }
             
-        } else {
+        } else if managementType == "Create" {
             
             if checkRequiredInputsAreSatisfied() == true {
                 
@@ -126,13 +123,7 @@ class CreateLotViewController: UIViewController, UITextFieldDelegate {
                 
                 // POST method to create lot
                 
-                createOrSaveLot("http://192.168.99.101/createLot.php")
-
-                self.performSegueWithIdentifier("unwindToAdminLotsViewController", sender: nil)
-                
-            } else {
-                
-                // If required input fields aren't satisfied
+                createOrSaveLot("http://space-jmu.bitnamiapp.com/createLot.php")
                 
             }
             
@@ -337,14 +328,17 @@ class CreateLotViewController: UIViewController, UITextFieldDelegate {
         }
         
         task.resume()
-
+        
+//        print("before perform segue")
+        self.performSegueWithIdentifier("unwindToAdminLotsViewController", sender: nil)
+//        print("after perform segue")
     }
     
     func deleteLot() {
         
 //        var responseString = ""
         
-        let request = NSMutableURLRequest(URL: NSURL(string: "http://192.168.99.101/deleteLot.php")!)
+        let request = NSMutableURLRequest(URL: NSURL(string: "http://space-jmu.bitnamiapp.com/deleteLot.php")!)
         
         let postString: String! = "lotId=\(lotId)"
         

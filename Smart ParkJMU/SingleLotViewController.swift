@@ -40,7 +40,7 @@ class SingleLotViewController: UIViewController {
         let lots = ViewController.getAllLotsData()
             
         for item in lots {
-            
+
             if let thisLot = item["Lot_Name"] {
                 
                 if (thisLot as! NSString) == lotNameLabel.text {

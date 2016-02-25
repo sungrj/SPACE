@@ -21,7 +21,7 @@ class ViewController: UIViewController, UITableViewDataSource {
         
         checkLoginStatus()
         
-        lots = ViewController.getAllLotsData()
+        lots = ViewController.getLotNames()
         
     }
 
@@ -34,7 +34,7 @@ class ViewController: UIViewController, UITableViewDataSource {
         
         var lotData = []
         
-        let nsUrl = NSURL(string: "http://192.168.99.101/test1.php")
+        let nsUrl = NSURL(string: "http://spacejmu.bitnamiapp.com/SPACEApiCalls/test1.php")
         
         let semaphore = dispatch_semaphore_create(0)
         
@@ -59,6 +59,39 @@ class ViewController: UIViewController, UITableViewDataSource {
         
         dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER)
         
+        return lotData
+    }
+    
+    class func getLotNames() -> NSArray {
+        
+        var lotData = []
+        
+        let nsUrl = NSURL(string: "http://spacejmu.bitnamiapp.com/SPACEApiCalls/test1.php")
+        
+        let semaphore = dispatch_semaphore_create(0)
+        
+        let task = NSURLSession.sharedSession().dataTaskWithURL(nsUrl!){
+            (data, response, error) in
+            
+            do {
+                
+                let jsonResult = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.MutableContainers)
+                lotData = jsonResult as! NSArray
+                print("data: ", lotData)
+                
+            } catch {
+                
+                print ("JSON serialization failed")
+            }
+            
+            dispatch_semaphore_signal(semaphore)
+            
+        }
+        
+        task.resume()
+        
+        dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER)
+        print("data return", lotData)
         return lotData
     }
     
