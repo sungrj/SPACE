@@ -36,6 +36,10 @@ class UserRegistrationViewController: UIViewController, UIPickerViewDataSource, 
         self.permitTypePicker.dataSource = self
         
         alertLabel.hidden = true
+        
+        alertLabel.layer.masksToBounds = true;
+        alertLabel.layer.cornerRadius = 12.0;
+
 
         // Do any additional setup after loading the view.
     }
@@ -205,17 +209,8 @@ class UserRegistrationViewController: UIViewController, UIPickerViewDataSource, 
                     self.alertLabel.text = responseString
                     self.alertLabel.hidden = false
                 })
-
             }
-            
         }
-        
         task.resume()
-        
-
-        
     }
-
-    
-
 }

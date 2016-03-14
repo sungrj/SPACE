@@ -66,7 +66,7 @@ class ViewController: UIViewController, UITableViewDataSource {
         
         var lotData = []
         
-        let nsUrl = NSURL(string: "http://spacejmu.bitnamiapp.com/SPACEApiCalls/test1.php")
+        let nsUrl = NSURL(string: "http://spacejmu.bitnamiapp.com/SPACEApiCalls/getLotNames.php")
         
         let semaphore = dispatch_semaphore_create(0)
         
@@ -77,7 +77,7 @@ class ViewController: UIViewController, UITableViewDataSource {
                 
                 let jsonResult = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.MutableContainers)
                 lotData = jsonResult as! NSArray
-                print("data: ", lotData)
+//                print("data: ", lotData)
                 
             } catch {
                 
@@ -91,7 +91,6 @@ class ViewController: UIViewController, UITableViewDataSource {
         task.resume()
         
         dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER)
-        print("data return", lotData)
         return lotData
     }
     
@@ -149,7 +148,8 @@ class ViewController: UIViewController, UITableViewDataSource {
 
                 if let index = lotsTableView.indexPathForSelectedRow?.row {
 
-                    destination.lot = lots[index] as! NSDictionary
+                    let lotPassed = lots[index] as! NSDictionary
+                    destination.lotId = lotPassed["Id"]!.integerValue
                 
                 }
             }

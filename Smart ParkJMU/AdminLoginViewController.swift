@@ -14,9 +14,8 @@ class AdminLoginViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var usernameOrEmailInputTextField: UITextField!
     @IBOutlet weak var passwordInputTextField: UITextField!
     
-    @IBOutlet weak var incorrectUsernameOrPasswordLabel: UILabel!
-    @IBOutlet weak var incorrectPasswordLabel: UILabel!
-    @IBOutlet weak var incorrectCredentionalLabel: UILabel!
+    @IBOutlet weak var alertLabel: UILabel!
+
     
     @IBOutlet weak var loginButton: UIButton!
     
@@ -29,9 +28,9 @@ class AdminLoginViewController: UIViewController, UITextFieldDelegate {
         self.passwordInputTextField.delegate = self
         self.usernameOrEmailInputTextField.delegate = self
         
-        incorrectPasswordLabel.hidden = true
-        incorrectUsernameOrPasswordLabel.hidden = true
-        incorrectCredentionalLabel.hidden = true
+        alertLabel.hidden = true
+        alertLabel.layer.masksToBounds = true;
+        alertLabel.layer.cornerRadius = 12.0;
         
         // Do any additional setup after loading the view.
     }
@@ -57,9 +56,9 @@ class AdminLoginViewController: UIViewController, UITextFieldDelegate {
             
             globalVar.loggedIn = true
             
-        } else if incorrectPasswordLabel.hidden && incorrectUsernameOrPasswordLabel.hidden == true {
+        } else if alertLabel.hidden == true {
             
-            incorrectCredentionalLabel.hidden = false
+            alertLabel.hidden = false
             
         }
         
@@ -91,14 +90,14 @@ class AdminLoginViewController: UIViewController, UITextFieldDelegate {
         
         if usernameOrEmailInputTextField.text!.isEmpty {
             
-            incorrectUsernameOrPasswordLabel.text = "Please enter your username or email."
-            incorrectUsernameOrPasswordLabel.hidden = false
+            alertLabel.text = "Please enter your username or email."
+            alertLabel.hidden = false
             
             return false
             
         } else {
             
-            incorrectUsernameOrPasswordLabel.hidden = true
+            alertLabel.hidden = true
             
             return true
             
@@ -110,14 +109,14 @@ class AdminLoginViewController: UIViewController, UITextFieldDelegate {
         
         if passwordInputTextField.text!.isEmpty {
             
-            incorrectPasswordLabel.text = "Please enter your password."
-            incorrectPasswordLabel.hidden = false
+            alertLabel.text = "Please enter your password."
+            alertLabel.hidden = false
             
             return false
             
         } else {
             
-            incorrectPasswordLabel.hidden = true
+            alertLabel.hidden = true
             
             return true
             
@@ -166,6 +165,13 @@ class AdminLoginViewController: UIViewController, UITextFieldDelegate {
                 
                 print("responseString =", responseString)
                 
+                if (responseString.containsString("incorrect")) || (responseString.containsString("exist")) {
+                    dispatch_async(dispatch_get_main_queue(), {
+                        self.alertLabel.text = responseString
+                        self.alertLabel.hidden = false
+                    })
+                    
+                }
                 
                 dispatch_semaphore_signal(semaphore)
                 
