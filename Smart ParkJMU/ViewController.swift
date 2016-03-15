@@ -22,7 +22,7 @@ class ViewController: UIViewController, UITableViewDataSource {
         checkLoginStatus()
         
         lots = ViewController.getLotNames()
-        
+        print("Lots:", ViewController.getAllLotsData())
     }
 
     override func didReceiveMemoryWarning() {
