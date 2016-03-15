@@ -31,6 +31,10 @@ class CreateLotViewController: UIViewController, UITextFieldDelegate {
         
         super.viewDidLoad()
         
+        alertLabel.hidden = true
+        alertLabel.layer.masksToBounds = true;
+        alertLabel.layer.cornerRadius = 19;
+        
         if let id = lot["ID"] {
             
             lotId = (id as! NSString).integerValue
