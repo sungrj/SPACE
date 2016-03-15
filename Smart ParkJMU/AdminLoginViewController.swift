@@ -30,7 +30,7 @@ class AdminLoginViewController: UIViewController, UITextFieldDelegate {
         
         alertLabel.hidden = true
         alertLabel.layer.masksToBounds = true;
-        alertLabel.layer.cornerRadius = 12.0;
+        alertLabel.layer.cornerRadius = 19;
         
         // Do any additional setup after loading the view.
     }
@@ -90,8 +90,12 @@ class AdminLoginViewController: UIViewController, UITextFieldDelegate {
         
         if usernameOrEmailInputTextField.text!.isEmpty {
             
-            alertLabel.text = "Please enter your username or email."
+            alertLabel.text = "Please enter your email."
             alertLabel.hidden = false
+            let time = dispatch_time(dispatch_time_t(DISPATCH_TIME_NOW), 3 * Int64(NSEC_PER_SEC))
+            dispatch_after(time, dispatch_get_main_queue()) {
+                self.alertLabel.hidden = true
+            }
             
             return false
             
@@ -111,6 +115,10 @@ class AdminLoginViewController: UIViewController, UITextFieldDelegate {
             
             alertLabel.text = "Please enter your password."
             alertLabel.hidden = false
+            let time = dispatch_time(dispatch_time_t(DISPATCH_TIME_NOW), 3 * Int64(NSEC_PER_SEC))
+            dispatch_after(time, dispatch_get_main_queue()) {
+                self.alertLabel.hidden = true
+            }
             
             return false
             

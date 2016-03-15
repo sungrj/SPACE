@@ -23,9 +23,6 @@
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="JM.png" translatesAutoresizingMaskIntoConstraints="NO" id="Ddu-Ih-67X">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
-                                <variation key="widthClass=compact" fixedFrame="YES">
-                                    <rect key="frame" x="0.0" y="0.0" width="400" height="600"/>
-                                </variation>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" minimumScaleFactor="0.75" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="I57-mX-5JO">
                                 <rect key="frame" x="-42" y="-21" width="42" height="21"/>
@@ -37,7 +34,7 @@ at JMU through the Cloud</string>
                                 <color key="shadowColor" red="1" green="1" blue="1" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
                                 <size key="shadowOffset" width="3" height="2"/>
                             </label>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" sectionIndexMinimumDisplayRowCount="1" showsSelectionImmediatelyOnTouchBegin="NO" rowHeight="80" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="0kZ-ff-q2P">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" sectionIndexMinimumDisplayRowCount="1" rowHeight="80" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="0kZ-ff-q2P">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                 <color key="backgroundColor" white="1" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <color key="separatorColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -61,13 +58,17 @@ at JMU through the Cloud</string>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="Ddu-Ih-67X" secondAttribute="trailing" constant="-20" id="8HM-kw-g4a"/>
                             <constraint firstAttribute="trailingMargin" secondItem="0kZ-ff-q2P" secondAttribute="trailing" id="Frh-ew-0G2"/>
                             <constraint firstAttribute="leadingMargin" secondItem="I57-mX-5JO" secondAttribute="leading" id="Iwl-qJ-N3L"/>
                             <constraint firstItem="0kZ-ff-q2P" firstAttribute="top" secondItem="I57-mX-5JO" secondAttribute="bottom" constant="7.5" id="PyZ-Pm-WNP"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="0kZ-ff-q2P" secondAttribute="bottom" constant="20" id="QgD-k2-KVs"/>
                             <constraint firstAttribute="leadingMargin" secondItem="0kZ-ff-q2P" secondAttribute="leading" id="RJJ-mi-LDw"/>
                             <constraint firstItem="I57-mX-5JO" firstAttribute="top" secondItem="JXR-IP-jUG" secondAttribute="bottom" constant="14" id="Y97-SF-EAh"/>
+                            <constraint firstItem="Ddu-Ih-67X" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="-20" id="eHV-nO-a7Q"/>
                             <constraint firstItem="JXR-IP-jUG" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="ga6-U4-mCv"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="Ddu-Ih-67X" secondAttribute="bottom" id="im6-dG-Nz2"/>
+                            <constraint firstItem="Ddu-Ih-67X" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-20" id="m5N-MD-2A1"/>
                             <constraint firstAttribute="trailingMargin" secondItem="I57-mX-5JO" secondAttribute="trailing" id="oyT-mY-EYy"/>
                             <constraint firstAttribute="leadingMargin" secondItem="JXR-IP-jUG" secondAttribute="leading" id="wQO-fa-4I7"/>
                         </constraints>
@@ -79,6 +80,9 @@ at JMU through the Cloud</string>
                                 <exclude reference="JXR-IP-jUG"/>
                             </mask>
                             <mask key="constraints">
+                                <exclude reference="8HM-kw-g4a"/>
+                                <exclude reference="eHV-nO-a7Q"/>
+                                <exclude reference="m5N-MD-2A1"/>
                                 <exclude reference="ga6-U4-mCv"/>
                                 <exclude reference="wQO-fa-4I7"/>
                                 <exclude reference="Iwl-qJ-N3L"/>
@@ -88,6 +92,7 @@ at JMU through the Cloud</string>
                                 <exclude reference="PyZ-Pm-WNP"/>
                                 <exclude reference="RJJ-mi-LDw"/>
                                 <exclude reference="QgD-k2-KVs"/>
+                                <exclude reference="im6-dG-Nz2"/>
                             </mask>
                         </variation>
                         <variation key="widthClass=compact">
@@ -98,6 +103,9 @@ at JMU through the Cloud</string>
                                 <include reference="JXR-IP-jUG"/>
                             </mask>
                             <mask key="constraints">
+                                <include reference="8HM-kw-g4a"/>
+                                <include reference="eHV-nO-a7Q"/>
+                                <include reference="m5N-MD-2A1"/>
                                 <include reference="ga6-U4-mCv"/>
                                 <include reference="wQO-fa-4I7"/>
                                 <include reference="Iwl-qJ-N3L"/>
@@ -107,13 +115,14 @@ at JMU through the Cloud</string>
                                 <include reference="PyZ-Pm-WNP"/>
                                 <include reference="RJJ-mi-LDw"/>
                                 <include reference="QgD-k2-KVs"/>
+                                <include reference="im6-dG-Nz2"/>
                             </mask>
                         </variation>
                     </view>
                     <connections>
                         <outlet property="didPressButtonLoginOrGoToAdminPage" destination="JXR-IP-jUG" id="q8z-T0-Z6b"/>
                         <outlet property="lotsTableView" destination="0kZ-ff-q2P" id="VbU-Es-Mbf"/>
-                        <segue destination="5SO-iv-VHj" kind="show" identifier="seguetoAdminLoginViewController" id="XLQ-U7-A6W"/>
+                        <segue destination="5SO-iv-VHj" kind="presentation" identifier="seguetoAdminLoginViewController" id="XLQ-U7-A6W"/>
                         <segue destination="V5v-d0-AMs" kind="show" identifier="segueToAdminLotsViewController" id="ff8-Dg-D3W"/>
                         <segue destination="Ryn-u1-QmN" kind="show" identifier="segueToSingleLotViewController" id="L6o-dh-5hZ"/>
                     </connections>
@@ -175,7 +184,7 @@ at JMU through the Cloud</string>
                                 </variation>
                                 <variation key="widthClass=compact">
                                     <mask key="constraints">
-                                        <include reference="3BW-Tm-kmY"/>
+                                        <exclude reference="3BW-Tm-kmY"/>
                                     </mask>
                                 </variation>
                                 <connections>
@@ -329,7 +338,7 @@ at JMU through the Cloud</string>
                                     </mask>
                                 </variation>
                             </label>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="First Last" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cuf-Oh-CZp">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="John Smith" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cuf-Oh-CZp">
                                 <rect key="frame" x="-25" y="-30" width="97" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
@@ -348,7 +357,9 @@ at JMU through the Cloud</string>
                                 <rect key="frame" x="0.0" y="-216" width="320" height="216"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" secondItem="60B-6f-g0T" secondAttribute="height" multiplier="40:9" id="PfU-ez-6xL"/>
+                                    <constraint firstAttribute="width" secondItem="60B-6f-g0T" secondAttribute="height" multiplier="40:9" id="PfU-ez-6xL">
+                                        <variation key="widthClass=compact" constant="57.777777777777771"/>
+                                    </constraint>
                                 </constraints>
                                 <variation key="default">
                                     <mask key="constraints">
@@ -361,7 +372,12 @@ at JMU through the Cloud</string>
                                     </mask>
                                 </variation>
                             </pickerView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Incorrect email address" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fqd-PS-J8P">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="sample@example.com" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="qkx-z6-XYU">
+                                <rect key="frame" x="-25" y="-30" width="97" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" alpha="0.84999999999999998" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Incorrect email address" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fqd-PS-J8P">
                                 <rect key="frame" x="-42" y="-21" width="42" height="21"/>
                                 <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
@@ -383,11 +399,6 @@ at JMU through the Cloud</string>
                                     </mask>
                                 </variation>
                             </label>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="qkx-z6-XYU">
-                                <rect key="frame" x="-25" y="-30" width="97" height="30"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -400,7 +411,9 @@ at JMU through the Cloud</string>
                             </constraint>
                             <constraint firstAttribute="trailingMargin" secondItem="cuf-Oh-CZp" secondAttribute="trailing" id="4ey-Me-HpC"/>
                             <constraint firstAttribute="leadingMargin" secondItem="8jD-Le-EIb" secondAttribute="leading" id="5FV-Mk-v9O"/>
-                            <constraint firstItem="L8x-eQ-Kmw" firstAttribute="top" secondItem="I6T-3r-4Oo" secondAttribute="bottom" id="5qX-kv-rUB"/>
+                            <constraint firstItem="L8x-eQ-Kmw" firstAttribute="top" secondItem="I6T-3r-4Oo" secondAttribute="bottom" id="5qX-kv-rUB">
+                                <variation key="widthClass=compact" constant="8"/>
+                            </constraint>
                             <constraint firstItem="6sr-C1-yv1" firstAttribute="top" secondItem="cuf-Oh-CZp" secondAttribute="top" id="7TZ-bE-XiX"/>
                             <constraint firstAttribute="leadingMargin" secondItem="W3k-26-Q3i" secondAttribute="leading" id="9FY-eq-WU9"/>
                             <constraint firstItem="zpJ-Mt-lDN" firstAttribute="leading" secondItem="W3k-26-Q3i" secondAttribute="trailing" constant="8" id="AGU-Qt-KTy"/>
@@ -409,10 +422,14 @@ at JMU through the Cloud</string>
                             <constraint firstItem="qMy-YO-bk6" firstAttribute="baseline" secondItem="nco-fH-rGt" secondAttribute="baseline" id="H7a-oC-gWi">
                                 <variation key="widthClass=compact" constant="2"/>
                             </constraint>
-                            <constraint firstItem="I6T-3r-4Oo" firstAttribute="top" secondItem="hMt-s2-HEA" secondAttribute="bottom" constant="8" id="HJh-Cp-aeI"/>
+                            <constraint firstItem="I6T-3r-4Oo" firstAttribute="top" secondItem="hMt-s2-HEA" secondAttribute="bottom" constant="8" id="HJh-Cp-aeI">
+                                <variation key="widthClass=compact" constant="0.0"/>
+                            </constraint>
                             <constraint firstItem="W3k-26-Q3i" firstAttribute="top" secondItem="6Df-0N-wgh" secondAttribute="bottom" constant="11" id="HNT-N0-qDY"/>
                             <constraint firstItem="0ha-Ro-3Vn" firstAttribute="top" secondItem="hMt-s2-HEA" secondAttribute="bottom" constant="-20" id="JD2-hD-adc"/>
-                            <constraint firstItem="Fqd-PS-J8P" firstAttribute="top" secondItem="60B-6f-g0T" secondAttribute="bottom" constant="8" id="KMg-5m-BRP"/>
+                            <constraint firstItem="Fqd-PS-J8P" firstAttribute="top" secondItem="60B-6f-g0T" secondAttribute="bottom" constant="8" id="KMg-5m-BRP">
+                                <variation key="widthClass=compact" constant="8"/>
+                            </constraint>
                             <constraint firstAttribute="trailingMargin" secondItem="Fqd-PS-J8P" secondAttribute="trailing" id="LVE-OO-m2H"/>
                             <constraint firstAttribute="leadingMargin" secondItem="6sr-C1-yv1" secondAttribute="leading" id="NZr-gN-1EM"/>
                             <constraint firstItem="0ha-Ro-3Vn" firstAttribute="leading" secondItem="Qs8-xp-cPO" secondAttribute="leadingMargin" constant="-20" id="PzL-Wg-ra5"/>
@@ -460,8 +477,8 @@ at JMU through the Cloud</string>
                                 <exclude reference="zpJ-Mt-lDN"/>
                                 <exclude reference="nco-fH-rGt"/>
                                 <exclude reference="60B-6f-g0T"/>
-                                <exclude reference="Fqd-PS-J8P"/>
                                 <exclude reference="qkx-z6-XYU"/>
+                                <exclude reference="Fqd-PS-J8P"/>
                             </mask>
                             <mask key="constraints">
                                 <exclude reference="0wZ-Bb-naH"/>
@@ -524,8 +541,8 @@ at JMU through the Cloud</string>
                                 <include reference="zpJ-Mt-lDN"/>
                                 <include reference="nco-fH-rGt"/>
                                 <include reference="60B-6f-g0T"/>
-                                <include reference="Fqd-PS-J8P"/>
                                 <include reference="qkx-z6-XYU"/>
+                                <include reference="Fqd-PS-J8P"/>
                             </mask>
                             <mask key="constraints">
                                 <include reference="0wZ-Bb-naH"/>
@@ -602,9 +619,6 @@ at JMU through the Cloud</string>
                         <subviews>
                             <imageView opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Asphalt copy.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="DTf-LC-3rL">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
-                                <variation key="widthClass=compact" fixedFrame="YES">
-                                    <rect key="frame" x="0.0" y="0.0" width="400" height="600"/>
-                                </variation>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" reversesTitleShadowWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HoM-2j-IiJ">
                                 <rect key="frame" x="-23" y="-15" width="46" height="30"/>
@@ -681,10 +695,10 @@ at JMU through the Cloud</string>
                                     <color key="titleColor" red="0.80000001190000003" green="0.80000001190000003" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
-                                    <segue destination="CKM-70-hnm" kind="show" identifier="unwindtoAdminLogin" id="gBv-UW-5T4"/>
+                                    <segue destination="CKM-70-hnm" kind="presentation" identifier="unwindtoAdminLogin" id="gBv-UW-5T4"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Username or email doesn't exist." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="C0K-rL-G8B">
+                            <label opaque="NO" userInteractionEnabled="NO" alpha="0.84999999999999998" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Username or email doesn't exist." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="C0K-rL-G8B">
                                 <rect key="frame" x="-42" y="-21" width="42" height="21"/>
                                 <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
@@ -712,6 +726,7 @@ at JMU through the Cloud</string>
                             <constraint firstItem="Lwb-GU-sSI" firstAttribute="top" secondItem="ts0-kP-89J" secondAttribute="bottom" id="4Ty-f5-gy5"/>
                             <constraint firstAttribute="leadingMargin" secondItem="ts0-kP-89J" secondAttribute="leading" id="5qu-FV-muo"/>
                             <constraint firstAttribute="leadingMargin" secondItem="C0K-rL-G8B" secondAttribute="leading" id="6R0-7f-Iz5"/>
+                            <constraint firstItem="25t-iK-fGv" firstAttribute="top" secondItem="DTf-LC-3rL" secondAttribute="bottom" id="6br-k5-hbN"/>
                             <constraint firstItem="5Ln-i2-OyE" firstAttribute="top" secondItem="Lwb-GU-sSI" secondAttribute="bottom" constant="45" id="6c9-Vw-5kV"/>
                             <constraint firstItem="tXh-8e-1jJ" firstAttribute="top" secondItem="YjH-uG-nmS" secondAttribute="bottom" constant="8" id="Eyi-vg-v6l"/>
                             <constraint firstItem="ts0-kP-89J" firstAttribute="centerY" secondItem="sKr-FK-EZl" secondAttribute="centerY" id="H6k-yZ-CeF"/>
@@ -724,12 +739,15 @@ at JMU through the Cloud</string>
                             <constraint firstAttribute="leadingMargin" secondItem="YjH-uG-nmS" secondAttribute="leading" id="Xi1-QV-JKx"/>
                             <constraint firstAttribute="trailingMargin" secondItem="DyV-cI-hPF" secondAttribute="trailing" id="a6z-Vq-L1S"/>
                             <constraint firstAttribute="trailingMargin" secondItem="HoM-2j-IiJ" secondAttribute="trailing" id="bo0-5D-I2g"/>
+                            <constraint firstItem="DTf-LC-3rL" firstAttribute="leading" secondItem="sZF-Vk-42y" secondAttribute="leadingMargin" constant="-20" id="fjz-BL-7Lp"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="DTf-LC-3rL" secondAttribute="trailing" constant="-20" id="iUf-r0-xi6"/>
                             <constraint firstAttribute="leadingMargin" secondItem="tXh-8e-1jJ" secondAttribute="leading" id="lT4-Vh-zg5"/>
                             <constraint firstAttribute="trailingMargin" secondItem="sKr-FK-EZl" secondAttribute="trailing" id="pJw-rs-Kid"/>
                             <constraint firstAttribute="trailingMargin" secondItem="YjH-uG-nmS" secondAttribute="trailing" id="rZ0-eT-f3R"/>
                             <constraint firstAttribute="leadingMargin" secondItem="Lwb-GU-sSI" secondAttribute="leading" id="tcX-we-eMC"/>
                             <constraint firstItem="YjH-uG-nmS" firstAttribute="top" secondItem="5Ln-i2-OyE" secondAttribute="bottom" constant="8.5" id="urC-oe-cxg"/>
                             <constraint firstAttribute="leadingMargin" secondItem="DyV-cI-hPF" secondAttribute="leading" id="wJV-Db-Acg"/>
+                            <constraint firstItem="DTf-LC-3rL" firstAttribute="top" secondItem="iPo-Sk-0uw" secondAttribute="bottom" constant="-20" id="xU7-ef-fFq"/>
                             <constraint firstAttribute="leadingMargin" secondItem="HoM-2j-IiJ" secondAttribute="leading" id="zr0-l9-PjV"/>
                         </constraints>
                         <variation key="default">
@@ -746,6 +764,9 @@ at JMU through the Cloud</string>
                                 <exclude reference="C0K-rL-G8B"/>
                             </mask>
                             <mask key="constraints">
+                                <exclude reference="fjz-BL-7Lp"/>
+                                <exclude reference="iUf-r0-xi6"/>
+                                <exclude reference="xU7-ef-fFq"/>
                                 <exclude reference="5qu-FV-muo"/>
                                 <exclude reference="H6k-yZ-CeF"/>
                                 <exclude reference="V4h-MJ-qOP"/>
@@ -761,13 +782,14 @@ at JMU through the Cloud</string>
                                 <exclude reference="Tk1-30-0o4"/>
                                 <exclude reference="a6z-Vq-L1S"/>
                                 <exclude reference="wJV-Db-Acg"/>
-                                <exclude reference="pJw-rs-Kid"/>
                                 <exclude reference="0H6-NF-gX5"/>
                                 <exclude reference="6R0-7f-Iz5"/>
                                 <exclude reference="PYS-kK-fIJ"/>
+                                <exclude reference="pJw-rs-Kid"/>
                                 <exclude reference="bo0-5D-I2g"/>
                                 <exclude reference="zr0-l9-PjV"/>
                                 <exclude reference="2vr-wW-OJJ"/>
+                                <exclude reference="6br-k5-hbN"/>
                             </mask>
                         </variation>
                         <variation key="widthClass=compact">
@@ -784,6 +806,9 @@ at JMU through the Cloud</string>
                                 <include reference="C0K-rL-G8B"/>
                             </mask>
                             <mask key="constraints">
+                                <include reference="fjz-BL-7Lp"/>
+                                <include reference="iUf-r0-xi6"/>
+                                <include reference="xU7-ef-fFq"/>
                                 <include reference="5qu-FV-muo"/>
                                 <include reference="H6k-yZ-CeF"/>
                                 <include reference="V4h-MJ-qOP"/>
@@ -799,13 +824,14 @@ at JMU through the Cloud</string>
                                 <include reference="Tk1-30-0o4"/>
                                 <include reference="a6z-Vq-L1S"/>
                                 <include reference="wJV-Db-Acg"/>
-                                <include reference="pJw-rs-Kid"/>
                                 <include reference="0H6-NF-gX5"/>
                                 <include reference="6R0-7f-Iz5"/>
                                 <include reference="PYS-kK-fIJ"/>
+                                <include reference="pJw-rs-Kid"/>
                                 <include reference="bo0-5D-I2g"/>
                                 <include reference="zr0-l9-PjV"/>
                                 <include reference="2vr-wW-OJJ"/>
+                                <include reference="6br-k5-hbN"/>
                             </mask>
                         </variation>
                     </view>
@@ -1809,7 +1835,7 @@ at JMU through the Cloud</string>
                                     <action selector="didPressRefresh:" destination="Ryn-u1-QmN" eventType="touchUpInside" id="tuI-Ig-CGJ"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WbY-AV-70T">
+                            <button opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WbY-AV-70T">
                                 <rect key="frame" x="-23" y="-15" width="46" height="30"/>
                                 <state key="normal" title="Go Back">
                                     <color key="titleColor" red="0.80000001192092896" green="0.80000001192092896" blue="0.40000000596046448" alpha="1" colorSpace="calibratedRGB"/>
@@ -1826,7 +1852,7 @@ at JMU through the Cloud</string>
                                 <color key="shadowColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <size key="shadowOffset" width="2" height="1"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="C1007" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mdw-FE-ivI">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="C1337" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mdw-FE-ivI">
                                 <rect key="frame" x="-42" y="-21" width="42" height="21"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="29"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -1839,7 +1865,10 @@ at JMU through the Cloud</string>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="132" id="Qhj-yZ-5wr"/>
-                                    <constraint firstAttribute="width" secondItem="Alw-mC-Nef" secondAttribute="height" multiplier="360:89" id="V6g-IR-qeZ"/>
+                                    <constraint firstAttribute="width" secondItem="Alw-mC-Nef" secondAttribute="height" multiplier="360:89" id="V6g-IR-qeZ">
+                                        <variation key="widthClass=compact" constant="-392.35955056179773"/>
+                                    </constraint>
+                                    <constraint firstAttribute="height" relation="lessThanOrEqual" constant="188" id="qIz-pK-L7K"/>
                                     <constraint firstAttribute="height" constant="132" id="ucp-F4-qno"/>
                                 </constraints>
                                 <color key="sectionIndexTrackingBackgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -1908,13 +1937,15 @@ at JMU through the Cloud</string>
                                     <mask key="constraints">
                                         <exclude reference="Qhj-yZ-5wr"/>
                                         <exclude reference="V6g-IR-qeZ"/>
+                                        <exclude reference="qIz-pK-L7K"/>
                                         <exclude reference="ucp-F4-qno"/>
                                     </mask>
                                 </variation>
                                 <variation key="widthClass=compact">
                                     <mask key="constraints">
                                         <exclude reference="Qhj-yZ-5wr"/>
-                                        <include reference="V6g-IR-qeZ"/>
+                                        <exclude reference="V6g-IR-qeZ"/>
+                                        <include reference="qIz-pK-L7K"/>
                                         <exclude reference="ucp-F4-qno"/>
                                     </mask>
                                 </variation>
@@ -1923,31 +1954,19 @@ at JMU through the Cloud</string>
                                     <outlet property="delegate" destination="Ryn-u1-QmN" id="Yg1-ui-0fv"/>
                                 </connections>
                             </tableView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Lot Location Label e.g. Godwin" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZH5-MZ-VdK">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Friday:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DTq-bE-My9">
                                 <rect key="frame" x="-42" y="-21" width="42" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Location:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1ae-XM-l7w">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sat-Sun:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CPF-03-Fhp">
                                 <rect key="frame" x="-42" y="-21" width="42" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Fri-Sat:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DTq-bE-My9">
-                                <rect key="frame" x="-42" y="-21" width="42" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sunday:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CPF-03-Fhp">
-                                <rect key="frame" x="-42" y="-21" width="42" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="12:00 pm" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2yF-62-NRL">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="9:00 am - 12:00 pm" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2yF-62-NRL">
                                 <rect key="frame" x="-42" y="-21" width="42" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -1959,7 +1978,7 @@ at JMU through the Cloud</string>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="After 4 pm" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hTT-zN-9DV">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="9:00 am - 12:00 pm" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hTT-zN-9DV">
                                 <rect key="frame" x="-42" y="-21" width="42" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -1975,16 +1994,21 @@ at JMU through the Cloud</string>
                                 <rect key="frame" x="0.0" y="-216" width="320" height="216"/>
                                 <color key="backgroundColor" red="0.80000001192092896" green="0.80000001192092896" blue="0.40000000596046448" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" secondItem="9dE-1B-fIt" secondAttribute="height" multiplier="8:1" id="V2V-tR-0wJ"/>
+                                    <constraint firstAttribute="height" constant="58" id="7bD-Hm-WdJ"/>
+                                    <constraint firstAttribute="width" secondItem="9dE-1B-fIt" secondAttribute="height" multiplier="8:1" id="V2V-tR-0wJ">
+                                        <variation key="widthClass=compact" constant="-104"/>
+                                    </constraint>
                                 </constraints>
                                 <variation key="default">
                                     <mask key="constraints">
+                                        <exclude reference="7bD-Hm-WdJ"/>
                                         <exclude reference="V2V-tR-0wJ"/>
                                     </mask>
                                 </variation>
                                 <variation key="widthClass=compact">
                                     <mask key="constraints">
-                                        <include reference="V2V-tR-0wJ"/>
+                                        <include reference="7bD-Hm-WdJ"/>
+                                        <exclude reference="V2V-tR-0wJ"/>
                                     </mask>
                                 </variation>
                                 <connections>
@@ -2004,14 +2028,33 @@ at JMU through the Cloud</string>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Loading..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0EC-MH-Y3l">
+                                <rect key="frame" x="-42" y="-21" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Lot Location Label e.g. Godwin" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZH5-MZ-VdK">
+                                <rect key="frame" x="-42" y="-21" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Location:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1ae-XM-l7w">
+                                <rect key="frame" x="-42" y="-21" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="0EC-MH-Y3l" firstAttribute="centerX" secondItem="b2j-ry-oMd" secondAttribute="centerX" id="0wD-46-QCr"/>
                             <constraint firstItem="j6C-Ee-2oj" firstAttribute="centerY" secondItem="jkr-5k-VaQ" secondAttribute="centerY" id="24B-66-D0o">
-                                <variation key="widthClass=compact" constant="-1"/>
+                                <variation key="widthClass=compact" constant="0.0"/>
                             </constraint>
                             <constraint firstItem="H87-Yj-Wvf" firstAttribute="top" secondItem="Alw-mC-Nef" secondAttribute="bottom" constant="10" id="3xW-Ug-TZD">
-                                <variation key="widthClass=compact" constant="9"/>
+                                <variation key="widthClass=compact" constant="6"/>
                             </constraint>
                             <constraint firstItem="b9Z-SA-LKC" firstAttribute="leading" secondItem="b2j-ry-oMd" secondAttribute="leadingMargin" constant="-20" id="5nN-Bb-dSd"/>
                             <constraint firstAttribute="leadingMargin" secondItem="DTq-bE-My9" secondAttribute="leading" id="721-2r-5F5"/>
@@ -2022,11 +2065,14 @@ at JMU through the Cloud</string>
                             <constraint firstAttribute="trailingMargin" secondItem="Alw-mC-Nef" secondAttribute="trailing" id="KTm-hb-ql4"/>
                             <constraint firstAttribute="leadingMargin" secondItem="656-l9-v6R" secondAttribute="leading" id="Ktz-rv-p1n"/>
                             <constraint firstItem="9dE-1B-fIt" firstAttribute="top" secondItem="H87-Yj-Wvf" secondAttribute="bottom" constant="6" id="M93-o4-hgc">
-                                <variation key="widthClass=compact" constant="7"/>
+                                <variation key="widthClass=compact" constant="8"/>
                             </constraint>
                             <constraint firstItem="DTq-bE-My9" firstAttribute="top" secondItem="NMa-na-DEJ" secondAttribute="bottom" constant="2" id="Ngp-pI-9Q8"/>
                             <constraint firstItem="j6C-Ee-2oj" firstAttribute="leading" secondItem="b2j-ry-oMd" secondAttribute="leadingMargin" constant="8" id="Owg-r3-wOE"/>
-                            <constraint firstItem="NMa-na-DEJ" firstAttribute="top" secondItem="9dE-1B-fIt" secondAttribute="bottom" constant="7" id="P4p-Bf-SYf"/>
+                            <constraint firstItem="NMa-na-DEJ" firstAttribute="top" secondItem="9dE-1B-fIt" secondAttribute="bottom" constant="7" id="P4p-Bf-SYf">
+                                <variation key="widthClass=compact" constant="8"/>
+                            </constraint>
+                            <constraint firstItem="xi8-2w-wVt" firstAttribute="top" secondItem="CPF-03-Fhp" secondAttribute="bottom" constant="57" id="RL8-AN-N6G"/>
                             <constraint firstItem="VxI-uI-yY8" firstAttribute="centerY" secondItem="k1d-ZE-b8S" secondAttribute="centerY" id="S8I-11-MUE">
                                 <variation key="widthClass=compact" constant="1.25"/>
                             </constraint>
@@ -2042,15 +2088,23 @@ at JMU through the Cloud</string>
                             <constraint firstAttribute="trailingMargin" secondItem="k1d-ZE-b8S" secondAttribute="trailing" id="Y6f-8F-Id6">
                                 <variation key="widthClass=compact" constant="5.5"/>
                             </constraint>
-                            <constraint firstItem="j6C-Ee-2oj" firstAttribute="top" secondItem="1ae-XM-l7w" secondAttribute="bottom" constant="20.5" id="bcY-pU-SgO"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="jkr-5k-VaQ" secondAttribute="trailing" constant="-2" id="cns-34-ibx"/>
+                            <constraint firstItem="j6C-Ee-2oj" firstAttribute="top" secondItem="1ae-XM-l7w" secondAttribute="bottom" constant="20.5" id="bcY-pU-SgO">
+                                <variation key="widthClass=compact" constant="17.5"/>
+                            </constraint>
+                            <constraint firstAttribute="trailingMargin" secondItem="jkr-5k-VaQ" secondAttribute="trailing" constant="-2" id="cns-34-ibx">
+                                <variation key="widthClass=compact" constant="5.5"/>
+                            </constraint>
                             <constraint firstItem="H87-Yj-Wvf" firstAttribute="centerY" secondItem="6oo-Q6-ZwH" secondAttribute="centerY" id="dQq-yM-bvC">
-                                <variation key="widthClass=compact" constant="1"/>
+                                <variation key="widthClass=compact" constant="-0.75"/>
                             </constraint>
                             <constraint firstItem="VxI-uI-yY8" firstAttribute="leading" secondItem="b2j-ry-oMd" secondAttribute="leadingMargin" constant="8" id="dyO-vC-krJ"/>
                             <constraint firstAttribute="leadingMargin" secondItem="NMa-na-DEJ" secondAttribute="leading" id="e2L-yJ-oyN"/>
-                            <constraint firstItem="1ae-XM-l7w" firstAttribute="top" secondItem="656-l9-v6R" secondAttribute="bottom" constant="-1" id="ffF-9o-6GJ"/>
-                            <constraint firstItem="Alw-mC-Nef" firstAttribute="top" secondItem="VxI-uI-yY8" secondAttribute="bottom" constant="1" id="hNv-Qa-INp"/>
+                            <constraint firstItem="1ae-XM-l7w" firstAttribute="top" secondItem="656-l9-v6R" secondAttribute="bottom" constant="-1" id="ffF-9o-6GJ">
+                                <variation key="widthClass=compact" constant="2"/>
+                            </constraint>
+                            <constraint firstItem="Alw-mC-Nef" firstAttribute="top" secondItem="VxI-uI-yY8" secondAttribute="bottom" constant="1" id="hNv-Qa-INp">
+                                <variation key="widthClass=compact" constant="8"/>
+                            </constraint>
                             <constraint firstItem="xi8-2w-wVt" firstAttribute="top" secondItem="b9Z-SA-LKC" secondAttribute="bottom" id="heI-PM-Edm"/>
                             <constraint firstAttribute="leadingMargin" secondItem="9dE-1B-fIt" secondAttribute="leading" id="j1b-Dn-jQk"/>
                             <constraint firstItem="VxI-uI-yY8" firstAttribute="top" secondItem="j6C-Ee-2oj" secondAttribute="bottom" constant="9" id="jNp-2X-FYt"/>
@@ -2075,6 +2129,9 @@ at JMU through the Cloud</string>
                                 <variation key="widthClass=compact" constant="7.5"/>
                             </constraint>
                             <constraint firstAttribute="trailingMargin" secondItem="2yF-62-NRL" secondAttribute="trailing" id="zGg-D9-QZS"/>
+                            <constraint firstItem="0EC-MH-Y3l" firstAttribute="centerY" secondItem="DTq-bE-My9" secondAttribute="centerY" id="zeu-x6-xAo">
+                                <variation key="widthClass=compact" constant="1"/>
+                            </constraint>
                         </constraints>
                         <variation key="default">
                             <mask key="subviews">
@@ -2088,8 +2145,6 @@ at JMU through the Cloud</string>
                                 <exclude reference="656-l9-v6R"/>
                                 <exclude reference="Mdw-FE-ivI"/>
                                 <exclude reference="Alw-mC-Nef"/>
-                                <exclude reference="ZH5-MZ-VdK"/>
-                                <exclude reference="1ae-XM-l7w"/>
                                 <exclude reference="DTq-bE-My9"/>
                                 <exclude reference="CPF-03-Fhp"/>
                                 <exclude reference="2yF-62-NRL"/>
@@ -2099,8 +2154,12 @@ at JMU through the Cloud</string>
                                 <exclude reference="9dE-1B-fIt"/>
                                 <exclude reference="jkr-5k-VaQ"/>
                                 <exclude reference="H87-Yj-Wvf"/>
+                                <exclude reference="0EC-MH-Y3l"/>
+                                <exclude reference="ZH5-MZ-VdK"/>
+                                <exclude reference="1ae-XM-l7w"/>
                             </mask>
                             <mask key="constraints">
+                                <exclude reference="maJ-qJ-5as"/>
                                 <exclude reference="5nN-Bb-dSd"/>
                                 <exclude reference="T5y-2z-wPb"/>
                                 <exclude reference="TWI-dE-RTR"/>
@@ -2126,26 +2185,28 @@ at JMU through the Cloud</string>
                                 <exclude reference="3xW-Ug-TZD"/>
                                 <exclude reference="XsB-uV-MaE"/>
                                 <exclude reference="dQq-yM-bvC"/>
+                                <exclude reference="cns-34-ibx"/>
+                                <exclude reference="Y6f-8F-Id6"/>
+                                <exclude reference="VC4-Xb-eAU"/>
                                 <exclude reference="EtC-bV-MuQ"/>
                                 <exclude reference="M93-o4-hgc"/>
                                 <exclude reference="j1b-Dn-jQk"/>
-                                <exclude reference="cns-34-ibx"/>
-                                <exclude reference="Y6f-8F-Id6"/>
                                 <exclude reference="P4p-Bf-SYf"/>
                                 <exclude reference="e2L-yJ-oyN"/>
                                 <exclude reference="721-2r-5F5"/>
                                 <exclude reference="Ngp-pI-9Q8"/>
                                 <exclude reference="k15-OC-dTK"/>
-                                <exclude reference="VC4-Xb-eAU"/>
                                 <exclude reference="rb5-Im-4N1"/>
                                 <exclude reference="u5Q-CD-R9h"/>
-                                <exclude reference="mAD-qW-uaZ"/>
+                                <exclude reference="0wD-46-QCr"/>
+                                <exclude reference="zeu-x6-xAo"/>
                                 <exclude reference="r1y-nc-xCS"/>
                                 <exclude reference="sPk-CR-o1s"/>
+                                <exclude reference="mAD-qW-uaZ"/>
                                 <exclude reference="Aks-Xh-K2D"/>
                                 <exclude reference="zGg-D9-QZS"/>
-                                <exclude reference="maJ-qJ-5as"/>
                                 <exclude reference="HpA-h5-Eu1"/>
+                                <exclude reference="RL8-AN-N6G"/>
                                 <exclude reference="heI-PM-Edm"/>
                             </mask>
                         </variation>
@@ -2156,13 +2217,11 @@ at JMU through the Cloud</string>
                                 <include reference="VxI-uI-yY8"/>
                                 <include reference="6oo-Q6-ZwH"/>
                                 <include reference="j6C-Ee-2oj"/>
-                                <include reference="bBR-Wp-xsb"/>
+                                <exclude reference="bBR-Wp-xsb"/>
                                 <include reference="WbY-AV-70T"/>
                                 <include reference="656-l9-v6R"/>
                                 <include reference="Mdw-FE-ivI"/>
                                 <include reference="Alw-mC-Nef"/>
-                                <include reference="ZH5-MZ-VdK"/>
-                                <include reference="1ae-XM-l7w"/>
                                 <include reference="DTq-bE-My9"/>
                                 <include reference="CPF-03-Fhp"/>
                                 <include reference="2yF-62-NRL"/>
@@ -2172,8 +2231,12 @@ at JMU through the Cloud</string>
                                 <include reference="9dE-1B-fIt"/>
                                 <include reference="jkr-5k-VaQ"/>
                                 <include reference="H87-Yj-Wvf"/>
+                                <include reference="0EC-MH-Y3l"/>
+                                <include reference="ZH5-MZ-VdK"/>
+                                <include reference="1ae-XM-l7w"/>
                             </mask>
                             <mask key="constraints">
+                                <include reference="maJ-qJ-5as"/>
                                 <include reference="5nN-Bb-dSd"/>
                                 <include reference="T5y-2z-wPb"/>
                                 <include reference="TWI-dE-RTR"/>
@@ -2199,36 +2262,45 @@ at JMU through the Cloud</string>
                                 <include reference="3xW-Ug-TZD"/>
                                 <include reference="XsB-uV-MaE"/>
                                 <include reference="dQq-yM-bvC"/>
+                                <include reference="cns-34-ibx"/>
+                                <include reference="Y6f-8F-Id6"/>
+                                <include reference="VC4-Xb-eAU"/>
                                 <include reference="EtC-bV-MuQ"/>
                                 <include reference="M93-o4-hgc"/>
                                 <include reference="j1b-Dn-jQk"/>
-                                <include reference="cns-34-ibx"/>
-                                <include reference="Y6f-8F-Id6"/>
                                 <include reference="P4p-Bf-SYf"/>
                                 <include reference="e2L-yJ-oyN"/>
                                 <include reference="721-2r-5F5"/>
                                 <include reference="Ngp-pI-9Q8"/>
                                 <include reference="k15-OC-dTK"/>
-                                <include reference="VC4-Xb-eAU"/>
                                 <include reference="rb5-Im-4N1"/>
                                 <include reference="u5Q-CD-R9h"/>
-                                <include reference="mAD-qW-uaZ"/>
+                                <include reference="0wD-46-QCr"/>
+                                <include reference="zeu-x6-xAo"/>
                                 <include reference="r1y-nc-xCS"/>
                                 <include reference="sPk-CR-o1s"/>
+                                <include reference="mAD-qW-uaZ"/>
                                 <include reference="Aks-Xh-K2D"/>
                                 <include reference="zGg-D9-QZS"/>
-                                <include reference="maJ-qJ-5as"/>
                                 <include reference="HpA-h5-Eu1"/>
+                                <include reference="RL8-AN-N6G"/>
                                 <include reference="heI-PM-Edm"/>
                             </mask>
                         </variation>
                     </view>
                     <connections>
+                        <outlet property="fridayHoursAvailabilityLabel" destination="toV-cz-mH6" id="7TI-sQ-F4v"/>
+                        <outlet property="fridayTitleLabel" destination="DTq-bE-My9" id="UPn-gY-7Mw"/>
                         <outlet property="lotGeneralSpotInfoLabel" destination="k1d-ZE-b8S" id="cnS-eW-Ee7"/>
                         <outlet property="lotLocationLabel" destination="ZH5-MZ-VdK" id="YHv-o7-e1v"/>
                         <outlet property="lotNameLabel" destination="Mdw-FE-ivI" id="p4Z-BZ-Fu9"/>
                         <outlet property="lotTotalSpotInfoLabel" destination="6oo-Q6-ZwH" id="8Da-hA-CjZ"/>
+                        <outlet property="monThurHoursAvailabilityLabel" destination="hTT-zN-9DV" id="kyR-Uc-x8f"/>
+                        <outlet property="monThurTitleLabel" destination="NMa-na-DEJ" id="Wqo-Qz-tzn"/>
                         <outlet property="permitTypeLotTimesPicker" destination="9dE-1B-fIt" id="Rtz-6U-uob"/>
+                        <outlet property="satSunHoursAvailabilityLabel" destination="2yF-62-NRL" id="PIK-SJ-SWY"/>
+                        <outlet property="satSunTitleLabel" destination="CPF-03-Fhp" id="Xuc-it-fGQ"/>
+                        <outlet property="timeLoadingHoursAvailabilityLabel" destination="0EC-MH-Y3l" id="Shc-rz-IdC"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Qwt-RT-4yp" userLabel="First Responder" sceneMemberID="firstResponder"/>

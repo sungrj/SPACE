@@ -25,6 +25,7 @@ class UserRegistrationViewController: UIViewController, UIPickerViewDataSource, 
     var permitType: String = ""
     var carType: String = ""
     
+    
     let permitTypes: [[String]] = [["Commuter", "Resident", "Red Zone", "Blue Zone", "Freshman"],
                                    ["None", "Handicap", "Motorcycle", "Service", "Housekeeping", "Hall Director"]]
 
@@ -38,7 +39,7 @@ class UserRegistrationViewController: UIViewController, UIPickerViewDataSource, 
         alertLabel.hidden = true
         
         alertLabel.layer.masksToBounds = true;
-        alertLabel.layer.cornerRadius = 12.0;
+        alertLabel.layer.cornerRadius = 19;
 
 
         // Do any additional setup after loading the view.
@@ -79,6 +80,10 @@ class UserRegistrationViewController: UIViewController, UIPickerViewDataSource, 
             
             alertLabel.hidden = false
             alertLabel.text = "Enter your full name."
+            let time = dispatch_time(dispatch_time_t(DISPATCH_TIME_NOW), 2 * Int64(NSEC_PER_SEC))
+            dispatch_after(time, dispatch_get_main_queue()) {
+                self.alertLabel.hidden = true
+            }
             return false
             
         } else {
@@ -104,6 +109,11 @@ class UserRegistrationViewController: UIViewController, UIPickerViewDataSource, 
                 
                 alertLabel.hidden = false
                 alertLabel.text = "Must enter 'First Last' Names."
+                let time = dispatch_time(dispatch_time_t(DISPATCH_TIME_NOW), 3 * Int64(NSEC_PER_SEC))
+                dispatch_after(time, dispatch_get_main_queue()) {
+                    self.alertLabel.hidden = true
+                }
+                
                 return false
             }
         }
@@ -125,6 +135,11 @@ class UserRegistrationViewController: UIViewController, UIPickerViewDataSource, 
         if result == false {
             alertLabel.hidden = false
             alertLabel.text = "Incorrect email address!"
+            let time = dispatch_time(dispatch_time_t(DISPATCH_TIME_NOW), 3 * Int64(NSEC_PER_SEC))
+            dispatch_after(time, dispatch_get_main_queue()) {
+                self.alertLabel.hidden = true
+            }
+            
             return false
         } else {
             return true
@@ -143,6 +158,11 @@ class UserRegistrationViewController: UIViewController, UIPickerViewDataSource, 
         } else {
             alertLabel.hidden = false
             alertLabel.text = "Passwords don't match!"
+            let time = dispatch_time(dispatch_time_t(DISPATCH_TIME_NOW), 3 * Int64(NSEC_PER_SEC))
+            dispatch_after(time, dispatch_get_main_queue()) {
+                self.alertLabel.hidden = true
+            }
+            
             return false
         }
     

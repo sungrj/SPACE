@@ -21,18 +21,31 @@ class SingleLotViewController: UIViewController, UITableViewDataSource, UIPicker
     // Lot Times iVars
     let userPermitTypes = ["Commuter", "Resident", "Red Zone", "Blue Zone", "Freshman"]
     var selectedPermitType: String = "Commuter"
-    var selectedLotTimesForPermit: NSArray = []
+    var selectedLotTimesForPermit: NSDictionary = [:]
+    var parsedLotTimes = Dictionary<String, Dictionary<String, String>>()
     
     @IBOutlet weak var lotNameLabel: UILabel!
     @IBOutlet weak var lotLocationLabel: UILabel!
     @IBOutlet weak var lotGeneralSpotInfoLabel: UILabel!
     @IBOutlet weak var lotTotalSpotInfoLabel: UILabel!
     @IBOutlet weak var permitTypeLotTimesPicker: UIPickerView!
+    
+    // Lot Times Labels
+    @IBOutlet weak var monThurTitleLabel: UILabel!
+    @IBOutlet weak var monThurHoursAvailabilityLabel: UILabel!
+    @IBOutlet weak var fridayTitleLabel: UILabel!
+    @IBOutlet weak var fridayHoursAvailabilityLabel: UILabel!
+    @IBOutlet weak var satSunTitleLabel: UILabel!
+    @IBOutlet weak var satSunHoursAvailabilityLabel: UILabel!
+    @IBOutlet weak var timeLoadingHoursAvailabilityLabel: UILabel!
+
 
     override func viewDidLoad() {
         super.viewDidLoad()
         self.permitTypeLotTimesPicker.delegate = self
         self.permitTypeLotTimesPicker.dataSource = self
+        
+        hideTimeLabels()
         
         lot = SingleLotViewController.getLotData(lotId)[0] as! NSDictionary
         lotNameLabel.text = lot["Lot_Name"] as? String
@@ -41,9 +54,10 @@ class SingleLotViewController: UIViewController, UITableViewDataSource, UIPicker
         updateLotNames()
         updateLotSpotsInfo()
 
-        selectedLotTimesForPermit = getLotTimeForPermitType(selectedPermitType, lotId: lotId)
-        print("Lot times:", selectedLotTimesForPermit)
+        selectedLotTimesForPermit = getLotTimeForPermitType(selectedPermitType, lotId: lotId)[0] as! NSDictionary
 
+        parseLotTimes(selectedLotTimesForPermit)
+        updateLotTimes()
 
     }
 
@@ -58,6 +72,26 @@ class SingleLotViewController: UIViewController, UITableViewDataSource, UIPicker
         
         updateLotSpotsInfo()
         
+    }
+    
+    func hideTimeLabels() {
+        monThurTitleLabel.hidden = true
+        monThurHoursAvailabilityLabel.hidden = true
+        fridayTitleLabel.hidden = true
+        fridayHoursAvailabilityLabel.hidden = true
+        satSunTitleLabel.hidden = true
+        satSunHoursAvailabilityLabel.hidden = true
+        timeLoadingHoursAvailabilityLabel.hidden = false
+    }
+    
+    func showTimeLabels() {
+        monThurTitleLabel.hidden = false
+        monThurHoursAvailabilityLabel.hidden = false
+        fridayTitleLabel.hidden = false
+        fridayHoursAvailabilityLabel.hidden = false
+        satSunTitleLabel.hidden = false
+        satSunHoursAvailabilityLabel.hidden = false
+        timeLoadingHoursAvailabilityLabel.hidden = true
     }
     
     func updateLotNames () {
@@ -89,13 +123,95 @@ class SingleLotViewController: UIViewController, UITableViewDataSource, UIPicker
         lotPropertyInfo.addObject("\(lot["Hall_Director_Available"]!.integerValue) | \(lot["Hall_Director_Capacity"]!.integerValue)")
         lotPropertyInfo.addObject("\(lot["Misc_Available"]!.integerValue) | \(lot["Misc_Capacity"]!.integerValue)")
         lotTotalSpotInfoLabel.text = "\(lot["Total_Available"]!.integerValue) | \(lot["Total_Capacity"]!.integerValue)"
-    }
-    
-    func updateLotTimes () {
         
+        showTimeLabels()
     }
     
-    func parseLotTimes(lotTimes: NSArray) {
+    func updateLotTimes() {
+        
+        monThurHoursAvailabilityLabel.text = compareHoursOfAvailability(parsedLotTimes["Mon-Thur"]!["Open"]!, date2: parsedLotTimes["Mon-Thur"]!["Closed"]!)
+        fridayHoursAvailabilityLabel.text = compareHoursOfAvailability(parsedLotTimes["Friday"]!["Open"]!, date2: parsedLotTimes["Friday"]!["Closed"]!)
+        satSunHoursAvailabilityLabel.text = compareHoursOfAvailability(parsedLotTimes["Sat-Sun"]!["Open"]!, date2: parsedLotTimes["Sat-Sun"]!["Closed"]!)
+    
+    }
+    
+    func compareHoursOfAvailability(date1: String, date2: String) -> String {
+        
+        let df = NSDateFormatter()
+        df.dateFormat = "h:mm a"
+        df.timeZone = NSTimeZone(forSecondsFromGMT: 0)
+        
+        if date1 != "Closed" || date2 != "Closed" {
+            
+            if df.dateFromString(date1)!
+                .compare(df.dateFromString(date2)!) == NSComparisonResult.OrderedDescending {
+                    
+                    return "After \(date1)"
+                    
+            } else if df.dateFromString(date1)!
+                .compare(df.dateFromString(date2)!) == NSComparisonResult.OrderedAscending {
+                    
+                    return "\(date1) - \(date2)"
+                    
+            } else {
+                
+                return "Open all day"
+            }
+            
+        } else {
+            
+            return "Closed"
+        }
+    }
+    
+    func parseLotTimes(lotTimes: NSDictionary) {
+        parsedLotTimes = ["Mon-Thur":["Open":"", "Closed":""], "Friday":["Open":"", "Closed":""], "Sat-Sun":["Open":"", "Closed":""]]
+        var time: String
+        
+        let dateFormatter = NSDateFormatter()
+            dateFormatter.dateFormat = "HH:mm:ss"
+            dateFormatter.timeZone = NSTimeZone(name: "UTC")
+        let df = NSDateFormatter()
+            df.dateFormat = "h:mm a"
+            df.timeZone = NSTimeZone(forSecondsFromGMT: 0)
+        
+        for (key, value) in lotTimes {
+            // Converts values to HH:MM AM/PM format if not time
+            
+            if value as? String != nil {
+                let tempTime = dateFormatter.dateFromString( value as! String )!
+                time = df.stringFromDate(tempTime)
+            } else {
+                time = "Closed"
+            }
+            
+            // Created parsed object
+            
+            if key.containsString("Mon_Thur_Open") {
+            
+                parsedLotTimes["Mon-Thur"]!["Open"]?.appendContentsOf(time)
+
+            } else if key.containsString("Mon_Thur_Closed") {
+                
+                parsedLotTimes["Mon-Thur"]!["Closed"]?.appendContentsOf(time)
+            
+            } else if key.containsString("Fri_Open") {
+                
+                parsedLotTimes["Friday"]!["Open"]?.appendContentsOf(time)
+                
+            } else if key.containsString("Fri_Closed") {
+                
+                parsedLotTimes["Friday"]!["Closed"]?.appendContentsOf(time)
+                
+            } else if key.containsString("Sat_Sun_Open") {
+                
+                parsedLotTimes["Sat-Sun"]!["Open"]?.appendContentsOf(time)
+                
+            } else if key.containsString("Sat_Sun_Closed") {
+                
+                parsedLotTimes["Sat-Sun"]!["Closed"]?.appendContentsOf(time)
+            }
+        }
     
     }
     
@@ -241,7 +357,7 @@ class SingleLotViewController: UIViewController, UITableViewDataSource, UIPicker
         return cell
     }
     
-    //region Picker
+    // Region: Picker
     
     func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
         return 1
@@ -270,11 +386,23 @@ class SingleLotViewController: UIViewController, UITableViewDataSource, UIPicker
             selectedPermitType = "Blue"
 
         } else {
-        
-            selectedPermitType = userPermitTypes[row]
+            
+            if selectedLotTimesForPermit != userPermitTypes {
+                
+                selectedPermitType = userPermitTypes[row]
+            }
         }
         
-        selectedLotTimesForPermit = getLotTimeForPermitType(selectedPermitType, lotId: lotId)
+        selectedLotTimesForPermit = getLotTimeForPermitType(selectedPermitType, lotId: lotId)[0] as! NSDictionary
+        
+        parseLotTimes(selectedLotTimesForPermit)
+        hideTimeLabels()
+        let time = dispatch_time(dispatch_time_t(DISPATCH_TIME_NOW), 1 * Int64(NSEC_PER_SEC))
+        dispatch_after(time, dispatch_get_main_queue()) {
+            self.updateLotTimes()
+            self.showTimeLabels()
+        }
+        
 
     }
 
