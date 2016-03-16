@@ -18,8 +18,35 @@ class CreateLotViewController: UIViewController, UITextFieldDelegate {
     
     @IBOutlet weak var lotNameTextField: UITextField!
     @IBOutlet weak var lotLocationTextField: UITextField!
+    
     @IBOutlet weak var alertLabel: UILabel!
 
+    
+    @IBOutlet weak var generalSpotsAvailableTextField: UITextField!
+    @IBOutlet weak var generalSpotsTotalTextField: UITextField!
+    
+    @IBOutlet weak var handicapSpotsAvailableTextField: UITextField!
+    @IBOutlet weak var handicapSpotsTotalTextField: UITextField!
+    
+    @IBOutlet weak var meteredSpotsAvailableTextField: UITextField!
+    @IBOutlet weak var meteredSpotsTotalTextField: UITextField!
+    
+    @IBOutlet weak var motorcycleSpotsAvailableTextField: UITextField!
+    @IBOutlet weak var motorcycleSpotsTotalTextField: UITextField!
+    
+    @IBOutlet weak var visitorSpotsAvailableTextField: UITextField!
+    @IBOutlet weak var visitorSpotsTotalTextField: UITextField!
+    
+    @IBOutlet weak var totalSpotsAvailableTextField: UILabel!
+    @IBOutlet weak var totalSpotsTotalTextField: UILabel!
+    
+    @IBAction func calculateAvailableSpots(sender: UITextField) {
+        calculateAvailableSpots()
+    }
+    
+    @IBAction func calculateTotalSpots(sender: UITextField) {
+        calculateTotalSpots()
+    }
     
     
     var lot = NSDictionary()
@@ -31,7 +58,7 @@ class CreateLotViewController: UIViewController, UITextFieldDelegate {
         
         super.viewDidLoad()
         
-        alertLabel.hidden = true
+        alertLabel.hidden = false
         alertLabel.layer.masksToBounds = true;
         alertLabel.layer.cornerRadius = 19;
         
@@ -40,10 +67,8 @@ class CreateLotViewController: UIViewController, UITextFieldDelegate {
             lotId = (id as! NSString).integerValue
             
         }
-        
-        
+
         checkCreateOrManageLot()
-        hideErrorLabels()
         
     }
 
@@ -93,39 +118,39 @@ class CreateLotViewController: UIViewController, UITextFieldDelegate {
     }
     
     @IBAction func didPressSaveOrCreateButton(sender: AnyObject) {
+        calculateAvailableSpots()
         
-//        if managementType == "Manage" {
-//            
-//            if checkRequiredInputsAreSatisfied() == true {
-//                
-//                hideErrorLabels()
-//                
-//                // POST method to update lot
-//                
+        if managementType == "Manage" {
+            
+            if checkRequiredInputsAreSatisfied() == true {
+                
+                // POST method to update lot
+                
 //                createOrSaveLot("http://space-jmu.bitnamiapp.com/updateLot.php")
-//                
-//            } else {
-//                
-//                // If required input fields aren't satisfied
-//                
-//            }
-//            
-//        } else if managementType == "Create" {
-//            
-//            if checkRequiredInputsAreSatisfied() == true {
-//                
-//                hideErrorLabels()
-//                
-//                // POST method to create lot
-//                
+                
+            } else {
+                
+                // If required input fields aren't satisfied
+                
+            }
+            
+        } else if managementType == "Create" {
+            
+            if checkRequiredInputsAreSatisfied() == true {
+                
+                // POST method to create lot
+                
 //                createOrSaveLot("http://space-jmu.bitnamiapp.com/createLot.php")
-//                
-//            }
-//            
-//        }
+                
+            }
+            
+        }
         
     }
     
+    @IBAction func unwindToFirstCreateOrSaveViewController(segue: UIStoryboardSegue) {
+    }
+
     func checkCreateOrManageLot() {
         
         if managementType == "Manage" {
@@ -139,7 +164,7 @@ class CreateLotViewController: UIViewController, UITextFieldDelegate {
             
         } else {
             
-            createOrManageLotTitleLabel.text = "Create a Lot"
+            createOrManageLotTitleLabel.text = "Create Lot"
             
             createOrSaveButtonLabel.setTitle("Create", forState: .Normal)
             
@@ -149,119 +174,231 @@ class CreateLotViewController: UIViewController, UITextFieldDelegate {
         
     }
     
-//    func checkRequiredInputsAreSatisfied() -> Bool {
-//        
-//        if lotNameTextField.text == "" {
-//            
-//            lotNameInputErrorLabel.text = "(Must enter name)"
-//            
-//            lotNameInputErrorLabel.hidden = false
-//            
-//        } else {
-//            
-//            lotNameInputErrorLabel.hidden = true
-//            
-//        }
-//        
-//        if lotLocationTextField.text == "" {
-//            
-//            lotLocationInputErrorLabel.text = "(Must enter location)"
-//            
-//            lotLocationInputErrorLabel.hidden = false
-//            
-//        } else {
-//            
-//            lotLocationInputErrorLabel.hidden = true
-//            
-//        }
-//        
-//        if lotCapacityTextField.text == "" {
-//            
-//            lotCapacityInputErrorLabel.text = "(Must enter capacity)"
-//            
-//            lotCapacityInputErrorLabel.hidden = false
-//            
-//        } else {
-//            
-//            if let _ = Int(lotCapacityTextField.text!) {
-//                
-//                lotCapacityInputErrorLabel.hidden = true
-//                
-//            } else {
-//                
-//                lotCapacityInputErrorLabel.text = "(Input not a number)"
-//                
-//                lotCapacityInputErrorLabel.hidden = false
-//                
-//            }
-//            
-//        }
-//        
-//        if lotSpotsAvailableTextField.text == "" {
-//            
-//            lotSpotsAvailableInputErrorLabel.text = "(Must enter capacity)"
-//            
-//            lotSpotsAvailableInputErrorLabel.hidden = false
-//            
-//        } else {
-//            
-//            if let _ = Int(lotSpotsAvailableTextField.text!) {
-//                
-//                lotSpotsAvailableInputErrorLabel.hidden = true
-//                
-//            } else {
-//                
-//                lotSpotsAvailableInputErrorLabel.text = "(Input not a number)"
-//                
-//                lotSpotsAvailableInputErrorLabel.hidden = false
-//                
-//            }
-//            
-//        }
-//        
-//        if lotBackUpTextField.text == "" {
-//            
-//            lotBackUpLotInputErrorLabel.text = "(Must enter lot)"
-//            
-//            lotBackUpLotInputErrorLabel.hidden = false
-//            
-//        } else {
-//            
-//            lotBackUpLotInputErrorLabel.hidden = true
-//            
-//        }
-//        
-//        if lotHoursOfAvailabilityTextField.text == "" {
-//            
-//            lotHoursOfAvailabilityInputErrorLabel.text = "(Must enter hours)"
-//            
-//            lotHoursOfAvailabilityInputErrorLabel.hidden = false
-//            
-//        } else {
-//            
-//            if let _ = Int(lotHoursOfAvailabilityTextField.text!) {
-//                
-//                lotHoursOfAvailabilityInputErrorLabel.hidden = true
-//                
-//            } else {
-//                
-//                lotHoursOfAvailabilityInputErrorLabel.text = "(Input not a number)"
-//                lotHoursOfAvailabilityInputErrorLabel.hidden = false
-//                
-//            }
-//            
-//            
-//        }
-//        
-//        if lotNameInputErrorLabel.hidden == true && lotLocationInputErrorLabel.hidden == true && lotCapacityInputErrorLabel.hidden == true && lotSpotsAvailableInputErrorLabel.hidden == true && lotBackUpLotInputErrorLabel.hidden == true && lotHoursOfAvailabilityInputErrorLabel.hidden == true {
-//            
-//            return true
-//            
-//        }
-//        
-//        return false
-//        
-//    }
+    func checkRequiredInputsAreSatisfied() -> Bool {
+        
+        
+        if lotNameTextField.text == "" {
+            
+            alertLabel.text = "Must enter name"
+            
+            alertLabel.hidden = false
+            
+            return false
+            
+        } else {
+            
+            alertLabel.hidden = true
+            
+        }
+        
+        if lotLocationTextField.text == "" {
+            
+            alertLabel.text = "Must enter location"
+            
+            alertLabel.hidden = false
+            
+            return false
+            
+        } else {
+            
+            alertLabel.hidden = true
+            
+        }
+        
+        if let _ = Int(generalSpotsAvailableTextField.text!) {
+            
+        } else if generalSpotsAvailableTextField.text == "" {
+            
+            alertLabel.text = "Enter all spot availabilities"
+            alertLabel.hidden = false
+            return false
+            
+        } else {
+            
+            alertLabel.text = "Spot availabilities aren't integers"
+            alertLabel.hidden = false
+            return false
+        }
+        
+        if let _ = Int(generalSpotsTotalTextField.text!) {
+            
+        } else if generalSpotsTotalTextField.text == "" {
+            
+            alertLabel.text = "Enter all spot availabilities"
+            alertLabel.hidden = false
+            return false
+            
+        } else {
+            
+            alertLabel.text = "Spot availabilities aren't integers"
+            alertLabel.hidden = false
+            return false
+        }
+        
+        if Int(generalSpotsAvailableTextField.text!) > Int(generalSpotsTotalTextField.text!)  {
+            
+            alertLabel.text = "Available spots must be less than total"
+            alertLabel.hidden = false
+            return false
+            
+        }
+        
+        if let _ = Int(handicapSpotsAvailableTextField.text!) {
+            
+        } else if handicapSpotsAvailableTextField.text == "" {
+            
+            alertLabel.text = "Enter all spot availabilities"
+            alertLabel.hidden = false
+            return false
+            
+        } else {
+            
+            alertLabel.text = "Spot availabilities aren't integers"
+            alertLabel.hidden = false
+            return false
+        }
+        
+        if let _ = Int(handicapSpotsTotalTextField.text!) {
+            
+        } else if handicapSpotsTotalTextField.text == "" {
+            
+            alertLabel.text = "Enter all spot availabilities"
+            alertLabel.hidden = false
+            return false
+            
+        } else {
+            
+            alertLabel.text = "Spot availabilities aren't integers"
+            alertLabel.hidden = false
+            return false
+        }
+        
+        if Int(handicapSpotsAvailableTextField.text!) > Int(handicapSpotsTotalTextField.text!)  {
+            
+            alertLabel.text = "Available spots must be less than total"
+            alertLabel.hidden = false
+            return false
+            
+        }
+        
+        if let _ = Int(meteredSpotsAvailableTextField.text!) {
+            
+        } else if meteredSpotsAvailableTextField.text == "" {
+            
+            alertLabel.text = "Enter all spot availabilities"
+            alertLabel.hidden = false
+            return false
+            
+        } else {
+            
+            alertLabel.text = "Spot availabilities aren't integers"
+            alertLabel.hidden = false
+            return false
+        }
+        
+        if let _ = Int(meteredSpotsTotalTextField.text!) {
+            
+        } else if meteredSpotsTotalTextField.text == "" {
+            
+            alertLabel.text = "Enter all spot availabilities"
+            alertLabel.hidden = false
+            return false
+            
+        } else {
+            
+            alertLabel.text = "Spot availabilities aren't integers"
+            alertLabel.hidden = false
+            return false
+        }
+        
+        if Int(meteredSpotsAvailableTextField.text!) > Int(meteredSpotsTotalTextField.text!)  {
+            
+            alertLabel.text = "Available spots must be less than total"
+            alertLabel.hidden = false
+            return false
+            
+        }
+        
+        if let _ = Int(motorcycleSpotsAvailableTextField.text!) {
+            
+        } else if motorcycleSpotsAvailableTextField.text == "" {
+            
+            alertLabel.text = "Enter all spot availabilities"
+            alertLabel.hidden = false
+            return false
+            
+        } else {
+            
+            alertLabel.text = "Spot availabilities aren't integers"
+            alertLabel.hidden = false
+            return false
+        }
+        
+        if let _ = Int(motorcycleSpotsTotalTextField.text!) {
+            
+        } else if motorcycleSpotsTotalTextField.text == "" {
+            
+            alertLabel.text = "Enter all spot availabilities"
+            alertLabel.hidden = false
+            return false
+            
+        } else {
+            
+            alertLabel.text = "Spot availabilities aren't integers"
+            alertLabel.hidden = false
+            return false
+        }
+        
+        if Int(motorcycleSpotsAvailableTextField.text!) > Int(motorcycleSpotsTotalTextField.text!)  {
+            
+            alertLabel.text = "Available spots must be less than total"
+            alertLabel.hidden = false
+            return false
+            
+        }
+        
+        if let _ = Int(visitorSpotsAvailableTextField.text!) {
+            
+        } else if visitorSpotsAvailableTextField.text == "" {
+            
+            alertLabel.text = "Enter all spot availabilities"
+            alertLabel.hidden = false
+            return false
+            
+        } else {
+            
+            alertLabel.text = "Spot availabilities aren't integers"
+            alertLabel.hidden = false
+            return false
+        }
+        
+        if let _ = Int(visitorSpotsTotalTextField.text!) {
+            
+        } else if visitorSpotsTotalTextField.text == "" {
+            
+            alertLabel.text = "Enter all spot availabilities"
+            alertLabel.hidden = false
+            return false
+            
+        } else {
+            
+            alertLabel.text = "Spot availabilities aren't integers"
+            alertLabel.hidden = false
+            return false
+        }
+        
+        if Int(visitorSpotsAvailableTextField.text!) > Int(visitorSpotsTotalTextField.text!)  {
+            
+            alertLabel.text = "Available spots must be less than total"
+            alertLabel.hidden = false
+            return false
+            
+        }
+    
+        alertLabel.hidden = true
+        return true
+        
+    }
     
     func createOrSaveLot(url: String) {
             
@@ -373,17 +510,6 @@ class CreateLotViewController: UIViewController, UITextFieldDelegate {
         
     }
     
-    func hideErrorLabels() {
-        
-//        lotNameInputErrorLabel.hidden = true
-//        lotLocationInputErrorLabel.hidden = true
-//        lotCapacityInputErrorLabel.hidden = true
-//        lotSpotsAvailableInputErrorLabel.hidden = true
-//        lotBackUpLotInputErrorLabel.hidden = true
-//        lotHoursOfAvailabilityInputErrorLabel.hidden = true
-        
-    }
-    
 //    func updateLotLabels() {
 //        
 //        if let lotName = lot["Lot_Name"] {
@@ -430,6 +556,47 @@ class CreateLotViewController: UIViewController, UITextFieldDelegate {
 //        
 //    }
     
+    func calculateAvailableSpots() {
+        if let genAvail = Int(generalSpotsAvailableTextField.text!) as Int? {
+            if let handicapAvail = Int(handicapSpotsAvailableTextField.text!) as Int? {
+                if let meteredAvail = Int(meteredSpotsAvailableTextField.text!) as Int? {
+                    if let motorcycleAvail = Int(motorcycleSpotsAvailableTextField.text!) as Int? {
+                        if let visitorAvail = Int(visitorSpotsAvailableTextField.text!) as Int? {
+                            if let totalAvail = (genAvail + handicapAvail + meteredAvail + motorcycleAvail + visitorAvail) as Int? {
+                                calculateTotalAvailableSpots(totalAvail)
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
+    func calculateTotalSpots() {
+        if let genTotal = Int(generalSpotsTotalTextField.text!) as Int? {
+            if let handicapTotal = Int(handicapSpotsTotalTextField.text!) as Int? {
+                if let meteredTotal = Int(meteredSpotsTotalTextField.text!) as Int? {
+                    if let motorcycleTotal = Int(motorcycleSpotsTotalTextField.text!) as Int? {
+                        if let visitorTotal = Int(visitorSpotsTotalTextField.text!) as Int? {
+                            if let totalTotal = (genTotal + handicapTotal + meteredTotal + motorcycleTotal + visitorTotal) as Int? {
+                                calculateTotalTotalSpots(totalTotal)
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    
+    func calculateTotalAvailableSpots(numberOfAvailableSpots: Int) {
+        totalSpotsAvailableTextField.text = String(numberOfAvailableSpots)
+    }
+    
+    func calculateTotalTotalSpots(numberOfTotalSpots: Int) {
+        totalSpotsTotalTextField.text = String(numberOfTotalSpots)
+    }
+
 
     
 }

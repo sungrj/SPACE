@@ -36,6 +36,7 @@
 		A493BB991BF53AE900493FF0 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A493BB971BF53AE900493FF0 /* Social.framework */; };
 		A4BD740D1BF2E1E300F57C2B /* Asphalt copy.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A4BD740C1BF2E1E300F57C2B /* Asphalt copy.jpg */; };
 		A4BD740F1BF2F3E000F57C2B /* SingleLotViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4BD740E1BF2F3E000F57C2B /* SingleLotViewController.swift */; };
+		A4F2CAA61C98EA07001499B1 /* CreateLotViewControllerTwo.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4F2CAA51C98EA07001499B1 /* CreateLotViewControllerTwo.swift */; };
 		A4F821A71C8648BB003F14A8 /* GeneralTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4F821A61C8648BB003F14A8 /* GeneralTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
@@ -92,6 +93,7 @@
 		A493BB971BF53AE900493FF0 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		A4BD740C1BF2E1E300F57C2B /* Asphalt copy.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Asphalt copy.jpg"; sourceTree = "<group>"; };
 		A4BD740E1BF2F3E000F57C2B /* SingleLotViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SingleLotViewController.swift; sourceTree = "<group>"; };
+		A4F2CAA51C98EA07001499B1 /* CreateLotViewControllerTwo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateLotViewControllerTwo.swift; sourceTree = "<group>"; };
 		A4F821A61C8648BB003F14A8 /* GeneralTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GeneralTableViewCell.swift; path = SingleLotTableViews/GeneralTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -167,6 +169,7 @@
 				A441A7221C5544E2003F7F2D /* AdminLoginViewController.swift */,
 				A441A7241C555DB4003F7F2D /* AdminLotsViewController.swift */,
 				A441A7261C556907003F7F2D /* CreateLotViewController.swift */,
+				A4F2CAA51C98EA07001499B1 /* CreateLotViewControllerTwo.swift */,
 				A442FB091BF14862006DB57B /* Main.storyboard */,
 				A442FB0C1BF14862006DB57B /* Assets.xcassets */,
 				A442FB0E1BF14862006DB57B /* LaunchScreen.storyboard */,
@@ -352,6 +355,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A4F2CAA61C98EA07001499B1 /* CreateLotViewControllerTwo.swift in Sources */,
 				A43DF9E01C7B7B500034F47D /* UserRegistrationViewController.swift in Sources */,
 				A441A7291C559EC2003F7F2D /* global.swift in Sources */,
 				A441A7271C556907003F7F2D /* CreateLotViewController.swift in Sources */,

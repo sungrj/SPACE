@@ -55,6 +55,8 @@ class SingleLotViewController: UIViewController, UITableViewDataSource, UIPicker
         updateLotSpotsInfo()
 
         selectedLotTimesForPermit = getLotTimeForPermitType(selectedPermitType, lotId: lotId)[0] as! NSDictionary
+        
+        print(lot)
 
         parseLotTimes(selectedLotTimesForPermit)
         updateLotTimes()
