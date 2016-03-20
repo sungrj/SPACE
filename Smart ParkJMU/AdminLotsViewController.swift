@@ -11,7 +11,8 @@ import UIKit
 class AdminLotsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
     var lots = []
-    
+    var lotName = String()
+    var lotId = Int()
     
     @IBOutlet weak var adminLotsTableView: UITableView!
     
@@ -19,7 +20,7 @@ class AdminLotsViewController: UIViewController, UITableViewDataSource, UITableV
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        lots = ViewController.getAllLotsData()
+        lots = ViewController.getLotNames()
         
         // Do any additional setup after loading the view.
     }
@@ -80,7 +81,8 @@ class AdminLotsViewController: UIViewController, UITableViewDataSource, UITableV
                 
                 if let index = adminLotsTableView.indexPathForSelectedRow?.row {
                     
-                    destination.lot = lots[index] as! NSDictionary
+                    destination.lotId = lots[index]["Id"]!!.integerValue
+                    destination.lotName = lots[index]["Lot_Name"] as! String
                     destination.managementType = "Manage"
                     
                 }

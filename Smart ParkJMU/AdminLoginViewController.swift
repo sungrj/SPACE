@@ -64,14 +64,6 @@ class AdminLoginViewController: UIViewController, UITextFieldDelegate {
         
     }
     
-    func textFieldShouldReturn(userText: UITextField) -> Bool {
-        
-        userText.resignFirstResponder()
-        
-        return true;
-        
-    }
-    
     func checkAccountCredentials() -> Bool {
         
         if checkUsernameOrEmailCredentials() && checkPasswordCredentials() == true {
