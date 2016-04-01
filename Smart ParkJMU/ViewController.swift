@@ -29,7 +29,7 @@ class ViewController: UIViewController, UITableViewDataSource {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
+        
     class func getAllLotsData() -> NSArray {
         
         var lotData = []

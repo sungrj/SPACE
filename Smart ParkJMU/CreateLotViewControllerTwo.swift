@@ -129,7 +129,7 @@ class CreateLotViewControllerTwo: UIViewController {
                 // Verifies all spot amounts are entered (on both create/save pages)
                 if checkAllLotSpotsAreEntered() == true {
 
-                    if (CreateLotViewController.createOrSaveLot("http://spacejmu.bitnamiapp.com/SPACEApiCalls/createLot.php", managementType: managementType, lotName: lotNameTextField.text!, lotLocation: lotLocationTextField.text!, lotId: 876325, lot: lotSpots)) == true {
+                    if (CreateLotViewController.createOrSaveLot("http://spacejmu.bitnamiapp.com/SPACEApiCalls/lotCreateIndividual.php", managementType: managementType, lotName: lotNameTextField.text!, lotLocation: lotLocationTextField.text!, lotId: 876325, lot: lotSpots)) == true {
                             self.performSegueWithIdentifier("unwindToAdminLotsViewController", sender: nil)
                     } else {
                         alertLabel.text = "Something went wrong!"
@@ -491,8 +491,10 @@ class CreateLotViewControllerTwo: UIViewController {
         
         if let genAvail = lotSpots["genAvail"] as Int? {
             if genAvail != 876325 {
+                
                 if let handicapAvail = lotSpots["handicapAvail"] as Int? {
                     if handicapAvail != 876325 {
+                        
                         if let meteredAvail = lotSpots["meteredAvail"] as Int? {
                             if meteredAvail != 876325 {
                                 
@@ -603,40 +605,33 @@ class CreateLotViewControllerTwo: UIViewController {
     
     func calculateTotalAvailableSpots(numberOfAvailableSpots: Int) {
         
-        if checkAllLotSpotsAreEntered() == true {
-            if totalSpotsAvailableTextField.hidden == true {
-                totalSpotsAvailableTextField.hidden = false
-            }
-            
-            totalSpotsAvailableTextField.text = String(numberOfAvailableSpots)
+        if totalSpotsAvailableTextField.hidden == true {
+            totalSpotsAvailableTextField.hidden = false
+        }
+        
+        totalSpotsAvailableTextField.text = String(numberOfAvailableSpots)
 
+        if createAttempts > 3 {
+            alertLabel.text = "Check spots on last page"
         } else {
-            alertLabel.hidden = false
-            if createAttempts > 3 {
-                alertLabel.text = "Check spots on last page"
-            } else {
-                alertLabel.text = "Please enter all spot info"
-            }
-            hideAlertLabelAfterTime()
+            alertLabel.text = "Please enter all spot info"
         }
     }
+
     
     func calculateTotalTotalSpots(numberOfTotalSpots: Int) {
         
-        if checkAllLotSpotsAreEntered() == true {
-            if totalSpotsTotalTextField.hidden == true {
-                totalSpotsTotalTextField.hidden = false
-            }
-            
-            totalSpotsTotalTextField.text = String(numberOfTotalSpots)
-        } else {
-            alertLabel.hidden = false
-            if createAttempts > 3 {
-                alertLabel.text = "Check spots on last page"
-            } else {
-                alertLabel.text = "Please enter all spot info"
-            }
-            hideAlertLabelAfterTime()
+        if totalSpotsTotalTextField.hidden == true {
+            totalSpotsTotalTextField.hidden = false
         }
+        
+        totalSpotsTotalTextField.text = String(numberOfTotalSpots)
+        
+        if createAttempts > 3 {
+            alertLabel.text = "Check spots on last page"
+        } else {
+            alertLabel.text = "Please enter all spot info"
+        }
+    
     }
 }

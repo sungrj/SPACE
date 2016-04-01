@@ -30,6 +30,11 @@ class AdminLotsViewController: UIViewController, UITableViewDataSource, UITableV
         // Dispose of any resources that can be recreated.
     }
     
+    override func viewDidAppear(animated: Bool) {
+        lots = ViewController.getLotNames()
+        adminLotsTableView.reloadData()
+    }
+    
     
     @IBAction func didPressLogout(sender: AnyObject) {
         

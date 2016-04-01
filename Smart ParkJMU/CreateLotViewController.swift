@@ -301,7 +301,7 @@ class CreateLotViewController: UIViewController, UITextFieldDelegate {
                 // Verifies all spot amounts are entered (on both create/save pages)
                 if checkAllLotSpotsAreEntered() == true {
                     
-                    if (CreateLotViewController.createOrSaveLot("http://spacejmu.bitnamiapp.com/SPACEApiCalls/createLot.php", managementType: managementType, lotName: lotNameTextField.text!, lotLocation: lotLocationTextField.text!, lotId: 876325, lot: lotSpots)) == true {
+                    if (CreateLotViewController.createOrSaveLot("http://spacejmu.bitnamiapp.com/SPACEApiCalls/lotCreateIndividual.php", managementType: managementType, lotName: lotNameTextField.text!, lotLocation: lotLocationTextField.text!, lotId: 876325, lot: lotSpots)) == true {
                         self.performSegueWithIdentifier("unwindToAdminLotsViewController", sender: nil)
                     } else {
                         alertLabel.text = "Something went wrong!"
@@ -607,7 +607,11 @@ class CreateLotViewController: UIViewController, UITextFieldDelegate {
     }
     
     class func createOrSaveLot(url: String, managementType: String, lotName: String, lotLocation: String, lotId: Int, lot: Dictionary<String, Int>) -> Bool {
-
+//        print("manage: ", managementType)
+//        print("lotname: ", lotName)
+//        print("Location: ", lotLocation)
+//        print("lotId", lotId)
+//        print("lot: ", lot)
         var responseString = ""
         
         let request = NSMutableURLRequest(URL: NSURL(string: url)!)
@@ -675,7 +679,7 @@ class CreateLotViewController: UIViewController, UITextFieldDelegate {
 //
 //                        print("Success: ", responseString.containsString("Success"))
 //            
-//                        print("responseString =", responseString)
+                        print("responseString =", responseString)
 
         }
         
