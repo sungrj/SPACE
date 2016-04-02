@@ -62,6 +62,7 @@ class CreateLotViewController: UIViewController, UITextFieldDelegate {
         "totalAvail": 876325, "totalTotal": 876325]
 
     var createAttempts: Int = 0
+    static var responseString: String = ""
     
     @IBAction func calculateAvailableSpots(sender: UITextField) {
         calculateAvailableSpots()
@@ -612,7 +613,6 @@ class CreateLotViewController: UIViewController, UITextFieldDelegate {
 //        print("Location: ", lotLocation)
 //        print("lotId", lotId)
 //        print("lot: ", lot)
-        var responseString = ""
         
         let request = NSMutableURLRequest(URL: NSURL(string: url)!)
         
@@ -675,21 +675,17 @@ class CreateLotViewController: UIViewController, UITextFieldDelegate {
                 
             }
             
-            responseString = NSString(data: data!, encoding: NSUTF8StringEncoding)! as String
-//
-//                        print("Success: ", responseString.containsString("Success"))
-//            
+            CreateLotViewController.responseString = NSString(data: data!, encoding: NSUTF8StringEncoding)! as String
+
+                        print("Success: ", responseString.containsString("Success"))
+            
                         print("responseString =", responseString)
 
         }
         
         task.resume()
         
-        if responseString.containsString("Success") {
-            return true
-        } else {
-            return false
-        }
+        return true
 
     }
     

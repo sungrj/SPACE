@@ -163,7 +163,7 @@ class AdminLoginViewController: UIViewController, UITextFieldDelegate {
                 
 //                print("Success?: ", responseString.containsString("Success"))
                 
-                print("responseString =", responseString)
+//                print("responseString =", responseString)
                 
                 if (responseString.containsString("incorrect")) || (responseString.containsString("exist")) {
                     dispatch_async(dispatch_get_main_queue(), {
