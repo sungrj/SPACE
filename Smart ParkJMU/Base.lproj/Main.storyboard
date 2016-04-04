@@ -1860,7 +1860,7 @@ using a Cloud Environment</string>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5xT-e3-e8W" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="6nF-0i-d7e" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="1435.5" y="1680"/>
+            <point key="canvasLocation" x="1384.5" y="1680"/>
         </scene>
         <!--Single Lot View Controller-->
         <scene sceneID="NhU-eI-G9w">
@@ -3074,7 +3074,7 @@ using a Cloud Environment</string>
         <image name="JM.png" width="885" height="1428"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="ff8-Dg-D3W"/>
-        <segue reference="PnX-xN-cMZ"/>
+        <segue reference="ySl-00-nY2"/>
+        <segue reference="tCF-hc-oz7"/>
     </inferredMetricsTieBreakers>
 </document>

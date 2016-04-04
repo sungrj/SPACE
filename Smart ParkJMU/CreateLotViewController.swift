@@ -266,7 +266,7 @@ class CreateLotViewController: UIViewController, UITextFieldDelegate {
                 // Verifies all spot amounts are entered (on both create/save pages)
                 if checkAllLotSpotsAreEntered() == true {
                     
-                    if (CreateLotViewController.createOrSaveLot("http://spacejmu.bitnamiapp.com/updateLot.php", managementType: managementType, lotName: lotNameTextField.text!, lotLocation: lotLocationTextField.text!, lotId: lotId, lot: lotSpots)) == true {
+                    if (CreateLotViewController.createOrSaveLot("http://spacejmu.bitnamiapp.com/SPACEApiCalls/updateLot.php", managementType: managementType, lotName: lotNameTextField.text!, lotLocation: lotLocationTextField.text!, lotId: lotId, lot: lotSpots)) == true {
                         self.performSegueWithIdentifier("unwindToAdminLotsViewController", sender: nil)
                     } else {
                         alertLabel.text = "Something went wrong!"
@@ -608,15 +608,10 @@ class CreateLotViewController: UIViewController, UITextFieldDelegate {
     }
     
     class func createOrSaveLot(url: String, managementType: String, lotName: String, lotLocation: String, lotId: Int, lot: Dictionary<String, Int>) -> Bool {
-//        print("manage: ", managementType)
-//        print("lotname: ", lotName)
-//        print("Location: ", lotLocation)
-//        print("lotId", lotId)
-//        print("lot: ", lot)
         
         let request = NSMutableURLRequest(URL: NSURL(string: url)!)
         
-        let lotId = 876325
+        let lotId = lotId
         let genAvail = Int(lot["genAvail"]!)
         let genTotal = Int(lot["genTotal"]!)
         let meteredAvail = Int(lot["meteredAvail"]!)
@@ -645,7 +640,7 @@ class CreateLotViewController: UIViewController, UITextFieldDelegate {
         
         if managementType == "Manage" {
             
-            postString = "lotName=\(lotName)&lotLocation=\(lotLocation)&genAvail=\(genAvail)&genTotal=\(genTotal)&meteredAvail=\(meteredAvail)&meteredTotal=\(meteredTotal)&visitorAvail=\(visitorAvail)&visitorTotal=\(visitorTotal)&handicapAvail=\(handicapAvail)&handicapTotal=\(handicapTotal)&motorcycleAvail=\(motorcycleAvail)&motorcycleTotal=\(motorcycleTotal)&serviceAvail=\(serviceAvail)&serviceTotal=\(serviceTotal)&housekeepingAvail=\(housekeepingAvail)&housekeepingTotal=\(housekeepingTotal)&hallDirectorAvail=\(hallDirectorAvail)&hallDirectorTotal=\(hallDirectorTotal)&miscAvail=\(miscAvail)&miscTotal=\(miscTotal)&totalAvail=\(totalAvail)&totalTotal=\(totalTotal)&lotId=\(lotId)"
+            postString = "lotId=\(lotId)&lotName=\(lotName)&lotLocation=\(lotLocation)&genAvail=\(genAvail)&genTotal=\(genTotal)&meteredAvail=\(meteredAvail)&meteredTotal=\(meteredTotal)&visitorAvail=\(visitorAvail)&visitorTotal=\(visitorTotal)&handicapAvail=\(handicapAvail)&handicapTotal=\(handicapTotal)&motorcycleAvail=\(motorcycleAvail)&motorcycleTotal=\(motorcycleTotal)&serviceAvail=\(serviceAvail)&serviceTotal=\(serviceTotal)&housekeepingAvail=\(housekeepingAvail)&housekeepingTotal=\(housekeepingTotal)&hallDirectorAvail=\(hallDirectorAvail)&hallDirectorTotal=\(hallDirectorTotal)&miscAvail=\(miscAvail)&miscTotal=\(miscTotal)&totalAvail=\(totalAvail)&totalTotal=\(totalTotal)"
 
         } else {
             
@@ -677,9 +672,9 @@ class CreateLotViewController: UIViewController, UITextFieldDelegate {
             
             CreateLotViewController.responseString = NSString(data: data!, encoding: NSUTF8StringEncoding)! as String
 
-                        print("Success: ", responseString.containsString("Success"))
-            
-                        print("responseString =", responseString)
+//                        print("Success: ", responseString.containsString("Success"))
+          
+//                        print("responseString =", responseString)
 
         }
         
@@ -723,9 +718,9 @@ class CreateLotViewController: UIViewController, UITextFieldDelegate {
             
             responseString = NSString(data: data!, encoding: NSUTF8StringEncoding)! as String
             
-            print("Success?: ", responseString.containsString("Success"))
-            
-            print("responseString =", responseString)
+//            print("Success?: ", responseString.containsString("Success"))
+//            
+//            print("responseString =", responseString)
             
         }
         

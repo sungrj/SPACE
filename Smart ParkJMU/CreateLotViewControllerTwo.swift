@@ -94,7 +94,7 @@ class CreateLotViewControllerTwo: UIViewController {
                 // Verifies all spot amounts are entered (on both create/save pages)
                 if checkAllLotSpotsAreEntered() == true {
                     
-                    if (CreateLotViewController.createOrSaveLot("http://spacejmu.bitnamiapp.com/updateLot.php", managementType: managementType, lotName: lotNameTextField.text!, lotLocation: lotLocationTextField.text!, lotId: lotId, lot: lotSpots)) == true {
+                    if (CreateLotViewController.createOrSaveLot("http://spacejmu.bitnamiapp.com/SPACEApiCalls/updateLot.php", managementType: managementType, lotName: lotNameTextField.text!, lotLocation: lotLocationTextField.text!, lotId: lotId, lot: lotSpots)) == true {
                         self.performSegueWithIdentifier("unwindToAdminLotsViewController", sender: nil)
                     } else {
                         alertLabel.text = "Something went wrong!"

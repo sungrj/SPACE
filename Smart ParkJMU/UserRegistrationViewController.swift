@@ -223,7 +223,7 @@ class UserRegistrationViewController: UIViewController, UIPickerViewDataSource, 
             
             responseString = NSString(data: data!, encoding: NSUTF8StringEncoding)! as String
 
-            print("responseString =", responseString)
+//            print("responseString =", responseString)
             if responseString.containsString("exists") {
                 dispatch_async(dispatch_get_main_queue(), {
                     self.alertLabel.text = responseString
