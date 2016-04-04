@@ -105,7 +105,7 @@ class AdminLotsViewController: UIViewController, UITableViewDataSource, UITableV
             
         if let destination = segue.destinationViewController as? ViewController {
             
-            destination.lots = ViewController.getAllLotsData()
+            destination.lots = ViewController.getLotNames()
             
             destination.lotsTableView.reloadData()
             

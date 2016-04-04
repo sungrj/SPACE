@@ -3074,7 +3074,7 @@ using a Cloud Environment</string>
         <image name="JM.png" width="885" height="1428"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="ff8-Dg-D3W"/>
         <segue reference="ySl-00-nY2"/>
-        <segue reference="tCF-hc-oz7"/>
     </inferredMetricsTieBreakers>
 </document>

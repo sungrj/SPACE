@@ -121,7 +121,7 @@ class CreateLotViewController: UIViewController, UITextFieldDelegate {
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         
         if let destination = segue.destinationViewController as? AdminLotsViewController {
-            destination.lots = ViewController.getAllLotsData()
+            destination.lots = ViewController.getLotNames()
             destination.adminLotsTableView.reloadData()
 //            print("data reloaded")
         }
@@ -686,7 +686,7 @@ class CreateLotViewController: UIViewController, UITextFieldDelegate {
     
     class func deleteLot(lotId: Int) {
         
-        var responseString = ""
+//        var responseString = ""
         
         let request = NSMutableURLRequest(URL: NSURL(string: "http://spacejmu.bitnamiapp.com/SPACEApiCalls/deleteLot.php")!)
         
