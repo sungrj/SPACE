@@ -10,7 +10,7 @@ import UIKit
 
 class UserRegistrationViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate {
     
-    
+    // View textfields
     @IBOutlet weak var nameTextInputField: UITextField!
     @IBOutlet weak var emailTextInputField: UITextField!
     @IBOutlet weak var passwordTextInputField: UITextField!
@@ -18,31 +18,23 @@ class UserRegistrationViewController: UIViewController, UIPickerViewDataSource, 
     @IBOutlet weak var permitTypePicker: UIPickerView!
     @IBOutlet weak var alertLabel: UILabel!
     
-    var email: String = ""
-    var firstName: String = ""
-    var lastName: String = ""
-    var password: String = ""
-    var permitType: String = ""
-    var carType: String = ""
+    // Instance variables
+    var email = String()
+    var firstName = String()
+    var lastName = String()
+    var password = String()
+    var permitType = String()
+    var carType = String()
     
-    
+    // Permit and car types for user to select when registering
     let permitTypes: [[String]] = [["Commuter", "Resident", "Red Zone", "Blue Zone", "Freshman"],
                                    ["None", "Handicap", "Motorcycle", "Service", "Housekeeping", "Hall Director"]]
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Connect data:
-        self.permitTypePicker.delegate = self
-        self.permitTypePicker.dataSource = self
+        setup()
         
-        alertLabel.hidden = true
-        
-        alertLabel.layer.masksToBounds = true;
-        alertLabel.layer.cornerRadius = 19;
-
-
-        // Do any additional setup after loading the view.
     }
 
     override func didReceiveMemoryWarning() {
@@ -50,31 +42,49 @@ class UserRegistrationViewController: UIViewController, UIPickerViewDataSource, 
         // Dispose of any resources that can be recreated.
     }
     
+    // Function run when view is loading
+    func setup() {
+        // Sets permit and car type picker datasource and delegate to the controller
+        self.permitTypePicker.delegate = self
+        self.permitTypePicker.dataSource = self
+        
+        // Hides alert label to start
+        alertLabel.hidden = true
+        
+        // Makes alert label corners round
+        alertLabel.layer.masksToBounds = true;
+        alertLabel.layer.cornerRadius = 19;
+    }
     
+    // Permit and car type picker configuration: Sets 2 columns, permit type and car type
     func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
         return 2
     }
     
+    // Permit and car type picker configuration: Sets number of rows to the length of permitTypes array
     func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         return permitTypes[component].count
     }
     
+    // Permit and car type picker configuration: Sets row titles to permit and car types
     func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         return permitTypes[component][row]
     }
 
+    // Function run when register button pressed
     @IBAction func didPressRegister(sender: AnyObject) {
-
-        // print("Email: ", email, "Password: ", password, "First: ", firstName, "Last: ", lastName, "permitType: ", permitType, "Car Type:", carType)
         
+        // Checks if all textfields and values are entered and satisfied
         if checkCredentials() == true {
             
+            // If textfields and values are entered and satisfied, run createUser function
             createUser()
             
             alertLabel.hidden = true
         }
     }
     
+    // Function to check if full name is entered, using Regular Expressions
     func checkName() -> Bool {
         if (nameTextInputField.text!.isEmpty) {
             
@@ -119,6 +129,7 @@ class UserRegistrationViewController: UIViewController, UIPickerViewDataSource, 
         }
     }
     
+    // Function to check email textfield is entered, using Regular Expressions
     func checkEmail() -> Bool {
         
         
@@ -147,6 +158,7 @@ class UserRegistrationViewController: UIViewController, UIPickerViewDataSource, 
 
     }
     
+    // Function to check passwords are entered, and if they are the same
     func checkPassword() -> Bool {
         
         if (passwordTextInputField.text == confirmPasswordTextInputField.text) && (passwordTextInputField.text! != "") && (confirmPasswordTextInputField.text! != "") {
@@ -168,11 +180,13 @@ class UserRegistrationViewController: UIViewController, UIPickerViewDataSource, 
     
     }
     
+    // Sets permit and car type variables to the selected permit and car types selected from picker view
     func checkPickerValues() {
         permitType = permitTypes[0][permitTypePicker.selectedRowInComponent(0)]
         carType = permitTypes[1][permitTypePicker.selectedRowInComponent(1)]
     }
     
+    // Checks if all textfields and entries are satisfied
     func checkCredentials() -> Bool {
         
         if checkName() && checkEmail() && checkPassword() == true {
@@ -183,12 +197,7 @@ class UserRegistrationViewController: UIViewController, UIPickerViewDataSource, 
         }
     }
 
-    // TODO: For Account Update- Phone number validation
-//    func checkPhone() -> Bool {
-//        let phoneNumber = phoneNumberInputField.text!
-//        let phoneRegEx = "(?\\d{3})?\\s\\d{3}-\\d{4}"
-//    }
-
+    // Function to register user in database
     func createUser() {
         
         var responseString = ""
@@ -224,6 +233,8 @@ class UserRegistrationViewController: UIViewController, UIPickerViewDataSource, 
             responseString = NSString(data: data!, encoding: NSUTF8StringEncoding)! as String
 
 //            print("responseString =", responseString)
+            
+            // If a user is registered with that email address, it sets the alertlabel to alert the user
             if responseString.containsString("exists") {
                 dispatch_async(dispatch_get_main_queue(), {
                     self.alertLabel.text = responseString

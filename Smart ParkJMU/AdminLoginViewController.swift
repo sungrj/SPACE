@@ -10,29 +10,17 @@ import UIKit
 
 class AdminLoginViewController: UIViewController, UITextFieldDelegate {
     
-    
+    // Lot views labels
     @IBOutlet weak var usernameOrEmailInputTextField: UITextField!
     @IBOutlet weak var passwordInputTextField: UITextField!
-    
     @IBOutlet weak var alertLabel: UILabel!
-
-    
     @IBOutlet weak var loginButton: UIButton!
-    
-    
-    // Temporary username and passwords
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.passwordInputTextField.delegate = self
-        self.usernameOrEmailInputTextField.delegate = self
+        setup()
         
-        alertLabel.hidden = true
-        alertLabel.layer.masksToBounds = true;
-        alertLabel.layer.cornerRadius = 19;
-        
-        // Do any additional setup after loading the view.
     }
     
     override func didReceiveMemoryWarning() {
@@ -40,11 +28,24 @@ class AdminLoginViewController: UIViewController, UITextFieldDelegate {
         // Dispose of any resources that can be recreated.
     }
     
+    // Function run when view is loading
+    func setup() {
+        // Sets username and password text fields delegated to this view controller
+        self.passwordInputTextField.delegate = self
+        self.usernameOrEmailInputTextField.delegate = self
+        
+        // Alert label hidden to start, and makes corners round
+        alertLabel.hidden = true
+        alertLabel.layer.masksToBounds = true;
+        alertLabel.layer.cornerRadius = 19;
+    }
+    
+    // If user touches somewhere other than a text field hides keyboard
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         self.view.endEditing(true)
     }
     
-    
+    // Function run when login button pressed
     @IBAction func didPressLoginButton(sender: AnyObject) {
         
         let usernameInput = usernameOrEmailInputTextField.text
@@ -64,6 +65,7 @@ class AdminLoginViewController: UIViewController, UITextFieldDelegate {
         
     }
     
+    // Checks if both username and password textfields are satisfied
     func checkAccountCredentials() -> Bool {
         
         if checkUsernameOrEmailCredentials() && checkPasswordCredentials() == true {
@@ -78,6 +80,7 @@ class AdminLoginViewController: UIViewController, UITextFieldDelegate {
         
     }
     
+    // If username textfield is not satisfied, user will be alerted
     func checkUsernameOrEmailCredentials() -> Bool {
         
         if usernameOrEmailInputTextField.text!.isEmpty {
@@ -101,6 +104,7 @@ class AdminLoginViewController: UIViewController, UITextFieldDelegate {
         
     }
     
+    // If password textfield is not satisfied, user will be alerted
     func checkPasswordCredentials() -> Bool {
         
         if passwordInputTextField.text!.isEmpty {
@@ -124,8 +128,10 @@ class AdminLoginViewController: UIViewController, UITextFieldDelegate {
         
     }
     
+    // Function to check if the email and passwords entered from user are in the database
     func login(email: String, password: String) -> Bool {
         
+        // If both email and password textfields are satisfied, continue with login verification
         if checkAccountCredentials() == true {
             
             var responseString = ""
@@ -191,6 +197,7 @@ class AdminLoginViewController: UIViewController, UITextFieldDelegate {
         
     }
     
+    // Unwind to admin login view from the admin lots page
     @IBAction func unwindToAdminLoginViewController(segue: UIStoryboardSegue) {
     }
     

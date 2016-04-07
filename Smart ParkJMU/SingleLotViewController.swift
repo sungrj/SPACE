@@ -12,18 +12,19 @@ class SingleLotViewController: UIViewController, UITableViewDataSource, UIPicker
     
     var refreshControl:UIRefreshControl!
     
-    // Lot iVars
+    // Lot instance variables
     var lot = NSDictionary()
     var lotId: Int = 91235
     var lotPropertyNames: NSMutableArray = []
     var lotPropertyInfo: NSMutableArray = []
     
-    // Lot Times iVars
+    // Lot Times instance variables
     let userPermitTypes = ["Commuter", "Resident", "Red Zone", "Blue Zone", "Freshman"]
     var selectedPermitType: String = "Commuter"
     var selectedLotTimesForPermit: NSDictionary = [:]
     var parsedLotTimes = Dictionary<String, Dictionary<String, String>>()
     
+    // Lot Labels
     @IBOutlet weak var lotNameLabel: UILabel!
     @IBOutlet weak var lotLocationLabel: UILabel!
     @IBOutlet weak var lotGeneralSpotInfoLabel: UILabel!
@@ -42,30 +43,45 @@ class SingleLotViewController: UIViewController, UITableViewDataSource, UIPicker
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.permitTypeLotTimesPicker.delegate = self
-        self.permitTypeLotTimesPicker.dataSource = self
         
-        hideTimeLabels()
+        setup()
         
-        lot = SingleLotViewController.getLotData(lotId)[0] as! NSDictionary
-        lotNameLabel.text = lot["Lot_Name"] as? String
-        lotLocationLabel.text = lot["Location"] as? String
-
-        updateLotNames()
-        updateLotSpotsInfo()
-
-        selectedLotTimesForPermit = getLotTimeForPermitType(selectedPermitType, lotId: lotId)[0] as! NSDictionary
-        
-//        print(lot)
-
-        parseLotTimes(selectedLotTimesForPermit)
-        updateLotTimes()
-
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    // Function run when view is loading
+    func setup() {
+        
+        // Sets the view controller as the datasource and delegate for the lot times picker
+        self.permitTypeLotTimesPicker.delegate = self
+        self.permitTypeLotTimesPicker.dataSource = self
+        
+        // Hides Error Labels
+        hideTimeLabels()
+        
+        // Sets lot variable to returned lot from GET request getLotData from lot id
+        lot = SingleLotViewController.getLotData(lotId)[0] as! NSDictionary
+        
+        // Sets lot name and location to lot name and location returned from GET request getLotData from lot id
+        lotNameLabel.text = lot["Lot_Name"] as? String
+        lotLocationLabel.text = lot["Location"] as? String
+        
+        // Sets lot names and spot availabilities array to be displayed
+        updateLotNames()
+        updateLotSpotsInfo()
+        
+        // Sets lot's hours of availability array
+        selectedLotTimesForPermit = getLotTimeForPermitType(selectedPermitType, lotId: lotId)[0] as! NSDictionary
+        
+        // Parses lot's hours of availability array
+        parseLotTimes(selectedLotTimesForPermit)
+        
+        // Goes through lot hours of availability array and displays times
+        updateLotTimes()
     }
     
     @IBAction func didPressRefresh(sender: AnyObject) {
@@ -96,6 +112,7 @@ class SingleLotViewController: UIViewController, UITableViewDataSource, UIPicker
         timeLoadingHoursAvailabilityLabel.hidden = true
     }
     
+    // Creates lot names object to be displayed
     func updateLotNames () {
         // Reset lotPropertyNames Array
         lotPropertyNames = []
@@ -103,6 +120,7 @@ class SingleLotViewController: UIViewController, UITableViewDataSource, UIPicker
         lotPropertyNames.addObject("Handicap")
         lotPropertyNames.addObject("Metered")
         lotPropertyNames.addObject("Motorcycle")
+        lotPropertyNames.addObject("Faculty")
         lotPropertyNames.addObject("Visitor")
         lotPropertyNames.addObject("Housekeeping")
         lotPropertyNames.addObject("Service")
@@ -110,6 +128,7 @@ class SingleLotViewController: UIViewController, UITableViewDataSource, UIPicker
         lotPropertyNames.addObject("Miscellaneous")
     }
     
+    // Sets lot spots info object to be displayed
     func updateLotSpotsInfo () {
         
         // Reset lotPropertyInfo Array
@@ -119,6 +138,7 @@ class SingleLotViewController: UIViewController, UITableViewDataSource, UIPicker
         lotPropertyInfo.addObject("\(lot["Handicap_Available"]!.integerValue) | \(lot["Handicap_Capacity"]!.integerValue)")
         lotPropertyInfo.addObject("\(lot["Metered_Available"]!.integerValue) | \(lot["Metered_Capacity"]!.integerValue)")
         lotPropertyInfo.addObject("\(lot["Motorcycle_Available"]!.integerValue) | \(lot["Motorcycle_Capacity"]!.integerValue)")
+        lotPropertyInfo.addObject("\(lot["Faculty_Available"]!.integerValue) | \(lot["Faculty_Capacity"]!.integerValue)")
         lotPropertyInfo.addObject("\(lot["Visitor_Available"]!.integerValue) | \(lot["Visitor_Capacity"]!.integerValue)")
         lotPropertyInfo.addObject("\(lot["Housekeeping_Available"]!.integerValue) | \(lot["Housekeeping_Capacity"]!.integerValue)")
         lotPropertyInfo.addObject("\(lot["Service_Available"]!.integerValue) | \(lot["Service_Capacity"]!.integerValue)")
@@ -129,6 +149,7 @@ class SingleLotViewController: UIViewController, UITableViewDataSource, UIPicker
         showTimeLabels()
     }
     
+    // Sets labels to appropriate times from parsed lot times array
     func updateLotTimes() {
         
         monThurHoursAvailabilityLabel.text = compareHoursOfAvailability(parsedLotTimes["Mon-Thur"]!["Open"]!, date2: parsedLotTimes["Mon-Thur"]!["Closed"]!)
@@ -137,6 +158,7 @@ class SingleLotViewController: UIViewController, UITableViewDataSource, UIPicker
     
     }
     
+    // Parses each lot hours of availabilities to display correctly
     func compareHoursOfAvailability(date1: String, date2: String) -> String {
         
         let df = NSDateFormatter()
@@ -166,6 +188,7 @@ class SingleLotViewController: UIViewController, UITableViewDataSource, UIPicker
         }
     }
     
+    // Parses lot information to be easily used
     func parseLotTimes(lotTimes: NSDictionary) {
         parsedLotTimes = ["Mon-Thur":["Open":"", "Closed":""], "Friday":["Open":"", "Closed":""], "Sat-Sun":["Open":"", "Closed":""]]
         var time: String
@@ -219,6 +242,8 @@ class SingleLotViewController: UIViewController, UITableViewDataSource, UIPicker
     
     // Region: GET methods
     
+    
+    // GET method for Lot information based on the selected lot id from previous view controller
     class func getLotData(lotId: Int) -> NSArray {
         
         var lotData = []
@@ -280,6 +305,8 @@ class SingleLotViewController: UIViewController, UITableViewDataSource, UIPicker
         
         dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER)
         
+        
+        // Check to ensure proper lot data is returned
         if lotId != 91235 {
             return lotData
         } else {
@@ -289,6 +316,7 @@ class SingleLotViewController: UIViewController, UITableViewDataSource, UIPicker
         
     }
     
+    // GET method for getting lot times for specific lot and permit type
     func getLotTimeForPermitType(permitType: String, lotId: Int) -> NSArray {
         
         var lotTimeForPermitType = []
@@ -343,10 +371,12 @@ class SingleLotViewController: UIViewController, UITableViewDataSource, UIPicker
     
     // Region: Table
     
+    // Table configuration to display the number of rows for each lot returned from getLotData function
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return lotPropertyNames.count
     }
     
+    // Table configuration to display proper lot name and lot spots availabilities
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cellIdentifier = "GeneralTableViewCell"
         
@@ -361,14 +391,17 @@ class SingleLotViewController: UIViewController, UITableViewDataSource, UIPicker
     
     // Region: Picker
     
+    // Picker configuration returns only 1 column
     func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
         return 1
     }
     
+    // Returns number of rows for number of permit types
     func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         return userPermitTypes.count
     }
     
+    // Picker configuration: sets font color
     func pickerView(pickerView: UIPickerView, attributedTitleForRow row: Int, forComponent component: Int) -> NSAttributedString? {
         // Makes pickerView font color to purple
         var attributedString: NSAttributedString
@@ -377,6 +410,7 @@ class SingleLotViewController: UIViewController, UITableViewDataSource, UIPicker
         return attributedString
     }
     
+    // Picker configuration: when row (permit type) is selected, returns lot hours of availability depending on selected permit type from GET request
     func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         // Selects permit type for lot/permit hours of availability ***Defaults to Commuter if none***
         if userPermitTypes[row] == "Red Zone" {
@@ -398,6 +432,8 @@ class SingleLotViewController: UIViewController, UITableViewDataSource, UIPicker
         selectedLotTimesForPermit = getLotTimeForPermitType(selectedPermitType, lotId: lotId)[0] as! NSDictionary
         
         parseLotTimes(selectedLotTimesForPermit)
+        
+        // Hides lot information briefly to mimick loading
         hideTimeLabels()
         let time = dispatch_time(dispatch_time_t(DISPATCH_TIME_NOW), 1 * Int64(NSEC_PER_SEC))
         dispatch_after(time, dispatch_get_main_queue()) {

@@ -9,15 +9,8 @@
 import UIKit
 
 class CreateLotViewController: UIViewController, UITextFieldDelegate {
-
-//    lotSpots = ["genAvail": Int(generalSpotsAvailableTextField.text!)!, "genTotal": Int(generalSpotsTotalTextField.text!)!,
-//    "handicapAvail": Int(handicapSpotsAvailableTextField.text!)!, "handicapAvail": Int(handicapSpotsTotalTextField.text!)!,
-//    "meteredAvail": Int(meteredSpotsAvailableTextField.text!)!, "meteredTotal": Int(meteredSpotsTotalTextField.text!)!,
-//    "motorcycleAvail": Int(motorcycleSpotsAvailableTextField.text!)!, "motorcycleTotal": Int(motorcycleSpotsTotalTextField.text!)!,
-//    "visitorAvail": Int(visitorSpotsAvailableTextField.text!)!, "visitorTotal": Int(visitorSpotsTotalTextField.text!)!,
-//    "totalAvail": Int(totalSpotsAvailableTextField.text!)!, "totalTotal": Int(visitorSpotsTotalTextField.text!)!]
-    
-    
+   
+    // Labels
     @IBOutlet weak var createOrManageLotTitleLabel: UILabel!
     @IBOutlet weak var createOrSaveButtonLabel: UIButton!
 
@@ -30,7 +23,7 @@ class CreateLotViewController: UIViewController, UITextFieldDelegate {
     
     @IBOutlet weak var alertLabel: UILabel!
 
-    
+    // Lot Textfields
     @IBOutlet weak var generalSpotsAvailableTextField: UITextField!
     @IBOutlet weak var generalSpotsTotalTextField: UITextField!
     
@@ -49,7 +42,7 @@ class CreateLotViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var totalSpotsAvailableTextField: UILabel!
     @IBOutlet weak var totalSpotsTotalTextField: UILabel!
     
-    
+    // Instance Variable for lotspots
     var lotSpots = ["genAvail": 876325, "genTotal": 876325,
         "handicapAvail": 876325, "handicapTotal": 876325,
         "meteredAvail": 876325, "meteredTotal": 876325,
@@ -64,10 +57,12 @@ class CreateLotViewController: UIViewController, UITextFieldDelegate {
     var createAttempts: Int = 0
     static var responseString: String = ""
     
+     // After editing any available spot info, calculate total number of entered available spots if all lot spots are filled
     @IBAction func calculateAvailableSpots(sender: UITextField) {
         calculateAvailableSpots()
     }
     
+    // After editing any capacity spot info, calculate total number of entered capacity spots if all lot spots are filled
     @IBAction func calculateTotalSpots(sender: UITextField) {
         calculateTotalSpots()
     }
@@ -80,6 +75,7 @@ class CreateLotViewController: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // Function run when view is initially loaded
         viewSetup()
         
     }
@@ -91,12 +87,15 @@ class CreateLotViewController: UIViewController, UITextFieldDelegate {
     
     func viewSetup() {
         
+        // Check whether user is managing or creating a lot
         checkCreateOrManageLot()
         
+        // Hides and makes alert label corner round
         alertLabel.hidden = true
         alertLabel.layer.masksToBounds = true;
         alertLabel.layer.cornerRadius = 19;
         
+        // If managing a lot, get lot based on lotId, parse lot data, and calculate available and total spots if all are entered
         if managementType == "Manage" {
             lot = SingleLotViewController.getLotData(lotId)[0] as! NSDictionary
             parseLot()
@@ -105,27 +104,33 @@ class CreateLotViewController: UIViewController, UITextFieldDelegate {
             calculateTotalSpots()
         }
         
+        // If totalAvail = 876325 (created number for checking values), make it hidden
         if lotSpots["totalAvail"] == 876325 {
             totalSpotsAvailableTextField.hidden = true
         }
         
+        // If totalSpotsTotal = 876325 (created number for checking values), make it hidden
         if lotSpots["totalTotal"] == 876325 {
             totalSpotsTotalTextField.hidden = true
         }
     }
     
+    // Closes keyboard when touching background
     override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
         self.view.endEditing(true)
     }
     
+    
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         
+        // If segueing to admin lots view, get all lot names and id's and reload the table in that view
         if let destination = segue.destinationViewController as? AdminLotsViewController {
             destination.lots = ViewController.getLotNames()
             destination.adminLotsTableView.reloadData()
-//            print("data reloaded")
+
         }
         
+        // If segueing to next create or save lots view, pass lot data from current page
         if let destination = segue.destinationViewController as? CreateLotViewControllerTwo {
             destination.managementType = managementType
             destination.lotId = lotId
@@ -133,11 +138,10 @@ class CreateLotViewController: UIViewController, UITextFieldDelegate {
             destination.lotLocation = lotLocationTextField.text!
             destination.lotSpots = lotSpots
             
-//            destination.calculateAvailableSpots()
-//            destination.calculateTotalSpots()
         }
     }
     
+    // Parses data to be managed easily
     func parseLot() {
         
         if let lotLoc = lot["Location"] as! String? {
@@ -228,6 +232,7 @@ class CreateLotViewController: UIViewController, UITextFieldDelegate {
         
     }
     
+    // Function called when delete lot button pressed... Deletes a lot after user confirmation
     @IBAction func didPressDeleteButton(sender: AnyObject) {
         
         
@@ -255,10 +260,13 @@ class CreateLotViewController: UIViewController, UITextFieldDelegate {
         
     }
     
+    // Function called when save or create button is pressed
     @IBAction func didPressSaveOrCreateButton(sender: AnyObject) {
         
+        // If 'managing' use the update lots php middleware file
         if managementType == "Manage" {
             
+            // Check if all inputs are integers and entered
             if checkRequiredInputsAreSatisfied() == true {
                 
                 // POST method to update lot
@@ -266,14 +274,18 @@ class CreateLotViewController: UIViewController, UITextFieldDelegate {
                 // Verifies all spot amounts are entered (on both create/save pages)
                 if checkAllLotSpotsAreEntered() == true {
                     
+                    // Calls update lot function to save lot, returns true on success. If true, return to admin lots view
                     if (CreateLotViewController.createOrSaveLot("http://spacejmu.bitnamiapp.com/SPACEApiCalls/updateLot.php", managementType: managementType, lotName: lotNameTextField.text!, lotLocation: lotLocationTextField.text!, lotId: lotId, lot: lotSpots)) == true {
                         self.performSegueWithIdentifier("unwindToAdminLotsViewController", sender: nil)
+                        
+                        // else alert user something went wrong
                     } else {
                         alertLabel.text = "Something went wrong!"
                         alertLabel.hidden = false
                         hideAlertLabelAfterTime()
                     }
                     
+                    // Further troubleshooting help for user
                 } else {
                     if createAttempts > 3 {
                         alertLabel.text = "Check spots on last page"
@@ -292,9 +304,10 @@ class CreateLotViewController: UIViewController, UITextFieldDelegate {
                 
             }
 
-            
+            // If creating a lot, use PHP middleware file for creating lot
         } else if managementType == "Create" {
 
+            // Check if all inputs are integers and entered
             if checkRequiredInputsAreSatisfied() == true {
                 
                 // POST method to create lot
@@ -302,13 +315,18 @@ class CreateLotViewController: UIViewController, UITextFieldDelegate {
                 // Verifies all spot amounts are entered (on both create/save pages)
                 if checkAllLotSpotsAreEntered() == true {
                     
+                    // Calls create lot function to create lot, returns true on success. If true, return to admin lots view
                     if (CreateLotViewController.createOrSaveLot("http://spacejmu.bitnamiapp.com/SPACEApiCalls/lotCreateIndividual.php", managementType: managementType, lotName: lotNameTextField.text!, lotLocation: lotLocationTextField.text!, lotId: 876325, lot: lotSpots)) == true {
                         self.performSegueWithIdentifier("unwindToAdminLotsViewController", sender: nil)
+                        
+                        // else alert user something went wrong
                     } else {
                         alertLabel.text = "Something went wrong!"
                         alertLabel.hidden = false
                         hideAlertLabelAfterTime()
                     }
+                    
+                    // Further troubleshooting help for user
                 } else {
                     if createAttempts > 3 {
                         alertLabel.text = "Check spots on last page"
@@ -328,9 +346,11 @@ class CreateLotViewController: UIViewController, UITextFieldDelegate {
         
     }
     
+    // Unwind segue to return to this view from next create or save view
     @IBAction func unwindToFirstCreateOrSaveViewController(segue: UIStoryboardSegue) {
     }
     
+    // Hides alert label after 3 seconds
     func hideAlertLabelAfterTime() {
         let time = dispatch_time(dispatch_time_t(DISPATCH_TIME_NOW), 3 * Int64(NSEC_PER_SEC))
         dispatch_after(time, dispatch_get_main_queue()) {
@@ -338,6 +358,7 @@ class CreateLotViewController: UIViewController, UITextFieldDelegate {
         }
     }
 
+    // Function called on page load to determine whether user is creating or managing a lot and update title accordingly
     func checkCreateOrManageLot() {
         
         if managementType == "Manage" {
@@ -359,6 +380,7 @@ class CreateLotViewController: UIViewController, UITextFieldDelegate {
         
     }
     
+    // Check if all textfields have data and are integers
     func checkRequiredInputsAreSatisfied() -> Bool {
         
         
@@ -589,6 +611,7 @@ class CreateLotViewController: UIViewController, UITextFieldDelegate {
         
     }
     
+    // Check if all lot spots have data, not dummy data created (that is, equal to 876325)
     func checkAllLotSpotsAreEntered() -> Bool {
         for (_,value) in lotSpots {
             if value ==  876325 {
@@ -607,6 +630,7 @@ class CreateLotViewController: UIViewController, UITextFieldDelegate {
         return true
     }
     
+    // Function able to create or save lots depending on whether the passed in URL is for creating or updating a lot
     class func createOrSaveLot(url: String, managementType: String, lotName: String, lotLocation: String, lotId: Int, lot: Dictionary<String, Int>) -> Bool {
         
         let request = NSMutableURLRequest(URL: NSURL(string: url)!)
@@ -684,6 +708,7 @@ class CreateLotViewController: UIViewController, UITextFieldDelegate {
 
     }
     
+    // Function calling API to delete lot based on the lot's ID
     class func deleteLot(lotId: Int) {
         
 //        var responseString = ""
@@ -728,6 +753,7 @@ class CreateLotViewController: UIViewController, UITextFieldDelegate {
         
     }
     
+    // Calculate available number of spots if all available spots have data
     func calculateAvailableSpots() {
         // If Int and exists, add text input to lotSpots Dictionary and calculates total
         
@@ -788,6 +814,7 @@ class CreateLotViewController: UIViewController, UITextFieldDelegate {
         }
     }
     
+    // Calculate total number of spots if all available spots have data
     func calculateTotalSpots() {
         if let genTotal = Int(generalSpotsTotalTextField.text!) as Int? {
             lotSpots["genTotal"] = genTotal
@@ -846,7 +873,7 @@ class CreateLotViewController: UIViewController, UITextFieldDelegate {
         }
     }
 
-    
+    // Show and update total available spot text field if all spots are entered
     func calculateTotalAvailableSpots(numberOfAvailableSpots: Int) {
 
         totalSpotsAvailableTextField.hidden = false
@@ -854,6 +881,7 @@ class CreateLotViewController: UIViewController, UITextFieldDelegate {
         
     }
     
+    // Show and update total capacity spot text field if all spots are entered
     func calculateTotalTotalSpots(numberOfTotalSpots: Int) {
         if totalSpotsTotalTextField.hidden == true {
             totalSpotsTotalTextField.hidden = false

@@ -11,6 +11,8 @@ import UIKit
 class GeneralTableViewCell: UITableViewCell {
     
     
+    // Class used for customizing cells in Single Lot View
+    
     @IBOutlet weak var lotPropertyNameLabel: UILabel!
     @IBOutlet weak var lotPropertySpotInfoLabel: UILabel!
     

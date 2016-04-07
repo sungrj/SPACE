@@ -8,6 +8,8 @@
 
 import Foundation
 
+
+// Global variable, accessible from all view controllers.
 class Global {
     var loggedIn: Bool
     init(loggedIn:Bool) {

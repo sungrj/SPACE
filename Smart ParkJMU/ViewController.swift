@@ -10,24 +10,33 @@ import UIKit
 
 class ViewController: UIViewController, UITableViewDataSource {
     
+    // Lot instance variable
     var lots = []
     
+    // Lot Labels
     @IBOutlet weak var lotsTableView: UITableView!
     @IBOutlet weak var didPressButtonLoginOrGoToAdminPage: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
         
-        checkLoginStatus()
+        // Function run when view is loading
+        setup()
         
-        lots = ViewController.getLotNames()
-//        print("Lots:", ViewController.getAllLotsData())
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    // Function run when view is loading
+    func setup() {
+        
+        checkLoginStatus()
+        
+        // Sets lots array to lot names and ids from GET request
+        lots = ViewController.getLotNames()
     }
         
     class func getAllLotsData() -> NSArray {
@@ -62,6 +71,8 @@ class ViewController: UIViewController, UITableViewDataSource {
         return lotData
     }
     
+    
+    // GET Api call to get Lot Names and ID to display tabularly and select by Lot Id
     class func getLotNames() -> NSArray {
         
         var lotData = []
@@ -94,12 +105,15 @@ class ViewController: UIViewController, UITableViewDataSource {
         return lotData
     }
     
+    
+    // Table configuration to display the number of rows for each lot returned from getLotNames function
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
        
         return lots.count
     
     }
     
+    // Table configuration to set table row title to be lot name
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = UITableViewCell()
         
@@ -113,19 +127,16 @@ class ViewController: UIViewController, UITableViewDataSource {
         
         return cell
     }
-    
-    
-    
-    
-    // IBAction + segue
-    
+
+    // IBAction + segue to return to this view
     @IBAction func unwindToViewController(segue: UIStoryboardSegue) {
         
+        // Check if user is logged in to determine whether to have login or admin lots button enabled
         checkLoginStatus()
         
     }
     
-    
+    // If user is logged in, button (login or admin lots) will bring user to admin lots view instead of login view
     @IBAction func didPressLoginOrAdminPage(sender: AnyObject) {
         
         if globalVar.loggedIn == false {
@@ -140,6 +151,7 @@ class ViewController: UIViewController, UITableViewDataSource {
         
     }
     
+    // If the next view is Single Lot View, this passes the selected lot Id to SingleLotViewController for rest of the lot's data to be loaded and displayed
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         
         if segue.identifier == "segueToSingleLotViewController" {
@@ -156,13 +168,14 @@ class ViewController: UIViewController, UITableViewDataSource {
         }
     }
     
-    
+    // When a lot is selected, segue to Single Lot View
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
         performSegueWithIdentifier("segueToSingleLotViewController", sender: nil)
     
     }
     
+    // Check if user is logged in to determine whether to have login or admin lots button enabled
     func checkLoginStatus() {
         
         if globalVar.loggedIn == true {
