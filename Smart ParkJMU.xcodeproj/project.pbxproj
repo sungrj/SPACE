@@ -21,8 +21,6 @@
 		A442FB261BF14862006DB57B /* Smart_ParkJMUUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A442FB251BF14862006DB57B /* Smart_ParkJMUUITests.swift */; };
 		A442FB341BF1486E006DB57B /* JM.png in Resources */ = {isa = PBXBuildFile; fileRef = A442FB331BF1486E006DB57B /* JM.png */; };
 		A47C198A1CB1FB0200362107 /* SPACE Splash.png in Resources */ = {isa = PBXBuildFile; fileRef = A47C19891CB1FB0200362107 /* SPACE Splash.png */; };
-		A493BB801BF53A4500493FF0 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A493BB7E1BF53A4500493FF0 /* Bolts.framework */; };
-		A493BB811BF53A4500493FF0 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A493BB7F1BF53A4500493FF0 /* Parse.framework */; };
 		A493BB8C1BF53ADF00493FF0 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A493BB821BF53ADF00493FF0 /* AudioToolbox.framework */; };
 		A493BB8D1BF53ADF00493FF0 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A493BB831BF53ADF00493FF0 /* CFNetwork.framework */; };
 		A493BB8E1BF53ADF00493FF0 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A493BB841BF53ADF00493FF0 /* CoreGraphics.framework */; };
@@ -79,8 +77,6 @@
 		A442FB271BF14862006DB57B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A442FB331BF1486E006DB57B /* JM.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = JM.png; sourceTree = "<group>"; };
 		A47C19891CB1FB0200362107 /* SPACE Splash.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "SPACE Splash.png"; sourceTree = "<group>"; };
-		A493BB7E1BF53A4500493FF0 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
-		A493BB7F1BF53A4500493FF0 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
 		A493BB821BF53ADF00493FF0 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		A493BB831BF53ADF00493FF0 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		A493BB841BF53ADF00493FF0 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -116,8 +112,6 @@
 				A493BB931BF53ADF00493FF0 /* Security.framework in Frameworks */,
 				A493BB941BF53ADF00493FF0 /* StoreKit.framework in Frameworks */,
 				A493BB951BF53ADF00493FF0 /* SystemConfiguration.framework in Frameworks */,
-				A493BB811BF53A4500493FF0 /* Parse.framework in Frameworks */,
-				A493BB801BF53A4500493FF0 /* Bolts.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -216,8 +210,6 @@
 				A493BB891BF53ADF00493FF0 /* Security.framework */,
 				A493BB8A1BF53ADF00493FF0 /* StoreKit.framework */,
 				A493BB8B1BF53ADF00493FF0 /* SystemConfiguration.framework */,
-				A493BB7E1BF53A4500493FF0 /* Bolts.framework */,
-				A493BB7F1BF53A4500493FF0 /* Parse.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
