@@ -39,39 +39,6 @@ class ViewController: UIViewController, UITableViewDataSource {
         lots = ViewController.getLotNames()
     }
         
-    class func getAllLotsData() -> NSArray {
-        
-        var lotData = []
-        
-        let nsUrl = NSURL(string: "http://spacejmu.bitnamiapp.com/SPACEApiCalls/test1.php")
-        
-        let semaphore = dispatch_semaphore_create(0)
-        
-        let task = NSURLSession.sharedSession().dataTaskWithURL(nsUrl!){
-            (data, response, error) in
-            
-            do {
-                
-                let jsonResult = try NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.MutableContainers)
-                lotData = jsonResult as! NSArray
-                
-            } catch {
-                
-                print ("JSON serialization failed")
-            }
-            
-            dispatch_semaphore_signal(semaphore)
-            
-        }
-        
-        task.resume()
-        
-        dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER)
-        
-        return lotData
-    }
-    
-    
     // GET Api call to get Lot Names and ID to display tabularly and select by Lot Id
     class func getLotNames() -> NSArray {
         
