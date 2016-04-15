@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" initialViewController="01J-lp-oVM">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" initialViewController="01J-lp-oVM">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -34,10 +35,10 @@
                                 <exclude reference="s3k-tU-2BM"/>
                             </mask>
                             <mask key="constraints">
+                                <exclude reference="8Ai-6e-l79"/>
                                 <exclude reference="T4i-rM-ewW"/>
                                 <exclude reference="uOR-ag-TJp"/>
                                 <exclude reference="wxS-AK-i5j"/>
-                                <exclude reference="8Ai-6e-l79"/>
                             </mask>
                         </variation>
                         <variation key="widthClass=compact">
@@ -45,10 +46,10 @@
                                 <include reference="s3k-tU-2BM"/>
                             </mask>
                             <mask key="constraints">
+                                <include reference="8Ai-6e-l79"/>
                                 <include reference="T4i-rM-ewW"/>
                                 <include reference="uOR-ag-TJp"/>
                                 <include reference="wxS-AK-i5j"/>
-                                <include reference="8Ai-6e-l79"/>
                             </mask>
                         </variation>
                     </view>

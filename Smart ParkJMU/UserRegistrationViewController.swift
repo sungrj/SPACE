@@ -8,7 +8,7 @@
 
 import UIKit
 
-class UserRegistrationViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate {
+class UserRegistrationViewController: UIViewController, UITextFieldDelegate, UIPickerViewDataSource, UIPickerViewDelegate {
     
     // View textfields
     @IBOutlet weak var nameTextInputField: UITextField!
@@ -36,6 +36,17 @@ class UserRegistrationViewController: UIViewController, UIPickerViewDataSource, 
         setup()
         
     }
+    
+    // If user touches somewhere other than a text field hides keyboard
+    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+        self.view.endEditing(true)
+    }
+    
+    // Hides keyboard after hitting return on keyboard
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        self.view.endEditing(true)
+        return false
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -47,6 +58,12 @@ class UserRegistrationViewController: UIViewController, UIPickerViewDataSource, 
         // Sets permit and car type picker datasource and delegate to the controller
         self.permitTypePicker.delegate = self
         self.permitTypePicker.dataSource = self
+        
+        // Sets textfield delegates to controller for textFieldShouldReturn function
+        self.nameTextInputField.delegate = self
+        self.emailTextInputField.delegate = self
+        self.passwordTextInputField.delegate = self
+        self.confirmPasswordTextInputField.delegate = self
         
         // Hides alert label to start
         alertLabel.hidden = true
@@ -79,7 +96,7 @@ class UserRegistrationViewController: UIViewController, UIPickerViewDataSource, 
             
             // If textfields and values are entered and satisfied, run createUser function
             createUser()
-            
+            self.performSegueWithIdentifier("goToLogin", sender: nil)
             alertLabel.hidden = true
         }
     }

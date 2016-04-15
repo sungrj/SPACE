@@ -603,6 +603,7 @@ using a Cloud Environment</string>
                         <outlet property="nameTextInputField" destination="cuf-Oh-CZp" id="DVR-Ft-d10"/>
                         <outlet property="passwordTextInputField" destination="zpJ-Mt-lDN" id="Wrb-z6-eSj"/>
                         <outlet property="permitTypePicker" destination="60B-6f-g0T" id="Nw5-r0-3gy"/>
+                        <segue destination="5SO-iv-VHj" kind="show" identifier="goToLogin" id="Zat-vM-P1N"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HIe-NS-2DL" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -3075,6 +3076,7 @@ using a Cloud Environment</string>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="tCF-hc-oz7"/>
+        <segue reference="Zat-vM-P1N"/>
         <segue reference="ySl-00-nY2"/>
     </inferredMetricsTieBreakers>
 </document>

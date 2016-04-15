@@ -45,6 +45,12 @@ class AdminLoginViewController: UIViewController, UITextFieldDelegate {
         self.view.endEditing(true)
     }
     
+    // Hides keyboard after pressing enter/return on keyboard
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        self.view.endEditing(true)
+        return false
+    }
+    
     // Function run when login button pressed
     @IBAction func didPressLoginButton(sender: AnyObject) {
         
